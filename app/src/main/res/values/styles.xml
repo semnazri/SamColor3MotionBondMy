@@ -35,4 +35,11 @@
         <item name="android:background">@drawable/gradient_spinner</item>
         <item name="android:popupBackground">#CFD0D3</item>
     </style>
+
+    <style name="NavigationTheme" parent="AppTheme">
+        <item name="listPreferredItemHeightSmall">40dp</item><!-- menu item height- vary as u need -->
+        <item name="android:listDivider">@color/white</item>
+
+    </style>
+
 </resources>
