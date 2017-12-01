@@ -3,11 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="colorOrange">#EF4E26</color>
-    <color name="colorOrange_50">#80ef4e26</color>
+    <color name="colorOrange">#F15D31</color>
+    <color name="colorOrange_50">#80F15D31</color>
     <color name="colorOrange_txt">#ffe2db</color>
     <color name="white">#FFFFFF</color>
     <color name="biru">#2E76AE</color>
     <color name="abu">#F2F3F6</color>
     <color name="black">#000000</color>
+    <color name="abu2">#CBCCCE</color>
+    <color name="abu3">#838383</color>
 </resources>

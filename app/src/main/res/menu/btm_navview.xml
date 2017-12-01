@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_reward"
+        android:title="Reward"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/ic_ireward">
+    </item>
+    <item
+        android:id="@+id/history_project"
+        android:title="History Project"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/ic_history">
+    </item>
+    <item
+        android:id="@+id/action_notification"
+        android:title="Notification"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/ic_notification">
+    </item>
+
+    <item
+        android:id="@+id/inspiration"
+        android:title="Colorbond Inspiration"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/ic_inspiration">
+    </item>
+
+</menu>

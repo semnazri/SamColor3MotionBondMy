@@ -1,6 +1,6 @@
 package a3motion.com.colorbond;
 
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,7 +10,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,14 +17,13 @@ import android.view.WindowManager;
 
 import a3motion.com.colorbond.Fragment.FragmentHome;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static ActionBarDrawerToggle toggle;
+    public static DrawerLayout mDrawerLayout;
     Toolbar mToolbar;
     NavigationView navigationView;
     FragmentManager fragmentManager;
-    public static ActionBarDrawerToggle toggle;
-    public static DrawerLayout mDrawerLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,9 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //            Intent i = new Intent(this, FragmentPaketLangganan.class);
 //            startActivity(i);
 
-        }
-
-        else if (id == R.id.aboutUs) {
+        } else if (id == R.id.aboutUs) {
 
 //            Intent i = new Intent(this, FragmentTentangKami.class);
 //            startActivity(i);
