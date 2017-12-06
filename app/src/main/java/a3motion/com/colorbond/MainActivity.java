@@ -2,6 +2,7 @@ package a3motion.com.colorbond;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import a3motion.com.colorbond.Fragment.FragmentHome;
+import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -24,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar mToolbar;
     NavigationView navigationView;
     FragmentManager fragmentManager;
-
+    private BottomNavigationView btmView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Showtoolbar();
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
+        btmView = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationViewHelper.disableShiftMode(btmView);
         toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

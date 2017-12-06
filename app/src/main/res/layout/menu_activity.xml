@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/bg">
 
     <LinearLayout
@@ -20,8 +20,6 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:src="@drawable/color_title"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             tools:layout_editor_absoluteY="27dp" />
 
         <Button
@@ -31,11 +29,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:text="btn architect"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            android:text="btn architect" />
 
         <Button
             android:id="@+id/btn_roll_former"
@@ -45,7 +39,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
             android:text="btn Roll Formeer"
-            app:layout_constraintTop_toBottomOf="@+id/btn_architect" />
+        />
 
         <Button
             android:id="@+id/btn_Contractor"
@@ -54,8 +48,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:text="btn Cpntractor"
-            app:layout_constraintTop_toBottomOf="@+id/btn_roll_former" />
+            android:text="btn Cpntractor" />
 
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>
