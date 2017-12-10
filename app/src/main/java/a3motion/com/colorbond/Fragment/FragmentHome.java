@@ -1,12 +1,15 @@
 package a3motion.com.colorbond.Fragment;
 
 import android.app.Dialog;
-import android.media.Image;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -40,8 +44,9 @@ public class FragmentHome extends Fragment {
     private RecyclerView rv;
     private LinearLayoutManager lm;
     private LatestProjectAdapter adapter;
-    private ImageView img_top;
+    private ImageView img_top,img_bonpart_program;
     private Button btn_join;
+    private LinearLayout ll_project_history;
     private MaterialDialog mDialog;
 
 
@@ -55,7 +60,11 @@ public class FragmentHome extends Fragment {
         latestProjects = getProjects();
         rv = (RecyclerView) view.findViewById(R.id.home_last_project);
         img_top = (ImageView) view.findViewById(R.id.home_top_image);
+        img_bonpart_program  = (ImageView) view.findViewById(R.id.bonpart_program);
         btn_join = (Button) view.findViewById(R.id.join);
+        ll_project_history = (LinearLayout) view.findViewById(R.id.linear_project_history);
+
+
         img_top.setFocusable(true);
         rv.setHasFixedSize(true);
         lm = new LinearLayoutManager(getActivity());
@@ -77,7 +86,33 @@ public class FragmentHome extends Fragment {
 
             }
         });
+        img_bonpart_program.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogProgram();
+            }
+        });
+        ll_project_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.container_body, new Project_HistoryParent(), "pembayaran").addToBackStack("pembayaran");
+                fragmentTransaction.commit();
+            }
+        });
         return view;
+    }
+
+    private void showDialogProgram() {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.layout_bondpart_program);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        TextView tv_program_desc = (TextView) dialog.findViewById(R.id.txt_bond_part_program);
+        tv_program_desc.setText(getString(R.string.lorem));
+        dialog.setCancelable(true);
+        dialog.show();
     }
 
     private void showDialogjoin() {

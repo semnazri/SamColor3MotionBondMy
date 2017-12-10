@@ -1,5 +1,8 @@
 package a3motion.com.colorbond;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -12,11 +15,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 
 import a3motion.com.colorbond.Fragment.FragmentHome;
+import a3motion.com.colorbond.Fragment.Project_HistoryParent;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +70,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
+
+        btmView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.action_reward:
+                        //TODO : Replace with Fragment
+                        break;
+                    case R.id.history_project:
+
+                        fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.container_body, new Project_HistoryParent(), "home").addToBackStack("menu");
+                        fragmentTransaction.commit();
+                        //TODO : Replace with Fragment
+                        break;
+                    case R.id.action_notification:
+                        //TODO : Replace with Fragment
+                        break;
+                    case R.id.inspiration:
+                        //TODO : Replace with Fragment
+                        break;
+                }
+
+                return true;
+            }
+        });
 
 
     }
@@ -125,4 +159,37 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+
+        int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
+
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+            Log.d("ada disini ya", "drower close");
+        } else if (backStackCount >= 2) {
+            fragmentManager.popBackStack();
+            FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(
+                    1);
+            getSupportFragmentManager().popBackStack(entry.getId(),
+                    FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            getSupportFragmentManager().executePendingTransactions();
+
+            navigationView.getMenu().getItem(0).setChecked(true);
+
+        } else
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setMessage("Do you want to close this application?")
+                    .setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int wich) {
+                                    finish();
+
+                                }
+                            }).setNegativeButton("No", null).show();
+    }
+
 }
