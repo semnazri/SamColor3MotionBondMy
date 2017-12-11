@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.R;
 
 /**

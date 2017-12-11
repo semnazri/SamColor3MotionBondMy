@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public static ActionBarDrawerToggle toggle;
     public static DrawerLayout mDrawerLayout;
-    Toolbar mToolbar;
+    public  Toolbar mToolbar;
     NavigationView navigationView;
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;

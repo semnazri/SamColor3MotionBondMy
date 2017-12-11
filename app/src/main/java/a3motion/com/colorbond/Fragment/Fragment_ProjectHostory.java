@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import a3motion.com.colorbond.Adapter.LatestProjectAdapter;
 import a3motion.com.colorbond.Adapter.ProjectHistoryAdapter;
 import a3motion.com.colorbond.Model.LatestProject;
 import a3motion.com.colorbond.R;
@@ -33,11 +32,11 @@ public class Fragment_ProjectHostory extends Fragment {
     private RecyclerView rv;
     private LinearLayoutManager lm;
     private ProjectHistoryAdapter adapter;
-    
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       view = inflater.inflate(R.layout.fragment_project_hostory,container,false);
+        view = inflater.inflate(R.layout.fragment_project_hostory, container, false);
         latestProjects = getProjects();
         rv = (RecyclerView) view.findViewById(R.id.rv_laastProject);
 
@@ -45,7 +44,7 @@ public class Fragment_ProjectHostory extends Fragment {
         rv.setHasFixedSize(true);
         lm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(lm);
-        adapter = new ProjectHistoryAdapter(getActivity(),latestProjects);
+        adapter = new ProjectHistoryAdapter(getActivity(), latestProjects);
         rv.setAdapter(adapter);
         return view;
     }

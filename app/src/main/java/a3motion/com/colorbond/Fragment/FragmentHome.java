@@ -45,7 +45,7 @@ public class FragmentHome extends Fragment {
     private LinearLayoutManager lm;
     private LatestProjectAdapter adapter;
     private ImageView img_top,img_bonpart_program;
-    private Button btn_join;
+    private Button btn_join,btn_detail_info;
     private LinearLayout ll_project_history;
     private MaterialDialog mDialog;
 
@@ -63,6 +63,7 @@ public class FragmentHome extends Fragment {
         img_bonpart_program  = (ImageView) view.findViewById(R.id.bonpart_program);
         btn_join = (Button) view.findViewById(R.id.join);
         ll_project_history = (LinearLayout) view.findViewById(R.id.linear_project_history);
+        btn_detail_info = (Button) view.findViewById(R.id.btn_detail_info);
 
 
         img_top.setFocusable(true);
@@ -100,6 +101,12 @@ public class FragmentHome extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.container_body, new Project_HistoryParent(), "pembayaran").addToBackStack("pembayaran");
                 fragmentTransaction.commit();
+            }
+        });
+        btn_detail_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
         return view;
