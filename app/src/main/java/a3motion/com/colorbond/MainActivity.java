@@ -2,7 +2,6 @@ package a3motion.com.colorbond;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -19,6 +18,9 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import a3motion.com.colorbond.Fragment.FragmentHome;
 import a3motion.com.colorbond.Fragment.Project_HistoryParent;
@@ -28,7 +30,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public static ActionBarDrawerToggle toggle;
     public static DrawerLayout mDrawerLayout;
-    public  Toolbar mToolbar;
+    public static TextView title_page;
+    public static ImageView img_title;
+    public Toolbar mToolbar;
     NavigationView navigationView;
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;
@@ -44,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         btmView = (BottomNavigationView) findViewById(R.id.navigation);
+        title_page = (TextView) findViewById(R.id.txt_title_page);
+        img_title = (ImageView) findViewById(R.id.img_tolbar);
         BottomNavigationViewHelper.disableShiftMode(btmView);
         toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -118,29 +124,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         if (id == R.id.home) {
-
             fragment = new FragmentHome();
-
-        } else if (id == R.id.paket) {
-//            Intent i = new Intent(this, FragmentPaketLangganan.class);
-//            startActivity(i);
-
-        } else if (id == R.id.aboutUs) {
-
-//            Intent i = new Intent(this, FragmentTentangKami.class);
-//            startActivity(i);
-
-        } else if (id == R.id.kontak) {
-//
-//            Intent i = new Intent(this, FragmentKontakKami.class);
-//            startActivity(i);
-
-        } else if (id == R.id.download) {
-//            Intent i = new Intent(this, ActivityMyDownload.class);
-//            startActivity(i);
-
-        } else if (id == R.id.signout) {
-//            Signout();
+        } else if (id == R.id.account) {
+            getToast();
+        } else if (id == R.id.event) {
+            getToast();
+        } else if (id == R.id.benefit) {
+            getToast();
+        } else if (id == R.id.variant) {
+            getToast();
+        } else if (id == R.id.bluescoop) {
+            getToast();
+        } else if (id == R.id.help) {
+            getToast();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -158,6 +154,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         return true;
+    }
+
+    private void getToast() {
+        Toast.makeText(this, "kepencet", Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -17,28 +17,28 @@ import a3motion.com.colorbond.R;
 
 /**
  * Created by Semmy
- * mr.shanky08@gmail.com on 12/10/17.
+ * mr.shanky08@gmail.com on 12/12/17.
  *
  * @copyright 2016
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class Project_HistoryParent extends Fragment {
+public class Point_Parent extends Fragment {
+
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     public static int int_items = 2;
     private View view;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_project_history, container, false);
+        view = inflater.inflate(R.layout.fragment_parent_point, container, false);
         tabLayout = (TabLayout) view.findViewById(R.id.home_tabs);
         viewPager = (ViewPager) view.findViewById(R.id.homeviewpager);
         MainActivity.img_title.setVisibility(View.GONE);
         MainActivity.title_page.setVisibility(View.VISIBLE);
-        MainActivity.title_page.setText("PROJECT HISTORY");
+        MainActivity.title_page.setText("REWARD");
         viewPager.setAdapter(new Adapter(getChildFragmentManager()));
         tabLayout.post(new Runnable() {
             @Override
@@ -59,9 +59,9 @@ public class Project_HistoryParent extends Fragment {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new Fragment_ProjectHostory();
+                    return new Fragment_CobrandingEvent();
                 case 1:
-                    return new Fragment_MyTeamAchivement();
+                    return new Fragment_rebateVoucher();
                 default:
                     return null;
             }
@@ -77,9 +77,9 @@ public class Project_HistoryParent extends Fragment {
 
             switch (position) {
                 case 0:
-                    return "PROJECT HISTORY";
+                    return "COLORBOND COBRANDING EVENT";
                 case 1:
-                    return "MY TEAM ACHIVEMENT";
+                    return "REBATE VOUCHER";
 
             }
             return null;

@@ -6,47 +6,55 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/home"
-            android:title="Home" />
+            android:title="HOME" />
     </group>
 
     <group
         android:id="@+id/dua"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/paket"
-            android:title="Paket Langganan" />
+            android:id="@+id/account"
+            android:title="MY BONDPARTNER ACCOUNT" />
+    </group>
+
+    <group
+        android:id="@+id/tiga"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/event"
+            android:title="BONDPARTNER EVENT" />
     </group>
 
     <group
         android:id="@+id/empat"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/aboutUs"
-            android:title="Tentang Kami" />
+            android:id="@+id/benefit"
+            android:title="BONDPARTNER MERCHANT BENEFIT" />
         </group>
     <group
         android:id="@+id/lima"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/kontak"
-            android:title="Kontak Kami" />
+            android:id="@+id/variant"
+            android:title="VARIANT COLORBOND" />
         </group>
 
     <group
         android:id="@+id/enam"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/download"
-            android:title="My Download" />
+            android:id="@+id/bluescoop"
+            android:title="PT. NS BLUESCOOP INDONESIA" />
         </group>
 
 
     <group
-        android:id="@+id/delapan"
+        android:id="@+id/tujuh"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/signout"
-            android:title="Sign Out" />
+            android:id="@+id/help"
+            android:title="HELP" />
     </group>
 
 

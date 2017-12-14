@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a3motion.com.colorbond.Adapter.LatestProjectAdapter;
+import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.Model.LatestProject;
 import a3motion.com.colorbond.R;
 
@@ -46,7 +47,7 @@ public class FragmentHome extends Fragment {
     private LatestProjectAdapter adapter;
     private ImageView img_top,img_bonpart_program;
     private Button btn_join,btn_detail_info;
-    private LinearLayout ll_project_history;
+    private LinearLayout ll_project_history,ll_point;
     private MaterialDialog mDialog;
 
 
@@ -64,6 +65,10 @@ public class FragmentHome extends Fragment {
         btn_join = (Button) view.findViewById(R.id.join);
         ll_project_history = (LinearLayout) view.findViewById(R.id.linear_project_history);
         btn_detail_info = (Button) view.findViewById(R.id.btn_detail_info);
+        ll_point = (LinearLayout) view.findViewById(R.id.layout_point);
+
+        MainActivity.img_title.setVisibility(View.VISIBLE);
+        MainActivity.title_page.setVisibility(View.GONE);
 
 
         img_top.setFocusable(true);
@@ -103,6 +108,17 @@ public class FragmentHome extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+        ll_point.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.container_body, new Point_Parent(), "pembayaran").addToBackStack("pembayaran");
+                fragmentTransaction.commit();
+            }
+        });
+
         btn_detail_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
