@@ -22,8 +22,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import a3motion.com.colorbond.Fragment.FragmentEvent;
 import a3motion.com.colorbond.Fragment.FragmentHome;
+import a3motion.com.colorbond.Fragment.FragmentNotif;
+import a3motion.com.colorbond.Fragment.Fragment_account;
 import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
+import a3motion.com.colorbond.Fragment.Point_Parent;
 import a3motion.com.colorbond.Fragment.Project_HistoryParent;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 
@@ -37,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;
+    private FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,19 +89,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 switch (item.getItemId()) {
                     case R.id.action_reward:
-                        //TODO : Replace with Fragment
+                        fragmentManager = getSupportFragmentManager();
+                        ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.container_body, new Point_Parent(), "home").addToBackStack("menu");
+                        ft.commit();
                         break;
                     case R.id.history_project:
-
                         fragmentManager = getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.container_body, new Project_HistoryParent(), "home").addToBackStack("menu");
-                        fragmentTransaction.commit();
-                        //TODO : Replace with Fragment
+                        ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.container_body, new Project_HistoryParent(), "home").addToBackStack("menu");
+                        ft.commit();
                         break;
                     case R.id.action_notification:
-                        //TODO : Replace with Fragment
-                        break;
+                        fragmentManager = getSupportFragmentManager();
+                        ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.container_body, new FragmentNotif(), "home").addToBackStack("menu");
+                        ft.commit();                        break;
                     case R.id.inspiration:
                         //TODO : Replace with Fragment
                         break;
@@ -127,12 +135,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.home) {
             fragment = new FragmentHome();
         } else if (id == R.id.account) {
-            getToast();
+            fragment = new Fragment_account();
         } else if (id == R.id.event) {
-            getToast();
+            fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {
             fragment = new Fragment_bondPartMerchant_benefit();
-            getToast();
         } else if (id == R.id.variant) {
             getToast();
         } else if (id == R.id.bluescoop) {
