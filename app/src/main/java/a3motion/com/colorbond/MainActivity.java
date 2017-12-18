@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import a3motion.com.colorbond.Fragment.FragmentHome;
+import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
 import a3motion.com.colorbond.Fragment.Project_HistoryParent;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.event) {
             getToast();
         } else if (id == R.id.benefit) {
+            fragment = new Fragment_bondPartMerchant_benefit();
             getToast();
         } else if (id == R.id.variant) {
             getToast();
@@ -177,6 +179,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().executePendingTransactions();
 
             navigationView.getMenu().getItem(0).setChecked(true);
+            MainActivity.img_title.setVisibility(View.VISIBLE);
+            MainActivity.title_page.setVisibility(View.GONE);
 
         } else
             new AlertDialog.Builder(this)

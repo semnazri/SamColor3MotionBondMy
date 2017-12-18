@@ -10,7 +10,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:src="@drawable/ic_person_black_24dp"
         app:civ_border_color="@color/abu3"
@@ -25,7 +25,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/team_name"
+            android:id="@+id/followers_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="John"
@@ -34,27 +34,20 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/team_job"
+            android:id="@+id/followers_job"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="sales"
+            android:text="SuperHero"
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/team_order_intact"
+            android:id="@+id/followers_company"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order Intact : 200 Ton"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:text="Company : PT.LogicArtKreasi"
+            android:textColor="@color/black"/>
 
-        <TextView
-            android:id="@+id/team_reward_point"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Reward Point: 1.000"
-            android:textColor="@color/black"
-            android:textStyle="bold"/>
+
     </LinearLayout>
 
 

@@ -1,7 +1,6 @@
 package a3motion.com.colorbond.Fragment;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -12,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +25,10 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import java.util.ArrayList;
 import java.util.List;
 
+import a3motion.com.colorbond.Adapter.FollowersAdapter;
 import a3motion.com.colorbond.Adapter.LatestProjectAdapter;
 import a3motion.com.colorbond.MainActivity;
+import a3motion.com.colorbond.Model.Followers;
 import a3motion.com.colorbond.Model.LatestProject;
 import a3motion.com.colorbond.R;
 
@@ -42,16 +44,15 @@ public class FragmentHome extends Fragment {
 
     private View view;
     private List<LatestProject> latestProjects;
+    private List<Followers> followers;
     private RecyclerView rv;
-    private LinearLayoutManager lm;
+    private LinearLayoutManager lm,lm_followers;
     private LatestProjectAdapter adapter;
-    private ImageView img_top,img_bonpart_program;
-    private Button btn_join,btn_detail_info;
-    private LinearLayout ll_project_history,ll_point;
+    private FollowersAdapter followersAdapter;
+    private ImageView img_top, img_bonpart_program, home_4rd_image;
+    private Button btn_join, btn_detail_info;
+    private LinearLayout ll_project_history, ll_point;
     private MaterialDialog mDialog;
-
-
-
 
     @Nullable
     @Override
@@ -61,11 +62,12 @@ public class FragmentHome extends Fragment {
         latestProjects = getProjects();
         rv = (RecyclerView) view.findViewById(R.id.home_last_project);
         img_top = (ImageView) view.findViewById(R.id.home_top_image);
-        img_bonpart_program  = (ImageView) view.findViewById(R.id.bonpart_program);
+        img_bonpart_program = (ImageView) view.findViewById(R.id.bonpart_program);
         btn_join = (Button) view.findViewById(R.id.join);
         ll_project_history = (LinearLayout) view.findViewById(R.id.linear_project_history);
         btn_detail_info = (Button) view.findViewById(R.id.btn_detail_info);
         ll_point = (LinearLayout) view.findViewById(R.id.layout_point);
+        home_4rd_image = (ImageView) view.findViewById(R.id.home_4rd_image);
 
         MainActivity.img_title.setVisibility(View.VISIBLE);
         MainActivity.title_page.setVisibility(View.GONE);
@@ -75,7 +77,7 @@ public class FragmentHome extends Fragment {
         rv.setHasFixedSize(true);
         lm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(lm);
-        adapter = new LatestProjectAdapter(getActivity(),latestProjects);
+        adapter = new LatestProjectAdapter(getActivity(), latestProjects);
         rv.setAdapter(adapter);
 
         img_top.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +124,20 @@ public class FragmentHome extends Fragment {
         btn_detail_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.container_body, new Fragment_bondPartMerchant_benefit(), "pembayaran").addToBackStack("pembayaran");
+                fragmentTransaction.commit();
+            }
+        });
+
+        home_4rd_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.container_body, new Fragment_colorbond_insipiration(), "pembayaran").addToBackStack("pembayaran");
+                fragmentTransaction.commit();
             }
         });
         return view;
@@ -144,14 +159,49 @@ public class FragmentHome extends Fragment {
         dialog.setContentView(R.layout.layout_join);
 
         TextView tv_join_disjoin = (TextView) dialog.findViewById(R.id.txt_join_disjoin);
+        LinearLayout ll_folowers = (LinearLayout) dialog.findViewById(R.id.ll_folowers);
         tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
             }
         });
+        ll_folowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog_listFolowers();
+            }
+        });
 
         dialog.show();
+
+    }
+
+    private void showDialog_listFolowers() {
+        final Dialog dialog_followers = new Dialog(getActivity());
+        dialog_followers.setContentView(R.layout.layout_followers);
+        followers = getFollowers();
+        RecyclerView rv_followers = (RecyclerView) dialog_followers.findViewById(R.id.rv_followers);
+        final Button btn_back = (Button) dialog_followers.findViewById(R.id.btn_back);
+
+        rv_followers.setHasFixedSize(true);
+        lm_followers = new LinearLayoutManager(getActivity());
+        rv_followers.setLayoutManager(lm_followers);
+        followersAdapter = new FollowersAdapter(getActivity(), followers);
+        rv_followers.setAdapter(followersAdapter);
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_followers.dismiss();
+            }
+        });
+
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+        dialog_followers.show();
+        dialog_followers.getWindow().setLayout((6 * width)/7, (6 * height)/7);
 
     }
 
@@ -164,5 +214,16 @@ public class FragmentHome extends Fragment {
 
 
         return lp;
+    }
+
+    private List<Followers> getFollowers(){
+        List<Followers> flw = new ArrayList<>();
+        flw.add(new Followers("Syafira Muthiary", "PhotoGrapger", "Freelancer"));
+        flw.add(new Followers("Nindya Iswari Hayuningrum", "Head Marketing", "PT. GrossFoodIndonesia"));
+        flw.add(new Followers("Nevertari Vivi", "Queen Of Arabasta", "PT. Arabasta Companny"));
+        flw.add(new Followers("Nico Robin", "Archeolog", "PT. StrawHat Pirate"));
+        flw.add(new Followers("Nami", "Navigator", "PT. StrawHat Pirate"));
+
+        return flw;
     }
 }
