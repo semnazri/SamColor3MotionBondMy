@@ -27,6 +27,7 @@ public class Fragment_CobrandingEvent extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_cobranding_event,container,false);
+
         return view;
     }
 }

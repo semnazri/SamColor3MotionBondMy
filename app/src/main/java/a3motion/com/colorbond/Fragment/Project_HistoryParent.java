@@ -1,5 +1,7 @@
 package a3motion.com.colorbond.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import a3motion.com.colorbond.MainActivity;
+import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.R;
+import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 
 /**
  * Created by Semmy
@@ -28,7 +32,9 @@ public class Project_HistoryParent extends Fragment {
     public static ViewPager viewPager;
     public static int int_items = 2;
     private View view;
-
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+    String userid;
+    private SharedPreferences prefsprivate;
 
     @Nullable
     @Override
@@ -36,9 +42,22 @@ public class Project_HistoryParent extends Fragment {
         view = inflater.inflate(R.layout.activity_project_history, container, false);
         tabLayout = (TabLayout) view.findViewById(R.id.home_tabs);
         viewPager = (ViewPager) view.findViewById(R.id.homeviewpager);
-        MainActivity.img_title.setVisibility(View.GONE);
-        MainActivity.title_page.setVisibility(View.VISIBLE);
-        MainActivity.title_page.setText("PROJECT HISTORY");
+
+        prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        userid = prefsprivate.getString(BlueScoopPreferences.user_id, "userid");
+
+        if (userid.equals("owner")) {
+
+            MainActivity.title_page.setText("PROJECT HISTORY");
+            MainActivity.img_title.setVisibility(View.GONE);
+            MainActivity.title_page.setVisibility(View.VISIBLE);
+        } else {
+            MainActivity_owner.title_page.setText("PROJECT HISTORY");
+            MainActivity_owner.img_title.setVisibility(View.GONE);
+            MainActivity_owner.title_page.setVisibility(View.VISIBLE);
+
+        }
+
         viewPager.setAdapter(new Adapter(getChildFragmentManager()));
         tabLayout.post(new Runnable() {
             @Override

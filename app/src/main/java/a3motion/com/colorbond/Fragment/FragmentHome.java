@@ -1,6 +1,8 @@
 package a3motion.com.colorbond.Fragment;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -28,9 +30,11 @@ import java.util.List;
 import a3motion.com.colorbond.Adapter.FollowersAdapter;
 import a3motion.com.colorbond.Adapter.LatestProjectAdapter;
 import a3motion.com.colorbond.MainActivity;
+import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Followers;
 import a3motion.com.colorbond.Model.LatestProject;
 import a3motion.com.colorbond.R;
+import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 
 /**
  * Created by Semmy
@@ -53,6 +57,9 @@ public class FragmentHome extends Fragment {
     private Button btn_join, btn_detail_info;
     private LinearLayout ll_project_history, ll_point;
     private MaterialDialog mDialog;
+    private SharedPreferences prefsprivate;
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+    String userid;
 
     @Nullable
     @Override
@@ -69,8 +76,20 @@ public class FragmentHome extends Fragment {
         ll_point = (LinearLayout) view.findViewById(R.id.layout_point);
         home_4rd_image = (ImageView) view.findViewById(R.id.home_4rd_image);
 
-        MainActivity.img_title.setVisibility(View.VISIBLE);
-        MainActivity.title_page.setVisibility(View.GONE);
+        prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        userid = prefsprivate.getString(BlueScoopPreferences.user_id, "userid");
+
+        if (userid.equals("owner")){
+            MainActivity.img_title.setVisibility(View.VISIBLE);
+            MainActivity.title_page.setVisibility(View.GONE);
+
+
+        }else{
+            MainActivity_owner.img_title.setVisibility(View.VISIBLE);
+            MainActivity_owner.title_page.setVisibility(View.GONE);
+
+        }
+
 
 
         img_top.setFocusable(true);

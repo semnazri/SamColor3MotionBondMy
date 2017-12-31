@@ -1,5 +1,7 @@
 package a3motion.com.colorbond.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,8 +17,10 @@ import java.util.List;
 
 import a3motion.com.colorbond.Adapter.NotificationAdapter;
 import a3motion.com.colorbond.MainActivity;
+import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Notification;
 import a3motion.com.colorbond.R;
+import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 
 /**
  * Created by Semmy
@@ -33,14 +37,29 @@ public class FragmentNotif extends Fragment {
     private List<Notification> notif;
     private LinearLayoutManager lm;
     private NotificationAdapter adapter;
-
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+    String userid;
+    private SharedPreferences prefsprivate;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_notifikasi, container, false);
-        MainActivity.img_title.setVisibility(View.GONE);
-        MainActivity.title_page.setVisibility(View.VISIBLE);
-        MainActivity.title_page.setText("NOTIFICATION");
+        prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        userid = prefsprivate.getString(BlueScoopPreferences.user_id, "userid");
+
+        if (userid.equals("owner")) {
+
+            MainActivity.title_page.setText("NOTIFICATION");
+            MainActivity.img_title.setVisibility(View.GONE);
+            MainActivity.title_page.setVisibility(View.VISIBLE);
+        } else {
+            MainActivity_owner.title_page.setText("NOTIFICATION");
+            MainActivity_owner.img_title.setVisibility(View.GONE);
+            MainActivity_owner.title_page.setVisibility(View.VISIBLE);
+
+        }
+
+
         rv = view.findViewById(R.id.rv_notif);
         notif = getAllNotif();
 

@@ -26,13 +26,22 @@ import a3motion.com.colorbond.Fragment.FragmentEvent;
 import a3motion.com.colorbond.Fragment.FragmentHome;
 import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
+import a3motion.com.colorbond.Fragment.Fragment_Submit;
 import a3motion.com.colorbond.Fragment.Fragment_account;
 import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
 import a3motion.com.colorbond.Fragment.Point_Parent;
 import a3motion.com.colorbond.Fragment.Project_HistoryParent;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+/**
+ * Created by Semmy
+ * mr.shanky08@gmail.com on 26/12/17.
+ *
+ * @copyright 2016
+ * PT.Bisnis Indonesia Sibertama
+ */
+
+public class MainActivity_owner extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static ActionBarDrawerToggle toggle;
     public static DrawerLayout mDrawerLayout;
@@ -49,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_owner);
 
         Showtoolbar();
 
@@ -95,10 +104,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         ft.replace(R.id.container_body, new Point_Parent(), "home").addToBackStack("menu");
                         ft.commit();
                         break;
-                    case R.id.history_project:
+                    case R.id.submit:
                         fragmentManager = getSupportFragmentManager();
                         ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new Project_HistoryParent(), "home").addToBackStack("menu");
+                        ft.replace(R.id.container_body, new Fragment_Submit(), "home").addToBackStack("menu");
                         ft.commit();
                         break;
                     case R.id.action_notification:
@@ -192,8 +201,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().executePendingTransactions();
 
             navigationView.getMenu().getItem(0).setChecked(true);
-            MainActivity.img_title.setVisibility(View.VISIBLE);
-            MainActivity.title_page.setVisibility(View.GONE);
+            MainActivity_owner.img_title.setVisibility(View.VISIBLE);
+            MainActivity_owner.title_page.setVisibility(View.GONE);
 
         } else
             new AlertDialog.Builder(this)
@@ -208,5 +217,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 }
                             }).setNegativeButton("No", null).show();
     }
-
 }
