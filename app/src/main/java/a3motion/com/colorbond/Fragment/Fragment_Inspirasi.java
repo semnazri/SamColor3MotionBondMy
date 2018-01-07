@@ -48,9 +48,9 @@ public class Fragment_Inspirasi extends Fragment {
         view = inflater.inflate(R.layout.fragment_inspirasi, container, false);
 
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
-        userid = prefsprivate.getString(BlueScoopPreferences.user_id, "userid");
+        userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
 
-        if (userid.equals("owner")) {
+        if (userid.equals("1")) {
 
             MainActivity.title_page.setText("COLORBOND INSPIRATION");
             MainActivity.img_title.setVisibility(View.GONE);

@@ -35,9 +35,9 @@ public class Fragment_Submit extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_submit, container, false);
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
-        userid = prefsprivate.getString(BlueScoopPreferences.user_id, "userid");
+        userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
 
-        if (userid.equals("owner")) {
+        if (userid.equals("1")) {
 
             MainActivity.title_page.setText("SUBMIT PROJECT");
             MainActivity.img_title.setVisibility(View.GONE);

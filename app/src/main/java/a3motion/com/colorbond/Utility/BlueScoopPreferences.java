@@ -11,4 +11,13 @@ package a3motion.com.colorbond.Utility;
 public class BlueScoopPreferences {
 
     public static final String user_id = "userid";
+    public static final String email = "email";
+    public static final String nama = "nama";
+    public static final String member_id = "mem_id";
+    public static final String Phone = "hape";
+    public static final String mem_type = "mem_type";
+    public static final String token = "token";
+    public static final String job_title = "job_title";
+    public static final String poin = "poin";
+    public static final String company = "company";
 }

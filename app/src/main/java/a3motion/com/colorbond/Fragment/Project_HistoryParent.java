@@ -44,9 +44,9 @@ public class Project_HistoryParent extends Fragment {
         viewPager = (ViewPager) view.findViewById(R.id.homeviewpager);
 
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
-        userid = prefsprivate.getString(BlueScoopPreferences.user_id, "userid");
+        userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
 
-        if (userid.equals("owner")) {
+        if (userid.equals("1")) {
 
             MainActivity.title_page.setText("PROJECT HISTORY");
             MainActivity.img_title.setVisibility(View.GONE);

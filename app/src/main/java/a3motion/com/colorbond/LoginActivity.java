@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,7 +14,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+
+import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.Presenter.LoginPresenter;
+import a3motion.com.colorbond.Presenter.LoginPresenterImp;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.LoginView;
 
 /**
  * Created by Semmy
@@ -23,13 +31,18 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class LoginActivity extends Activity {
-    private EditText edt_email,edt_pass;
-    private TextView txt_register,txt_forgotpass;
+public class LoginActivity extends Activity implements LoginView {
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+    private EditText edt_email, edt_pass;
+    private TextView txt_register, txt_forgotpass;
     private LinearLayout ll_register;
     private Button btn_login;
     private SharedPreferences prefsprivate;
-    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+    private LoginPresenter loginPresenter;
+    private ConnectionDetector cd;
+    private Boolean isInternetPresent = false;
+    private MaterialDialog mDialog, dialog_muter;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,29 +55,20 @@ public class LoginActivity extends Activity {
         txt_register = (TextView) findViewById(R.id.txt_register);
         btn_login = (Button) findViewById(R.id.btn_login);
         edt_email = findViewById(R.id.edt_email);
+        edt_pass = findViewById(R.id.edt_password);
+        cd = new ConnectionDetector(this);
+        loginPresenter = new LoginPresenterImp(this);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = edt_email.getText().toString();
-                prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
-                SharedPreferences.Editor preEditor = prefsprivate.edit();
-                preEditor.putString(BlueScoopPreferences.user_id, email);
-                preEditor.commit();
+                getDialog_progress();
+                checkconnection(edt_email.getText().toString(), edt_pass.getText().toString());
 
-                if (email.equals("owner")){
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(i);
-                }else{
-
-                    Intent i = new Intent(getApplicationContext(), MainActivity_owner.class);
-                    startActivity(i);
-
-                }
             }
         });
 
-        if (is_visible.equals("0")){
+        if (is_visible.equals("0")) {
             ll_register.setVisibility(View.GONE);
         }
 
@@ -78,6 +82,114 @@ public class LoginActivity extends Activity {
         });
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        loginPresenter.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void setEmailError() {
+        edt_email.setError(getString(R.string.email_empty));
+    }
+
+    @Override
+    public void setEmailInvalid() {
+        edt_email.setError(getString(R.string.invalid_email));
+    }
+
+    @Override
+    public void setPasswordError() {
+        edt_pass.setError(getString(R.string.password_error));
+    }
+
+    @Override
+    public void setPasswordInvalid() {
+        edt_pass.setError(getString(R.string.password_error2));
+    }
+
+    @Override
+    public void setvalid() {
+        getDialog_progress();
+    }
+
+    @Override
+    public void ResultLogin(String response_message, String type, String token, String name, String email, String phone, String companny, String title, String point) {
+        dialog_muter.dismiss();
+
+        prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor preEditor = prefsprivate.edit();
+
+        preEditor.putString(BlueScoopPreferences.token, token);
+        preEditor.putString(BlueScoopPreferences.mem_type, type);
+        preEditor.putString(BlueScoopPreferences.nama, name);
+        preEditor.putString(BlueScoopPreferences.email, email);
+        preEditor.putString(BlueScoopPreferences.Phone, phone);
+        preEditor.putString(BlueScoopPreferences.company, companny);
+        preEditor.putString(BlueScoopPreferences.job_title, title);
+        preEditor.putString(BlueScoopPreferences.poin, point);
+        preEditor.putString(BlueScoopPreferences.mem_type, type);
+
+        preEditor.commit();
+
+        if (type.equals("1")) {
+            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(i);
+        } else {
+            Intent i = new Intent(getApplicationContext(), MainActivity_owner.class);
+            startActivity(i);
+
+        }
+    }
+
+
+    @Override
+    public void setelseEror(String response_message) {
+        getdialogerror(response_message);
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
+    private void checkconnection(String email, String password) {
+        isInternetPresent = cd.isConnectingToInternet();
+        if (isInternetPresent) {
+
+            loginPresenter.validateCredentials(edt_email.getText().toString(), edt_pass.getText().toString());
+
+        } else if (isInternetPresent.equals(false)) {
+            getdialogerror("Tidak ada koneksi Internet");
+        }
+    }
+
+    public void getDialog_progress() {
+
+        dialog_muter = new MaterialDialog.Builder(this)
+                .title(R.string.app_name)
+                .content(R.string.please_wait)
+                .progress(true, 0)
+                .show();
+    }
+
+    private void getdialogerror(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(this)
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                        getFragmentManager().popBackStack();
+                    }
+                })
+                .show();
+    }
+
+
 }

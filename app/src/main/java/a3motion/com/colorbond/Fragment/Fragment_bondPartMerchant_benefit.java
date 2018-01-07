@@ -36,9 +36,9 @@ public class Fragment_bondPartMerchant_benefit extends Fragment {
 
 
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
-        userid = prefsprivate.getString(BlueScoopPreferences.user_id, "userid");
+        userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
 
-        if (userid.equals("owner")) {
+        if (userid.equals("1")) {
 
             MainActivity.title_page.setText("BONDPARTNER MERCHANT BENEFIT");
             MainActivity.img_title.setVisibility(View.GONE);

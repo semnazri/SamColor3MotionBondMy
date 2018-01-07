@@ -77,9 +77,9 @@ public class FragmentHome extends Fragment {
         home_4rd_image = (ImageView) view.findViewById(R.id.home_4rd_image);
 
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
-        userid = prefsprivate.getString(BlueScoopPreferences.user_id, "userid");
+        userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
 
-        if (userid.equals("owner")){
+        if (userid.equals("1")) {
             MainActivity.img_title.setVisibility(View.VISIBLE);
             MainActivity.title_page.setVisibility(View.GONE);
 
