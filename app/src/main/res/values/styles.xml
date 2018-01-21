@@ -15,8 +15,8 @@
 
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        <item name="colorPrimary">#018dcb</item>
-        <item name="colorPrimaryDark">#018dcb</item>
+        <item name="colorPrimary">#333333</item>
+        <item name="colorPrimaryDark">#333333</item>
         <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
         <!--<item name="colorControlNormal">@color/edt_login_color</item>-->
         <!--<item name="colorControlActivated">@color/edt_login_color</item>-->

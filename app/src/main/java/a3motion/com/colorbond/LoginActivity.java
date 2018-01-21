@@ -47,13 +47,10 @@ public class LoginActivity extends Activity implements LoginView {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.login_activity);
         String is_visible = getIntent().getStringExtra("visible");
-        ll_register = (LinearLayout) findViewById(R.id.linear_regis);
-        txt_register = (TextView) findViewById(R.id.txt_register);
-        btn_login = (Button) findViewById(R.id.btn_login);
+        txt_register = findViewById(R.id.txt_register);
+        btn_login = findViewById(R.id.btn_login);
         edt_email = findViewById(R.id.edt_email);
         edt_pass = findViewById(R.id.edt_password);
         cd = new ConnectionDetector(this);
@@ -68,9 +65,9 @@ public class LoginActivity extends Activity implements LoginView {
             }
         });
 
-        if (is_visible.equals("0")) {
-            ll_register.setVisibility(View.GONE);
-        }
+//        if (is_visible.equals("0")) {
+//            ll_register.setVisibility(View.GONE);
+//        }
 
         txt_register.setOnClickListener(new View.OnClickListener() {
             @Override

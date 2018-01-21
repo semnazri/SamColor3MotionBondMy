@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 
 /**
  * Created by Semmy
@@ -18,17 +19,15 @@ import android.widget.Button;
 
 public class MenuActivity extends AppCompatActivity {
 
-    Button btn_architect,btn_roll, btn_contractor;
+    ImageView btn_architect,btn_roll, btn_contractor;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.menu_activity);
 
-        btn_architect = (Button) findViewById(R.id.btn_architect);
-        btn_roll = (Button) findViewById(R.id.btn_roll_former);
-        btn_contractor = (Button) findViewById(R.id.btn_Contractor);
+        btn_architect =  findViewById(R.id.btn_architect);
+        btn_roll =  findViewById(R.id.btn_roll_former);
+        btn_contractor = findViewById(R.id.btn_Contractor);
 
 
         btn_architect.setOnClickListener(new View.OnClickListener() {
