@@ -1,7 +1,9 @@
 package a3motion.com.colorbond;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -22,6 +24,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import a3motion.com.colorbond.Fragment.FragmentEvent;
 import a3motion.com.colorbond.Fragment.FragmentHome;
 import a3motion.com.colorbond.Fragment.FragmentNotif;
@@ -30,8 +35,9 @@ import a3motion.com.colorbond.Fragment.Fragment_Submit;
 import a3motion.com.colorbond.Fragment.Fragment_account;
 import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
 import a3motion.com.colorbond.Fragment.Point_Parent;
-import a3motion.com.colorbond.Fragment.Project_HistoryParent;
+import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Semmy
@@ -52,6 +58,12 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;
     private FragmentTransaction ft;
+    private TextView username;
+    private CircleImageView imageview;
+    private SharedPreferences prefsprivate;
+    private String nama, image;
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +74,10 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
 
         Showtoolbar();
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        btmView = (BottomNavigationView) findViewById(R.id.navigation);
-        title_page = (TextView) findViewById(R.id.txt_title_page);
-        img_title = (ImageView) findViewById(R.id.img_tolbar);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        btmView = findViewById(R.id.navigation);
+        title_page = findViewById(R.id.txt_title_page);
+        img_title = findViewById(R.id.img_tolbar);
         BottomNavigationViewHelper.disableShiftMode(btmView);
         toggle = new ActionBarDrawerToggle(
                 this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -85,6 +97,9 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
                 }
             }
         });
+        prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        nama = prefsprivate.getString(BlueScoopPreferences.nama, "Username");
+//        image = prefsprivate.getString(BlueScoopPreferences.nama, "Username");
 
         mDrawerLayout.setDrawerListener(toggle);
         mDrawerLayout.setScrimColor(getResources().getColor(android.R.color.transparent));
@@ -92,6 +107,16 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
+
+        View header = navigationView.getHeaderView(0);
+        username = header.findViewById(R.id.name);
+        imageview = header.findViewById(R.id.nav_photo_profile);
+
+        RequestOptions myoptions = new RequestOptions()
+                .placeholder(R.drawable.ic_person_black_24dp)
+                .error(R.drawable.ic_person_black_24dp);
+        Glide.with(this).load("http://cdn2.tstatic.net/tribunnews/foto/bank/images/penjaga-gawang-persija-jakarta-andritany-selebrasi_20171023_121936.jpg").apply(myoptions).into(imageview);
+        username.setText(nama);
 
         btmView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

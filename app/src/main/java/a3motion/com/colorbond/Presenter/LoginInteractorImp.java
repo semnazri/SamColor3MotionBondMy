@@ -93,7 +93,6 @@ public class LoginInteractorImp implements LoginInteractor{
             call.enqueue(new Callback<Auth>() {
                 @Override
                 public void onResponse(Call<Auth> call, Response<Auth> response) {
-                    String respon_status = response.body().getResponse();
 
                     if (response.isSuccessful()) {
                         response_message = response.body().getResponse();
@@ -124,7 +123,7 @@ public class LoginInteractorImp implements LoginInteractor{
                                 listener.onelseError("Server is broken! Response code 500");
                                 break;
                             default:
-                                listener.onelseError("Unknown error!");
+                                listener.onelseError("Wrong Email or Password!");
                                 break;
                         }
                     }

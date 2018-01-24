@@ -37,8 +37,11 @@
     </style>
 
     <style name="NavigationTheme" parent="AppTheme">
-        <item name="listPreferredItemHeightSmall">40dp</item><!-- menu item height- vary as u need -->
+        <item name="listPreferredItemHeightSmall">30dp</item><!-- menu item height- vary as u need -->
         <item name="android:listDivider">@color/white</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+
     </style>
 
     <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
