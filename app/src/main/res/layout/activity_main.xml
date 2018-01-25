@@ -5,8 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:openDrawer="start"
+    android:background="@color/white"
     android:fitsSystemWindows="true">
 
     <LinearLayout
@@ -30,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="@color/biru"
+            android:background="@color/black2"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/white"
             app:menu="@menu/btm_navview"/>

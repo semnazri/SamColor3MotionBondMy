@@ -1,5 +1,6 @@
 package a3motion.com.colorbond.Utility;
 
+import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -16,6 +17,7 @@ import java.lang.reflect.Field;
  */
 
 public class BottomNavigationViewHelper {
+    @SuppressLint("RestrictedApi")
     public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
@@ -29,7 +31,9 @@ public class BottomNavigationViewHelper {
                 item.setShiftingMode(false);
                 // set once again checked value, so view will be updated
                 //noinspection RestrictedApi
-                item.setChecked(item.getItemData().isChecked());
+                item.setChecked(false);
+                item.setTitle(null);
+                item.setPadding(0,25,0,0);
             }
         } catch (NoSuchFieldException e) {
             Log.e("BNVHelper", "Unable to get shift mode field", e);

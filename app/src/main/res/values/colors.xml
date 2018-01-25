@@ -19,4 +19,5 @@
     <color name="abutransparent">#e5838383</color>
     <color name="txt_color">#333333</color>
     <color name="red">#af0000</color>
+    <color name="redtra">#aaaf0000</color>
 </resources>

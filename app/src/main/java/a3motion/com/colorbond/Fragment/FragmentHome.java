@@ -83,14 +83,11 @@ public class FragmentHome extends Fragment {
             MainActivity.img_title.setVisibility(View.VISIBLE);
             MainActivity.title_page.setVisibility(View.GONE);
 
-
         }else{
             MainActivity_owner.img_title.setVisibility(View.VISIBLE);
             MainActivity_owner.title_page.setVisibility(View.GONE);
 
         }
-
-
 
         img_top.setFocusable(true);
         rv.setHasFixedSize(true);
@@ -226,10 +223,10 @@ public class FragmentHome extends Fragment {
 
     private List<LatestProject> getProjects() {
         List<LatestProject> lp = new ArrayList<>();
-        lp.add(new LatestProject("Project 1", getString(R.string.lorem)));
-        lp.add(new LatestProject("Project 2", getString(R.string.lorem)));
-        lp.add(new LatestProject("Project 3", getString(R.string.lorem)));
-        lp.add(new LatestProject("Project 4", getString(R.string.lorem)));
+        lp.add(new LatestProject("Project 1", getString(R.string.Lorem_Pendek)));
+        lp.add(new LatestProject("Project 2", getString(R.string.Lorem_Pendek)));
+        lp.add(new LatestProject("Project 3", getString(R.string.Lorem_Pendek)));
+        lp.add(new LatestProject("Project 4", getString(R.string.Lorem_Pendek)));
 
 
         return lp;

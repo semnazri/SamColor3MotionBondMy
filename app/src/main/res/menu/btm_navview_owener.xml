@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/action_reward"
-        android:title="Reward"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/ic_ireward">
-    </item>
+        android:icon="@drawable/button_03"
+        app:showAsAction="ifRoom"
+        tools:ignore="MenuTitle"/>
     <item
         android:id="@+id/submit"
-        android:title="Submit"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/ic_icon_14">
-    </item>
+        android:icon="@drawable/button_04"
+        app:showAsAction="ifRoom"
+        tools:ignore="MenuTitle"/>
     <item
         android:id="@+id/action_notification"
-        android:title="Notification"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/ic_notification">
-    </item>
+        android:icon="@drawable/button_05"
+        app:showAsAction="ifRoom"
+        tools:ignore="MenuTitle"/>
 
     <item
         android:id="@+id/inspiration"
-        android:title="Colorbond Inspiration"
-        app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/ic_inspiration">
-    </item>
+        android:icon="@drawable/button_06"
+        app:showAsAction="ifRoom"
+        tools:ignore="MenuTitle"/>
 
 </menu>

@@ -4,7 +4,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/colorOrange"
+    android:background="@color/black2"
     app:layout_collapseMode="pin">
 
 
@@ -22,6 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:paddingTop="5dp"
-            android:src="@drawable/color_title" />
+            android:src="@drawable/color_bond" />
     </LinearLayout>
 </android.support.v7.widget.Toolbar>
