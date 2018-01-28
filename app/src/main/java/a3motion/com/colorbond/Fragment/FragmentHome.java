@@ -46,11 +46,14 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 
 public class FragmentHome extends Fragment {
 
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+    String userid, nama,points;
     private View view;
     private List<LatestProject> latestProjects;
     private List<Followers> followers;
     private RecyclerView rv;
-    private LinearLayoutManager lm,lm_followers;
+    private TextView txt_name,txt_point;
+    private LinearLayoutManager lm, lm_followers;
     private LatestProjectAdapter adapter;
     private FollowersAdapter followersAdapter;
     private ImageView img_top, img_bonpart_program, home_4rd_image;
@@ -58,8 +61,6 @@ public class FragmentHome extends Fragment {
     private LinearLayout ll_project_history, ll_point;
     private MaterialDialog mDialog;
     private SharedPreferences prefsprivate;
-    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid;
 
     @Nullable
     @Override
@@ -67,23 +68,30 @@ public class FragmentHome extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_home, container, false);
         latestProjects = getProjects();
-        rv = (RecyclerView) view.findViewById(R.id.home_last_project);
-        img_top = (ImageView) view.findViewById(R.id.home_top_image);
-        img_bonpart_program = (ImageView) view.findViewById(R.id.bonpart_program);
-        btn_join = (Button) view.findViewById(R.id.join);
-        ll_project_history = (LinearLayout) view.findViewById(R.id.linear_project_history);
-        btn_detail_info = (Button) view.findViewById(R.id.btn_detail_info);
-        ll_point = (LinearLayout) view.findViewById(R.id.layout_point);
-        home_4rd_image = (ImageView) view.findViewById(R.id.home_4rd_image);
-
+        rv = view.findViewById(R.id.home_last_project);
+        img_top = view.findViewById(R.id.home_top_image);
+        img_bonpart_program = view.findViewById(R.id.bonpart_program);
+        btn_join = view.findViewById(R.id.join);
+        ll_project_history = view.findViewById(R.id.linear_project_history);
+        btn_detail_info = view.findViewById(R.id.btn_detail_info);
+        ll_point = view.findViewById(R.id.layout_point);
+        home_4rd_image = view.findViewById(R.id.home_4rd_image);
+        txt_name = view.findViewById(R.id.home_name);
+        txt_point = view.findViewById(R.id.txt_point);
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
+        nama = prefsprivate.getString(BlueScoopPreferences.nama, "username");
+        points = prefsprivate.getString(BlueScoopPreferences.poin,"10000");
 
+        txt_name.setText("Hello ! " + nama);
+        txt_point.setText(points);
         if (userid.equals("1")) {
+            MainActivity.mToolbar.setVisibility(View.VISIBLE);
             MainActivity.img_title.setVisibility(View.VISIBLE);
             MainActivity.title_page.setVisibility(View.GONE);
 
-        }else{
+        } else {
+            MainActivity_owner.mToolbar.setVisibility(View.VISIBLE);
             MainActivity_owner.img_title.setVisibility(View.VISIBLE);
             MainActivity_owner.title_page.setVisibility(View.GONE);
 
@@ -173,8 +181,12 @@ public class FragmentHome extends Fragment {
 
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_join);
+        DisplayMetrics metrics = getResources().getDisplayMetrics();
+        int width = metrics.widthPixels;
+        int height = metrics.heightPixels;
+//        dialog.getWindow().setLayout((8 * width) / 9, (5 * height) / 5);
 
-        TextView tv_join_disjoin = (TextView) dialog.findViewById(R.id.txt_join_disjoin);
+        Button tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
         LinearLayout ll_folowers = (LinearLayout) dialog.findViewById(R.id.ll_folowers);
         tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,9 +208,11 @@ public class FragmentHome extends Fragment {
     private void showDialog_listFolowers() {
         final Dialog dialog_followers = new Dialog(getActivity());
         dialog_followers.setContentView(R.layout.layout_followers);
+        dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
         followers = getFollowers();
-        RecyclerView rv_followers = (RecyclerView) dialog_followers.findViewById(R.id.rv_followers);
-        final Button btn_back = (Button) dialog_followers.findViewById(R.id.btn_back);
+        RecyclerView rv_followers = dialog_followers.findViewById(R.id.rv_followers);
+        final Button btn_back = dialog_followers.findViewById(R.id.btn_back);
 
         rv_followers.setHasFixedSize(true);
         lm_followers = new LinearLayoutManager(getActivity());
@@ -217,7 +231,7 @@ public class FragmentHome extends Fragment {
         int width = metrics.widthPixels;
         int height = metrics.heightPixels;
         dialog_followers.show();
-        dialog_followers.getWindow().setLayout((6 * width)/7, (6 * height)/7);
+//        dialog_followers.getWindow().setLayout((6 * width)/7, (6 * height)/7);
 
     }
 
@@ -232,7 +246,7 @@ public class FragmentHome extends Fragment {
         return lp;
     }
 
-    private List<Followers> getFollowers(){
+    private List<Followers> getFollowers() {
         List<Followers> flw = new ArrayList<>();
         flw.add(new Followers("Syafira Muthiary", "PhotoGrapger", "Freelancer"));
         flw.add(new Followers("Nindya Iswari Hayuningrum", "Head Marketing", "PT. GrossFoodIndonesia"));

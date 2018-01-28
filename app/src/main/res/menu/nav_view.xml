@@ -14,7 +14,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/account"
-            android:title="MY BONDPARTNER ACCOUNT" />
+            android:title="MY ACCOUNT" />
     </group>
 
     <group
@@ -22,7 +22,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/event"
-            android:title="BONDPARTNER EVENT" />
+            android:title="EVENT" />
     </group>
 
     <group
@@ -30,7 +30,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/benefit"
-            android:title="BONDPARTNER MERCHANT BENEFIT" />
+            android:title="MERCHANT BENEFIT" />
         </group>
     <group
         android:id="@+id/lima"
@@ -45,7 +45,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/bluescoop"
-            android:title="PT. NS BLUESCOOP INDONESIA" />
+            android:title="PT.NS BLUESCOOP INDONESIA" />
         </group>
 
 
@@ -54,7 +54,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/help"
-            android:title="HELP" />
+            android:title="FAQ" />
     </group>
 
 

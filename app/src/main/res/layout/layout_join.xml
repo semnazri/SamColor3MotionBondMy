@@ -2,24 +2,55 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_marginBottom="30dp">
+    android:orientation="vertical">
 
-
-    <ImageView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:src="@drawable/colorbond_roofing_sydney" />
+        android:layout_height="140dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/images_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/gradient_"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Sharing Session"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:drawableLeft="@drawable/ic_date_range_black_24dp"
+                android:drawablePadding="5dp"
+                android:text="28 November 2017 ; 13:00"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginRight="40dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
         android:orientation="vertical">
 
 
@@ -28,9 +59,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/button_4_03" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -46,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:shadowColor="@color/black"
-                    android:text="BB" />
+                    android:text="Sharing Session" />
 
             </LinearLayout>
         </LinearLayout>
@@ -57,9 +94,15 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/button_5_04" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -86,9 +129,15 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/button_6_05" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -104,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:shadowColor="@color/black"
-                    android:text="28 November 2017; 13:00 - 15:00" />
+                    android:text="28 November 2017" />
 
             </LinearLayout>
         </LinearLayout>
@@ -115,9 +164,15 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/button_7_06" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -144,9 +199,15 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/button_8_07" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -173,10 +234,16 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/button_9_08" />
+
             <LinearLayout
                 android:id="@+id/ll_folowers"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -197,13 +264,13 @@
             </LinearLayout>
         </LinearLayout>
 
-        <TextView
+        <Button
+            android:layout_marginTop="20dp"
             android:id="@+id/txt_join_disjoin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="end"
-            android:text="DISJOIN"
+            android:layout_width="85dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:background="@drawable/button_disjoin"
             android:textColor="@color/biru"
             android:textStyle="bold" />
 

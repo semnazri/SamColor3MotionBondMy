@@ -50,16 +50,17 @@ public class LoginInteractorImp implements LoginInteractor{
         }
 
         if (TextUtils.isEmpty(password)) {
-            listener.onPasswordInValid();
+            listener.onPasswordError();
             error = true;
 
         } else if (password.length() < 6) {
-            listener.onPasswordError();
+            listener.onPasswordInValid();
             error = true;
 
         }
 
         if (!error) {
+            listener.onValid();
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder()
@@ -114,7 +115,7 @@ public class LoginInteractorImp implements LoginInteractor{
                             //TODO ini tolong contextnya di benerin
 
                             case 401:
-                                listener.onelseError("Unauthorize User");
+                                listener.onelseError("Wrong Email or Password!");
                                 break;
                             case 404:
                                 listener.onelseError("Cannot find the right path! Response code 404");

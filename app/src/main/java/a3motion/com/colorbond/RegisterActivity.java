@@ -38,16 +38,16 @@ public class RegisterActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.register_activity);
 
-        spinner_profesi = (Spinner) findViewById(R.id.spinner_register_proffesion);
-        txt_title = (TextView) findViewById(R.id.txt_title_page);
+//        spinner_profesi = (Spinner) findViewById(R.id.spinner_register_proffesion);
+//        txt_title = (TextView) findViewById(R.id.txt_title_page);
+//
+//        txt_title.setText("REGISTER ACCOUNT");
 
-        txt_title.setText("REGISTER ACCOUNT");
 
 
-
-        profsi = getTipe();
-        adapter = new SpinnerPorfesiAdapter(this, profsi);
-        spinner_profesi.setAdapter(adapter);
+//        profsi = getTipe();
+//        adapter = new SpinnerPorfesiAdapter(this, profsi);
+//        spinner_profesi.setAdapter(adapter);
     }
 
     private List<Profesi> getTipe() {

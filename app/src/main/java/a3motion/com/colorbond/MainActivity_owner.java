@@ -53,7 +53,7 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
     public static DrawerLayout mDrawerLayout;
     public static TextView title_page;
     public static ImageView img_title;
-    public Toolbar mToolbar;
+    public static Toolbar mToolbar;
     NavigationView navigationView;
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;
@@ -124,28 +124,28 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
 
                 switch (item.getItemId()) {
                     case R.id.action_reward:
-                        fragmentManager = getSupportFragmentManager();
-                        ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new Point_Parent(), "home").addToBackStack("menu");
-                        ft.commit();
+//                        fragmentManager = getSupportFragmentManager();
+//                        ft = fragmentManager.beginTransaction();
+//                        ft.replace(R.id.container_body, new Point_Parent(), "home").addToBackStack("menu");
+//                        ft.commit();
                         break;
                     case R.id.submit:
-                        fragmentManager = getSupportFragmentManager();
-                        ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new Fragment_Submit(), "home").addToBackStack("menu");
-                        ft.commit();
+//                        fragmentManager = getSupportFragmentManager();
+//                        ft = fragmentManager.beginTransaction();
+//                        ft.replace(R.id.container_body, new Fragment_Submit(), "home").addToBackStack("menu");
+//                        ft.commit();
                         break;
                     case R.id.action_notification:
-                        fragmentManager = getSupportFragmentManager();
-                        ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new FragmentNotif(), "home").addToBackStack("menu");
-                        ft.commit();
+//                        fragmentManager = getSupportFragmentManager();
+//                        ft = fragmentManager.beginTransaction();
+//                        ft.replace(R.id.container_body, new FragmentNotif(), "home").addToBackStack("menu");
+//                        ft.commit();
                         break;
                     case R.id.inspiration:
-                        fragmentManager = getSupportFragmentManager();
-                        ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new Fragment_Inspirasi(), "home").addToBackStack("menu");
-                        ft.commit();
+//                        fragmentManager = getSupportFragmentManager();
+//                        ft = fragmentManager.beginTransaction();
+//                        ft.replace(R.id.container_body, new Fragment_Inspirasi(), "home").addToBackStack("menu");
+//                        ft.commit();
                         //TODO : Replace with Fragment
                         break;
                 }
@@ -175,17 +175,17 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
         if (id == R.id.home) {
             fragment = new FragmentHome();
         } else if (id == R.id.account) {
-            fragment = new Fragment_account();
+//            fragment = new Fragment_account();
         } else if (id == R.id.event) {
             fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {
-            fragment = new Fragment_bondPartMerchant_benefit();
+//            fragment = new Fragment_bondPartMerchant_benefit();
         } else if (id == R.id.variant) {
-            getToast();
+//            getToast();
         } else if (id == R.id.bluescoop) {
-            getToast();
+//            getToast();
         } else if (id == R.id.help) {
-            getToast();
+//            getToast();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

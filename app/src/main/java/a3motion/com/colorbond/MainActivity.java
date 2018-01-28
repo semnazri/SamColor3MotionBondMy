@@ -1,6 +1,7 @@
 package a3motion.com.colorbond;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ import a3motion.com.colorbond.Fragment.Fragment_account;
 import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
 import a3motion.com.colorbond.Fragment.Point_Parent;
 import a3motion.com.colorbond.Fragment.Project_HistoryParent;
+import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static DrawerLayout mDrawerLayout;
     public static TextView title_page;
     public static ImageView img_title;
-    public Toolbar mToolbar;
+    public static Toolbar mToolbar;
     NavigationView navigationView;
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;
@@ -98,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.name);
         imageview = header.findViewById(R.id.nav_photo_profile);
-
+        prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        nama = prefsprivate.getString(BlueScoopPreferences.nama, "Username");
         RequestOptions myoptions = new RequestOptions()
                 .placeholder(R.drawable.ic_person_black_24dp)
                 .error(R.drawable.ic_person_black_24dp);
@@ -110,29 +113,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 switch (item.getItemId()) {
                     case R.id.action_reward:
-                        fragmentManager = getSupportFragmentManager();
-                        ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new Point_Parent(), "home").addToBackStack("menu");
-                        ft.commit();
+//                        fragmentManager = getSupportFragmentManager();
+//                        ft = fragmentManager.beginTransaction();
+//                        ft.replace(R.id.container_body, new Point_Parent(), "home").addToBackStack("menu");
+//                        ft.commit();
                         break;
                     case R.id.history_project:
-                        fragmentManager = getSupportFragmentManager();
-                        ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new Project_HistoryParent(), "home").addToBackStack("menu");
-                        ft.commit();
+//                        fragmentManager = getSupportFragmentManager();
+//                        ft = fragmentManager.beginTransaction();
+//                        ft.replace(R.id.container_body, new Project_HistoryParent(), "home").addToBackStack("menu");
+//                        ft.commit();
                         break;
                     case R.id.action_notification:
-                        fragmentManager = getSupportFragmentManager();
-                        ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new FragmentNotif(), "home").addToBackStack("menu");
-                        ft.commit();
+//                        fragmentManager = getSupportFragmentManager();
+//                        ft = fragmentManager.beginTransaction();
+//                        ft.replace(R.id.container_body, new FragmentNotif(), "home").addToBackStack("menu");
+//                        ft.commit();
                         break;
                     case R.id.inspiration:
-                        fragmentManager = getSupportFragmentManager();
-                        ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.container_body, new Fragment_Inspirasi(), "home").addToBackStack("menu");
-                        ft.commit();
-                        //TODO : Replace with Fragment
+//                        fragmentManager = getSupportFragmentManager();
+//                        ft = fragmentManager.beginTransaction();
+//                        ft.replace(R.id.container_body, new Fragment_Inspirasi(), "home").addToBackStack("menu");
+//                        ft.commit();
+//                        //TODO : Replace with Fragment
                         break;
                 }
 
@@ -161,17 +164,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.home) {
             fragment = new FragmentHome();
         } else if (id == R.id.account) {
-            fragment = new Fragment_account();
+//            fragment = new Fragment_account();
         } else if (id == R.id.event) {
             fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {
-            fragment = new Fragment_bondPartMerchant_benefit();
+//            fragment = new Fragment_bondPartMerchant_benefit();
         } else if (id == R.id.variant) {
-            getToast();
+//            getToast();
         } else if (id == R.id.bluescoop) {
-            getToast();
+//            getToast();
         } else if (id == R.id.help) {
-            getToast();
+//            getToast();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

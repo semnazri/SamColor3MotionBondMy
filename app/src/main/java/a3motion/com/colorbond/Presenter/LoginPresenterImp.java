@@ -59,6 +59,13 @@ public class LoginPresenterImp implements LoginPresenter, LoginInteractor.OnLogi
     }
 
     @Override
+    public void onValid() {
+        if (loginView != null){
+            loginView.setvalid();
+        }
+    }
+
+    @Override
     public void onSuccess(String response_message, String type, String token, String name, String email, String phone, String companny, String title, String point) {
         if (loginView != null){
             loginView.ResultLogin(response_message,type,token,name,email,phone,companny,title,point);

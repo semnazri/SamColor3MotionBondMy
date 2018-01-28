@@ -59,7 +59,7 @@ public class LoginActivity extends Activity implements LoginView {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getDialog_progress();
+//                getDialog_progress();
                 checkconnection(edt_email.getText().toString(), edt_pass.getText().toString());
 
             }

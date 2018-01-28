@@ -10,9 +10,10 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
         android:src="@drawable/ic_person_black_24dp"
+        android:visibility="gone"
         app:civ_border_color="@color/abu3"
         app:civ_border_width="4dp"
         app:civ_fill_color="@color/white" />
@@ -21,31 +22,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/followers_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="John"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:paddingRight="10dp"
+                android:id="@+id/followers_company"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PT.LogicArtKreasi" />
+
+            <TextView
+                android:id="@+id/followers_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="John" />
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/followers_job"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SuperHero"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/followers_company"
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Company : PT.LogicArtKreasi"
-            android:textColor="@color/black"/>
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/black" />
 
 
     </LinearLayout>

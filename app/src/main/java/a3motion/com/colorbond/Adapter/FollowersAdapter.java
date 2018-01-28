@@ -39,7 +39,7 @@ public class FollowersAdapter extends RecyclerView.Adapter<FollowersViewHolder> 
     public void onBindViewHolder(FollowersViewHolder holder, int position) {
         holder.folowers_name.setText(mValues.get(position).getFollowers_name());
         holder.folowers_job.setText(mValues.get(position).getFollowers_job());
-        holder.folowers_company.setText("Company : " + mValues.get(position).getFollowers_company());
+        holder.folowers_company.setText(mValues.get(position).getFollowers_company());
     }
 
     @Override

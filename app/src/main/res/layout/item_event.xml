@@ -2,110 +2,110 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginLeft="30dp"
+    android:layout_marginRight="30dp"
     android:background="@color/white"
-    android:orientation="horizontal">
-
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_icon_29" />
+            android:layout_marginTop="20dp"
+            android:layout_weight="1.4"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/button_cal" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="27 November 2017"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/eventtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13:00:00"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:text="27 November 2017"
-            android:textColor="@color/black" />
+            android:layout_marginTop="20dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/eventtime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="13:00:00"
-            android:textColor="@color/black" />
+            <TextView
+                android:id="@+id/event_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EVENT NAME"
+                android:gravity="end"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn_join"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@color/colorOrange"
-            android:text="Join"
-            android:textColor="@color/white" />
+            <TextView
+                android:id="@+id/tema_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tema Event"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/PIC_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/ic_icon_26"
+                android:drawablePadding="5dp"
+                android:text="PIC EVENT"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/Location_event"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="5dp"
+                android:gravity="end"
+                android:text="location event"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="end"
+                android:layout_marginRight="-10dp"
+                android:background="@drawable/buttonjoin"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
     </LinearLayout>
 
     <View
-        android:layout_width="1dp"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:background="@color/abu3" />
-
-    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/event_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="EVENT NAME"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tema_event"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Tema Event"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/PIC_event"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_icon_26"
-            android:drawablePadding="5dp"
-            android:text="PIC EVENT"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/Location_event"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:drawableLeft="@drawable/ic_icon_23"
-            android:drawablePadding="5dp"
-            android:text="location event"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-    </LinearLayout>
+        android:layout_height="1dp"
+        android:background="@color/black2" />
 
 </LinearLayout>
