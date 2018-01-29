@@ -2,8 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg_universal"
     android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_solid" />
 
     <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/team_photo"
@@ -12,19 +16,20 @@
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/ic_person_black_24dp"
         app:civ_border_color="@color/abu3"
         app:civ_border_width="4dp"
         app:civ_fill_color="@color/white" />
 
     <TextView
+        android:layout_marginTop="20dp"
         android:id="@+id/person_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="JOHN SMITH"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -34,9 +39,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="owner"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="16sp"
-        android:textStyle="italic" />
+        android:textStyle="italic"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/person_company"
@@ -44,108 +50,148 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Company : PT. TOKO MAKMUR"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textColor="@color/white"/>
 
     <TextView
-        android:id="@+id/edt_profile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Edit Profile"
-        android:textColor="@color/colorOrange"
-        android:textSize="16sp"
-        android:textStyle="italic" />
-
-    <LinearLayout
-    android:layout_width="wrap_content"
+    android:id="@+id/edt_profile"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="20dp"
     android:layout_marginTop="20dp"
-    android:background="@color/abu"
-    android:orientation="horizontal"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp">
+    android:text="Edit Profile"
+    android:textColor="@color/white"
+    android:textSize="16sp" />
 
-    <ImageView
-        android:layout_gravity="center"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_point" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white" />
 
-    <LinearLayout
-        android:layout_marginLeft="10dp"
+    <TextView
+        android:id="@+id/chg_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:text="Change Password"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="My Point"
-            android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="My Points"
+            android:textColor="@color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="1.250"
-            android:textColor="@color/black"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-</LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:background="@color/abu"
-        android:orientation="horizontal"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp">
-
-        <ImageView
-            android:layout_gravity="center"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@drawable/ic_icon_32" />
 
         <LinearLayout
-            android:layout_marginLeft="10dp"
+            android:gravity="right"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/button_02" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="My Point"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
-
-            <TextView
+                android:id="@+id/txt_point"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
                 android:text="1.250"
-                android:textColor="@color/black"
-                android:textSize="28sp"
+                android:textColor="@color/white"
                 android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/white" />
+    <LinearLayout
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="Redem Points"
+            android:textColor="@color/white" />
+
+
+        <LinearLayout
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/button_04_02" />
+
+            <TextView
+                android:id="@+id/txt_redem_point"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="8dp"
+                android:text="Rp. 1.000.000"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="1dp"
+        android:background="@color/white" />
     <Button
+        android:layout_width="70dp"
+        android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:text="Log Out"
-        android:textColor="@color/white"
-        android:background="@drawable/gradient"/>
+        android:background="@drawable/button_03_01"
+        android:textColor="@color/white" />
 
 </LinearLayout>

@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (id == R.id.home) {
             fragment = new FragmentHome();
         } else if (id == R.id.account) {
-//            fragment = new Fragment_account();
+            fragment = new Fragment_account();
         } else if (id == R.id.event) {
             fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {

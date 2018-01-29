@@ -128,40 +128,40 @@ public class FragmentHome extends Fragment {
             @Override
             public void onClick(View v) {
 
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.container_body, new Project_HistoryParent(), "pembayaran").addToBackStack("pembayaran");
-                fragmentTransaction.commit();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.add(R.id.container_body, new Project_HistoryParent(), "pembayaran").addToBackStack("pembayaran");
+//                fragmentTransaction.commit();
             }
         });
 
         ll_point.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.container_body, new Point_Parent(), "pembayaran").addToBackStack("pembayaran");
-                fragmentTransaction.commit();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.add(R.id.container_body, new Point_Parent(), "pembayaran").addToBackStack("pembayaran");
+//                fragmentTransaction.commit();
             }
         });
 
         btn_detail_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.container_body, new Fragment_bondPartMerchant_benefit(), "pembayaran").addToBackStack("pembayaran");
-                fragmentTransaction.commit();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.add(R.id.container_body, new Fragment_bondPartMerchant_benefit(), "pembayaran").addToBackStack("pembayaran");
+//                fragmentTransaction.commit();
             }
         });
 
         home_4rd_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.container_body, new Fragment_colorbond_insipiration(), "pembayaran").addToBackStack("pembayaran");
-                fragmentTransaction.commit();
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.add(R.id.container_body, new Fragment_colorbond_insipiration(), "pembayaran").addToBackStack("pembayaran");
+//                fragmentTransaction.commit();
             }
         });
         return view;

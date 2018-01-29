@@ -110,7 +110,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:shadowColor="@color/black"
-                    android:text="Title"
+                    android:text="Your Name"
                     android:textStyle="bold" />
 
                 <TextView
@@ -118,7 +118,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:shadowColor="@color/black"
-                    android:text="Who are you" />
+                    android:text="Someone" />
 
             </LinearLayout>
         </LinearLayout>

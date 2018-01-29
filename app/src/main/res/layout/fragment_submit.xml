@@ -3,8 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bg_universal"
     android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_solid" />
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -53,9 +57,11 @@
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
-                            android:src="@drawable/ic_point" />
+                            android:layout_gravity="center"
+                            android:src="@drawable/button_02" />
 
                         <LinearLayout
+                            android:layout_marginTop="4dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
@@ -82,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -116,15 +122,21 @@
                         android:textColor="@color/black" />
 
                     <EditText
+                        android:layout_weight="1"
                         android:id="@+id/submit_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
-                        android:drawableRight="@drawable/ic_event_black_24dp"
                         android:editable="false"
                         android:hint="mm/dd/yyyy"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp" />
+
+                    <ImageView
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_event_black_24dp"/>
 
                 </LinearLayout>
 
@@ -314,9 +326,9 @@
                         <Spinner
                             android:id="@+id/spinner_material_2"
                             style="@style/spinner_style"
-                            android:layout_marginLeft="5dp"
                             android:layout_width="match_parent"
                             android:layout_height="25dp"
+                            android:layout_marginLeft="5dp"
                             android:layout_weight="1" />
                     </LinearLayout>
 
