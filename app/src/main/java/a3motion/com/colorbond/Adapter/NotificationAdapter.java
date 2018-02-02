@@ -24,11 +24,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
     private Context mContext;
     private List<Notification> mValuses;
 
-    public NotificationAdapter (Context context, List<Notification> items){
+    public NotificationAdapter(Context context, List<Notification> items) {
         mContext = context;
         mValuses = items;
 
     }
+
     @Override
     public NotificationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notif, parent, false);
@@ -40,7 +41,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         String title = mValuses.get(position).getTitle();
         String headline = mValuses.get(position).getHeadline();
         String desc = mValuses.get(position).getDesc();
-
+        holder.des_notif.setVisibility(View.GONE);
         holder.title_notif.setText(title);
         holder.hedline_notif.setText(headline);
         holder.des_notif.setText(desc);

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_universal"
+    android:background="@drawable/submit_bg"
     android:orientation="vertical">
 
     <include
@@ -61,9 +61,9 @@
                             android:src="@drawable/button_02" />
 
                         <LinearLayout
-                            android:layout_marginTop="4dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:orientation="vertical">
 
                             <TextView
@@ -122,10 +122,10 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:layout_weight="1"
                         android:id="@+id/submit_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:background="@color/abu2"
                         android:editable="false"
                         android:hint="mm/dd/yyyy"
@@ -133,10 +133,10 @@
                         android:paddingRight="10dp" />
 
                     <ImageView
-                        android:layout_weight="2"
                         android:layout_width="match_parent"
                         android:layout_height="25dp"
-                        android:src="@drawable/ic_event_black_24dp"/>
+                        android:layout_weight="2"
+                        android:src="@drawable/ic_event_black_24dp" />
 
                 </LinearLayout>
 
@@ -205,7 +205,6 @@
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
                         android:editable="false"
-                        android:hint="somewhere"
                         android:paddingLeft="10dp" />
 
                     <TextView
@@ -252,18 +251,33 @@
                         android:text="Upload Copy Delivery note"
                         android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/txt_delive_note"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/abu2"
-                        android:drawableRight="@drawable/ic_add_circle_black_24dp"
-                        android:gravity="center_vertical"
-                        android:hint="file picker"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:textStyle="italic" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txt_delive_note"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:background="@color/abu2"
+                            android:gravity="center_vertical"
+                            android:hint="file picker"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textStyle="italic" />
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_add_circle_black_24dp" />
+                    </LinearLayout>
+
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -280,18 +294,32 @@
                         android:text="Upload Supporting Project Details"
                         android:textColor="@color/black" />
 
-                    <TextView
-                        android:id="@+id/txt_suporting_note"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="25dp"
-                        android:layout_marginTop="5dp"
-                        android:background="@color/abu2"
-                        android:drawableRight="@drawable/ic_add_circle_black_24dp"
-                        android:gravity="center_vertical"
-                        android:hint="file picker"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:textStyle="italic" />
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txt_suporting_note"
+                            android:layout_width="match_parent"
+                            android:layout_height="25dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:background="@color/abu2"
+                            android:gravity="center_vertical"
+                            android:hint="file picker"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:textStyle="italic" />
+
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_add_circle_black_24dp" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -338,7 +366,7 @@
                         android:layout_gravity="center"
                         android:layout_marginBottom="20dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/gradient"
+                        android:background="@drawable/btn_rounded_red"
                         android:text="Submit"
                         android:textColor="@color/white" />
 

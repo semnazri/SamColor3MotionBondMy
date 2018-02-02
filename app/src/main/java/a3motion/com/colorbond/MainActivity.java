@@ -125,16 +125,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                        ft.commit();
                         break;
                     case R.id.action_notification:
-//                        fragmentManager = getSupportFragmentManager();
-//                        ft = fragmentManager.beginTransaction();
-//                        ft.replace(R.id.container_body, new FragmentNotif(), "home").addToBackStack("menu");
-//                        ft.commit();
+                        fragmentManager = getSupportFragmentManager();
+                        ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.container_body, new FragmentNotif(), "home").addToBackStack("menu");
+                        ft.commit();
                         break;
                     case R.id.inspiration:
-//                        fragmentManager = getSupportFragmentManager();
-//                        ft = fragmentManager.beginTransaction();
-//                        ft.replace(R.id.container_body, new Fragment_Inspirasi(), "home").addToBackStack("menu");
-//                        ft.commit();
+                        fragmentManager = getSupportFragmentManager();
+                        ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.container_body, new Fragment_Inspirasi(), "home").addToBackStack("menu");
+                        ft.commit();
 //                        //TODO : Replace with Fragment
                         break;
                 }

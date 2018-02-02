@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
@@ -29,24 +30,26 @@ public class Fragment_Submit extends Fragment {
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     String userid;
     private SharedPreferences prefsprivate;
-
+    private TextView txt_title;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_submit, container, false);
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
+        txt_title = view.findViewById(R.id.txt_title_page);
+        txt_title.setText("SUBMIT PROJECT");
 
         if (userid.equals("1")) {
-
+            MainActivity.mToolbar.setVisibility(View.GONE);
             MainActivity.title_page.setText("SUBMIT PROJECT");
             MainActivity.img_title.setVisibility(View.GONE);
             MainActivity.title_page.setVisibility(View.VISIBLE);
         } else {
+            MainActivity_owner.mToolbar.setVisibility(View.GONE);
             MainActivity_owner.title_page.setText("SUBMIT PROJECT");
             MainActivity_owner.img_title.setVisibility(View.GONE);
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
-
         }
         return view;
     }
