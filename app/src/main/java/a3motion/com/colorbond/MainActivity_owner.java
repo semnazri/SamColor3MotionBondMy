@@ -33,8 +33,6 @@ import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
 import a3motion.com.colorbond.Fragment.Fragment_Submit;
 import a3motion.com.colorbond.Fragment.Fragment_account;
-import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
-import a3motion.com.colorbond.Fragment.Point_Parent;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -49,6 +47,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity_owner extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     public static ActionBarDrawerToggle toggle;
     public static DrawerLayout mDrawerLayout;
     public static TextView title_page;
@@ -62,8 +61,6 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
     private CircleImageView imageview;
     private SharedPreferences prefsprivate;
     private String nama, image;
-    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,7 +208,9 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
 
     @Override
     public void onBackPressed() {
-
+//        FragmentManager fm = getSupportFragmentManager();
+//        Fragment f = fm.findFragmentById(R.id.container_body); // get the fragment that is currently loaded in placeholder
+//        Object tag = f.getTag();
         int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
 
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -229,7 +228,7 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
             MainActivity_owner.img_title.setVisibility(View.VISIBLE);
             MainActivity_owner.title_page.setVisibility(View.GONE);
 
-        } else
+        } else {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage("Do you want to close this application?")
@@ -241,5 +240,6 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
 
                                 }
                             }).setNegativeButton("No", null).show();
+        }
     }
 }

@@ -32,15 +32,13 @@ import a3motion.com.colorbond.Fragment.FragmentHome;
 import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
 import a3motion.com.colorbond.Fragment.Fragment_account;
-import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
-import a3motion.com.colorbond.Fragment.Point_Parent;
-import a3motion.com.colorbond.Fragment.Project_HistoryParent;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     public static ActionBarDrawerToggle toggle;
     public static DrawerLayout mDrawerLayout;
     public static TextView title_page;
@@ -50,13 +48,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;
     private FragmentTransaction ft;
-
     private TextView username;
     private CircleImageView imageview;
     private SharedPreferences prefsprivate;
     private String nama, image;
-    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -218,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MainActivity.img_title.setVisibility(View.VISIBLE);
             MainActivity.title_page.setVisibility(View.GONE);
 
-        } else
+        } else {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage("Do you want to close this application?")
@@ -230,6 +225,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                                 }
                             }).setNegativeButton("No", null).show();
+        }
     }
 
 }
