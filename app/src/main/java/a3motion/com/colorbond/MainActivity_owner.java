@@ -33,6 +33,7 @@ import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
 import a3motion.com.colorbond.Fragment.Fragment_Submit;
 import a3motion.com.colorbond.Fragment.Fragment_account;
+import a3motion.com.colorbond.Fragment.Point_Parent;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -121,10 +122,10 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
 
                 switch (item.getItemId()) {
                     case R.id.action_reward:
-//                        fragmentManager = getSupportFragmentManager();
-//                        ft = fragmentManager.beginTransaction();
-//                        ft.replace(R.id.container_body, new Point_Parent(), "home").addToBackStack("menu");
-//                        ft.commit();
+                        fragmentManager = getSupportFragmentManager();
+                        ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.container_body, new Point_Parent(), "home").addToBackStack("menu");
+                        ft.commit();
                         break;
                     case R.id.submit:
                         fragmentManager = getSupportFragmentManager();

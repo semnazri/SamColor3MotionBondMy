@@ -37,7 +37,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/variant"
-            android:title="VARIANT COLORBOND" />
+            android:title="VARIAN COLORBOND" />
         </group>
 
     <group
@@ -45,7 +45,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/bluescoop"
-            android:title="PT.NS BLUESCOOP INDONESIA" />
+            android:title="PT NS BLUESCOPE INDONESIA" />
         </group>
 
 

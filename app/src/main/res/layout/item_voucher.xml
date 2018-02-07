@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/abu3"
+    android:orientation="vertical"
+    android:paddingLeft="20dp">
+
+    <TextView
+        android:id="@+id/txt_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="GET 200.000"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DISCOUNT"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/place_name"
+        android:textColor="@color/white" />
+</LinearLayout>

@@ -15,8 +15,6 @@
         <include
             android:id="@+id/toolbar"
             layout="@layout/toolbar_merah" />
-
-
         <FrameLayout
             android:id="@+id/container_body"
             android:layout_width="fill_parent"

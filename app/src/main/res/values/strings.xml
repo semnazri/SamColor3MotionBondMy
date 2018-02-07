@@ -9,5 +9,6 @@
     <string name="password_error">Password is not allowed empty</string>
     <string name="password_error2">Password at last must be 6 Characters!</string>
     <string name="Lorem_Pendek">Project Status : Sedang menunggu Approval!</string>
+    <string name="place_name">\@IKEA ALAM SUTRA</string>
 
 </resources>
