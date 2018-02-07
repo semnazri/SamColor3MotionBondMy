@@ -38,10 +38,11 @@ public class MyTeamAchivementAdapter extends RecyclerView.Adapter<MyTeamAchiveme
 
     @Override
     public void onBindViewHolder(MyTeamAchivementViewHolder holder, int position) {
+        holder.cardView.setCardBackgroundColor(mContext.getResources().getColor(R.color.abutransparent));
         holder.team_name.setText(mValues.get(position).getTeam_name());
         holder.team_position.setText(mValues.get(position).getTeam_position());
         holder.team_point.setText("Reward Point :" + mValues.get(position).getTeam_point());
-        holder.team_order.setText("Order Intact :" + mValues.get(position).getTeam_order_q() + "ton");
+        holder.team_order.setText(mValues.get(position).getTeam_order_q() + "ton");
     }
 
     @Override

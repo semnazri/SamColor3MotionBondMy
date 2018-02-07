@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -32,7 +30,8 @@ import a3motion.com.colorbond.Adapter.LatestProjectAdapter;
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Followers;
-import a3motion.com.colorbond.Model.LatestProject;
+import a3motion.com.colorbond.Model.LatestProject_;
+import a3motion.com.colorbond.Model.LatestProjectfront;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 
@@ -49,7 +48,7 @@ public class FragmentHome extends Fragment {
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     String userid, nama,points;
     private View view;
-    private List<LatestProject> latestProjects;
+    private List<LatestProjectfront> latestProjects;
     private List<Followers> followers;
     private RecyclerView rv;
     private TextView txt_name,txt_point;
@@ -235,12 +234,12 @@ public class FragmentHome extends Fragment {
 
     }
 
-    private List<LatestProject> getProjects() {
-        List<LatestProject> lp = new ArrayList<>();
-        lp.add(new LatestProject("Project 1", getString(R.string.Lorem_Pendek)));
-        lp.add(new LatestProject("Project 2", getString(R.string.Lorem_Pendek)));
-        lp.add(new LatestProject("Project 3", getString(R.string.Lorem_Pendek)));
-        lp.add(new LatestProject("Project 4", getString(R.string.Lorem_Pendek)));
+    private List<LatestProjectfront> getProjects() {
+        List<LatestProjectfront> lp = new ArrayList<>();
+        lp.add(new LatestProjectfront("Project 1", getString(R.string.Lorem_Pendek)));
+        lp.add(new LatestProjectfront("Project 2", getString(R.string.Lorem_Pendek)));
+        lp.add(new LatestProjectfront("Project 3", getString(R.string.Lorem_Pendek)));
+        lp.add(new LatestProjectfront("Project 4", getString(R.string.Lorem_Pendek)));
 
 
         return lp;

@@ -1,6 +1,7 @@
 package a3motion.com.colorbond.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,10 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import a3motion.com.colorbond.Model.LatestProject;
+import a3motion.com.colorbond.Model.LatestProject_;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder;
+import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder_;
 
 /**
  * Created by Semmy
@@ -20,27 +22,37 @@ import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class ProjectHistoryAdapter extends RecyclerView.Adapter<LatestProjectViewHolder> {
-    private List<LatestProject> mValues;
+public class ProjectHistoryAdapter extends RecyclerView.Adapter<LatestProjectViewHolder_> {
+    private List<LatestProject_> mValues;
     private Context mContext;
 
-    public ProjectHistoryAdapter(Context context, List<LatestProject> items) {
+    public ProjectHistoryAdapter(Context context, List<LatestProject_> items) {
         mContext = context;
         mValues = items;
     }
 
 
     @Override
-    public LatestProjectViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_lastest_home, parent, false);
-        return new LatestProjectViewHolder(view);
+    public LatestProjectViewHolder_ onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_project_history, parent, false);
+        return new LatestProjectViewHolder_(view);
     }
 
     @Override
-    public void onBindViewHolder(LatestProjectViewHolder holder, int position) {
+    public void onBindViewHolder(LatestProjectViewHolder_ holder, int position) {
+        holder.cardView.setCardBackgroundColor(mContext.getResources().getColor(R.color.abutransparent));
+        holder.place.setText(mValues.get(position).getPlace());
+        holder.place_detail.setText(mValues.get(position).getDetail_place());
+        holder.dates.setText(mValues.get(position).getDate());
 
-        holder.txt_project_name.setText(mValues.get(position).getProject_name());
-        holder.txt_project_details.setText(mValues.get(position).getProject_desc());
+        if (mValues.get(position).getStatusnya() == 0){
+            holder.img_progess.setBackground(mContext.getResources().getDrawable(R.drawable.btn_rounded_black));
+            holder.img_progess.setText("ON PROGRESS");
+        }else{
+            holder.img_progess.setBackground(mContext.getResources().getDrawable(R.drawable.btn_rounded_ijo));
+            holder.img_progess.setText("DONE");
+
+        }
 
     }
 

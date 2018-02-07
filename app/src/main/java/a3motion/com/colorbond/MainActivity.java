@@ -33,6 +33,7 @@ import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
 import a3motion.com.colorbond.Fragment.Fragment_account;
 import a3motion.com.colorbond.Fragment.Point_Parent;
+import a3motion.com.colorbond.Fragment.Project_HistoryParent;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -115,10 +116,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         ft.commit();
                         break;
                     case R.id.history_project:
-//                        fragmentManager = getSupportFragmentManager();
-//                        ft = fragmentManager.beginTransaction();
-//                        ft.replace(R.id.container_body, new Project_HistoryParent(), "home").addToBackStack("menu");
-//                        ft.commit();
+                        fragmentManager = getSupportFragmentManager();
+                        ft = fragmentManager.beginTransaction();
+                        ft.replace(R.id.container_body, new Project_HistoryParent(), "home").addToBackStack("menu");
+                        ft.commit();
                         break;
                     case R.id.action_notification:
                         fragmentManager = getSupportFragmentManager();

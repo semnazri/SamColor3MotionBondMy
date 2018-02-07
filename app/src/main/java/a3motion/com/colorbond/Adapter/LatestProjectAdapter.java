@@ -8,7 +8,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import a3motion.com.colorbond.Model.LatestProject;
+import a3motion.com.colorbond.Model.LatestProject_;
+import a3motion.com.colorbond.Model.LatestProjectfront;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder;
 
@@ -21,10 +22,10 @@ import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder;
  */
 
 public class LatestProjectAdapter extends RecyclerView.Adapter<LatestProjectViewHolder> {
-    private List<LatestProject> mValues;
+    private List<LatestProjectfront> mValues;
     private Context mContext;
 
-    public LatestProjectAdapter(Context context, List<LatestProject> items) {
+    public LatestProjectAdapter(Context context, List<LatestProjectfront> items) {
         mContext = context;
         mValues = items;
     }

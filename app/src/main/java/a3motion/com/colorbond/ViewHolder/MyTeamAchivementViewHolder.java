@@ -1,5 +1,6 @@
 package a3motion.com.colorbond.ViewHolder;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -17,10 +18,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyTeamAchivementViewHolder extends RecyclerView.ViewHolder {
     public CircleImageView imageview;
+    public CardView cardView;
     public TextView team_name, team_position, team_order, team_point;
+
     public MyTeamAchivementViewHolder(View itemView) {
         super(itemView);
-
+        cardView = itemView.findViewById(R.id.cardView);
         imageview = (CircleImageView) itemView.findViewById(R.id.team_photo);
         team_name = (TextView) itemView.findViewById(R.id.team_name);
         team_position = (TextView) itemView.findViewById(R.id.team_job);

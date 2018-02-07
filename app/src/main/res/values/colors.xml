@@ -15,11 +15,12 @@
     <color name="black2">#383737</color>
     <color name="black_alpha_40">#66000000</color>
     <color name="abu2">#CBCCCE</color>
-    <color name="green">#42B59F</color>
+    <color name="green">#2bb49f</color>
     <color name="abu3">#838383</color>
     <color name="abu4">#D1D2D4</color>
-    <color name="abutransparent">#e5838383</color>
+    <color name="abutransparent">#64838383</color>
     <color name="txt_color">#333333</color>
     <color name="red">#af0000</color>
     <color name="redtra">#aaaf0000</color>
+    <color name="transparan">#00ffffff</color>
 </resources>

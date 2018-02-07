@@ -8,14 +8,14 @@ package a3motion.com.colorbond.Model;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class LatestProject {
+public class LatestProjectfront {
 
     String project_name, project_desc;
 
-    public LatestProject() {
+    public LatestProjectfront() {
     }
 
-    public LatestProject(String project_name, String project_desc) {
+    public LatestProjectfront(String project_name, String project_desc) {
 
         this.project_name = project_name;
         this.project_desc = project_desc;

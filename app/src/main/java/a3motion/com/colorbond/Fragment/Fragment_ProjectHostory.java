@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a3motion.com.colorbond.Adapter.ProjectHistoryAdapter;
-import a3motion.com.colorbond.Model.LatestProject;
+import a3motion.com.colorbond.Model.LatestProject_;
 import a3motion.com.colorbond.R;
 
 /**
@@ -28,7 +28,7 @@ import a3motion.com.colorbond.R;
 public class Fragment_ProjectHostory extends Fragment {
 
     private View view;
-    private List<LatestProject> latestProjects;
+    private List<LatestProject_> latestProjects;
     private RecyclerView rv;
     private LinearLayoutManager lm;
     private ProjectHistoryAdapter adapter;
@@ -38,7 +38,7 @@ public class Fragment_ProjectHostory extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_project_hostory, container, false);
         latestProjects = getProjects();
-        rv = (RecyclerView) view.findViewById(R.id.rv_laastProject);
+        rv =  view.findViewById(R.id.rv_laastProject);
 
 
         rv.setHasFixedSize(true);
@@ -49,12 +49,18 @@ public class Fragment_ProjectHostory extends Fragment {
         return view;
     }
 
-    private List<LatestProject> getProjects() {
-        List<LatestProject> lp = new ArrayList<>();
-        lp.add(new LatestProject("Project 1", getString(R.string.lorem)));
-        lp.add(new LatestProject("Project 2", getString(R.string.lorem)));
-        lp.add(new LatestProject("Project 3", getString(R.string.lorem)));
-        lp.add(new LatestProject("Project 4", getString(R.string.lorem)));
+    private List<LatestProject_> getProjects() {
+        List<LatestProject_> lp = new ArrayList<>();
+        lp.add(new LatestProject_("BANDUNG", "(Taman Gedebage", "21 April 2016", 0));
+        lp.add(new LatestProject_("JAKARTA", "(Taman Suropati", "21 April 2017", 1));
+        lp.add(new LatestProject_("BANDUNG", "(Taman Gedebage", "21 April 2016", 0));
+        lp.add(new LatestProject_("JAKARTA", "(Taman Suropati", "21 April 2017", 1));
+        lp.add(new LatestProject_("BANDUNG", "(Taman Gedebage", "21 April 2016", 0));
+        lp.add(new LatestProject_("JAKARTA", "(Taman Suropati", "21 April 2017", 1));
+        lp.add(new LatestProject_("BANDUNG", "(Taman Gedebage", "21 April 2016", 0));
+        lp.add(new LatestProject_("JAKARTA", "(Taman Suropati", "21 April 2017", 1));
+
+
         return lp;
     }
 }
