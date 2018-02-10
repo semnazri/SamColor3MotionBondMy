@@ -2,6 +2,7 @@ package a3motion.com.colorbond.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -62,6 +63,7 @@ public class Point_Parent extends Fragment {
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
         pager = view.findViewById(R.id.photos_viewpager);
+        pager.setIndicatorTintColorScheme(Color.WHITE, Color.GRAY);
         img_nav = view.findViewById(R.id.img_tolbar);
 
         if (userid.equals("1")) {

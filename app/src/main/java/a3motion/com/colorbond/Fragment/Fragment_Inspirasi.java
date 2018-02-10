@@ -2,6 +2,7 @@ package a3motion.com.colorbond.Fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -50,6 +51,7 @@ public class Fragment_Inspirasi extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_inspirasi, container, false);
         pager = view.findViewById(R.id.photos_viewpager);
+        pager.setIndicatorTintColorScheme(Color.WHITE, Color.GRAY);
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
         txt_title = view.findViewById(R.id.txt_title_page);

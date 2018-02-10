@@ -28,10 +28,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import a3motion.com.colorbond.Fragment.FragmentEvent;
+import a3motion.com.colorbond.Fragment.FragmentHelp;
 import a3motion.com.colorbond.Fragment.FragmentHome;
 import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
 import a3motion.com.colorbond.Fragment.Fragment_account;
+import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
 import a3motion.com.colorbond.Fragment.Point_Parent;
 import a3motion.com.colorbond.Fragment.Project_HistoryParent;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
@@ -165,13 +167,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.event) {
             fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {
-//            fragment = new Fragment_bondPartMerchant_benefit();
+            fragment = new Fragment_bondPartMerchant_benefit();
         } else if (id == R.id.variant) {
 //            getToast();
         } else if (id == R.id.bluescoop) {
 //            getToast();
         } else if (id == R.id.help) {
-//            getToast();
+            fragment = new FragmentHelp();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
