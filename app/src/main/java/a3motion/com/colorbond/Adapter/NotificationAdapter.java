@@ -5,9 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 
+import a3motion.com.colorbond.Listener.NotificationListener;
 import a3motion.com.colorbond.Model.Notification;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.NotificationViewHolder;
@@ -23,10 +27,12 @@ import a3motion.com.colorbond.ViewHolder.NotificationViewHolder;
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
     private Context mContext;
     private List<Notification> mValuses;
+    private NotificationListener listener;
 
-    public NotificationAdapter(Context context, List<Notification> items) {
+    public NotificationAdapter(Context context, List<Notification> items, NotificationListener listener) {
         mContext = context;
         mValuses = items;
+        this.listener = listener;
 
     }
 
@@ -37,7 +43,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
     }
 
     @Override
-    public void onBindViewHolder(NotificationViewHolder holder, int position) {
+    public void onBindViewHolder(NotificationViewHolder holder, final int position) {
         String title = mValuses.get(position).getTitle();
         String headline = mValuses.get(position).getHeadline();
         String desc = mValuses.get(position).getDesc();
@@ -45,6 +51,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         holder.title_notif.setText(title);
         holder.hedline_notif.setText(headline);
         holder.des_notif.setText(desc);
+        holder.ll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.typeDialog(mValuses.get(position).getNotif_Code());
+            }
+        });
     }
 
     @Override
