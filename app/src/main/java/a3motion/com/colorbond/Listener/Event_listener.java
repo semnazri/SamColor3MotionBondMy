@@ -10,5 +10,5 @@ package a3motion.com.colorbond.Listener;
 
 public interface Event_listener {
 
-    void show_event(String date, String hour, String nama_event, String tema_event, String pic, String location);
+    void show_event(String date, String hour, String nama_event, String tema_event, String pic, String location,String fileImg);
 }

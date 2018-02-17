@@ -11,5 +11,7 @@ package a3motion.com.colorbond.Network;
 public class APICONSTANT {
 
     public static final String API_Auth = "http://188.166.227.147/bluescope/api/auth/";
+    public static final String API_Parent = "http://188.166.227.147/bluescope/api/";
+
 
 }

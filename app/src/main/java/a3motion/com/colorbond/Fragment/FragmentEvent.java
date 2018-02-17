@@ -20,6 +20,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +34,13 @@ import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Event;
 import a3motion.com.colorbond.Model.Followers;
+import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.POJO.EventResponse;
+import a3motion.com.colorbond.Presenter.EventPresenter;
+import a3motion.com.colorbond.Presenter.EventPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.EventView;
 
 /**
  * Created by Semmy
@@ -41,9 +50,9 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class FragmentEvent extends Fragment implements Event_listener {
+public class FragmentEvent extends Fragment implements Event_listener, EventView {
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid;
+    String userid, tokenz;
     private RecyclerView rv;
     private List<Event> events;
     private List<Followers> followers;
@@ -54,6 +63,17 @@ public class FragmentEvent extends Fragment implements Event_listener {
     private FollowersAdapter followersAdapter;
     private View view;
     private SharedPreferences prefsprivate;
+    private ConnectionDetector cd;
+    private Boolean isInternetPresent = false;
+    private MaterialDialog mDialog, dialog_muter;
+    private EventPresenter eventPresenter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        cd = new ConnectionDetector(getActivity());
+
+    }
 
     @Nullable
     @Override
@@ -100,16 +120,26 @@ public class FragmentEvent extends Fragment implements Event_listener {
             }
         });
 
-        events = getAllEVent();
+//        events = getAllEVent();
         rv = view.findViewById(R.id.rv_event);
+        eventPresenter = new EventPresenterImp(this);
+        checkConnections();
 
-        rv.setHasFixedSize(true);
-        lm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-        adapter = new EventAdapter(getActivity(), events, FragmentEvent.this);
-        rv.setAdapter(adapter);
         return view;
 
+
+    }
+
+    private void checkConnections() {
+        isInternetPresent = cd.isConnectingToInternet();
+        if (isInternetPresent) {
+            tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
+            getDialog_progress();
+            eventPresenter.getListEvent(tokenz);
+
+        } else if (isInternetPresent.equals(false)) {
+            getdialogerror("Tidak ada koneksi Internet");
+        }
 
     }
 
@@ -131,13 +161,22 @@ public class FragmentEvent extends Fragment implements Event_listener {
     }
 
     @Override
-    public void show_event(String date, String hour, String nama_event, String tema_event, String pic, String location) {
+    public void onDestroy() {
+        eventPresenter.onDestroy();
+        super.onDestroy();
+    }
+
+    @Override
+    public void show_event(String date, String hour, String nama_event, String tema_event, String pic, String location, String image) {
 
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_join);
 
-        TextView tv_join_disjoin = (TextView) dialog.findViewById(R.id.txt_join_disjoin);
-        LinearLayout ll_folowers = (LinearLayout) dialog.findViewById(R.id.ll_folowers);
+        TextView tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
+        LinearLayout ll_folowers = dialog.findViewById(R.id.ll_folowers);
+        ImageView img_event = dialog.findViewById(R.id.event_img);
+
+        Glide.with(getActivity()).load(image).into(img_event);
         tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -195,4 +234,46 @@ public class FragmentEvent extends Fragment implements Event_listener {
 
         return flw;
     }
+
+    @Override
+    public void ResulEvent(String response_message, EventResponse eventResponse) {
+        dialog_muter.dismiss();
+        rv.setHasFixedSize(true);
+        lm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(lm);
+        adapter = new EventAdapter(getActivity(), eventResponse.getEvent(), FragmentEvent.this);
+        rv.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void setelseEror(String response_message) {
+        getdialogerror(response_message);
+    }
+
+    public void getDialog_progress() {
+
+        dialog_muter = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(R.string.please_wait)
+                .progress(true, 0)
+                .show();
+    }
+
+    private void getdialogerror(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                        getFragmentManager().popBackStack();
+                    }
+                })
+                .show();
+    }
+
 }

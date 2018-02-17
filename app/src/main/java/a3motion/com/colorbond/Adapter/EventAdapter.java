@@ -10,6 +10,7 @@ import java.util.List;
 
 import a3motion.com.colorbond.Listener.Event_listener;
 import a3motion.com.colorbond.Model.Event;
+import a3motion.com.colorbond.POJO.EventResponse;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.EventViewHolder;
 
@@ -23,10 +24,10 @@ import a3motion.com.colorbond.ViewHolder.EventViewHolder;
 
 public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
     private Context mContext;
-    private List<Event> mValues;
+    private List<a3motion.com.colorbond.POJO.Event> mValues;
     private Event_listener listener;
 
-    public EventAdapter(Context context, List<Event> items, Event_listener listener) {
+    public EventAdapter(Context context, List<a3motion.com.colorbond.POJO.Event> items, Event_listener listener) {
         mContext = context;
         mValues = items;
         this.listener = listener;
@@ -39,16 +40,17 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(EventViewHolder holder, int position) {
+    public void onBindViewHolder(EventViewHolder holder, final int position) {
         final String date = mValues.get(position).getDate();
-        final String hour = mValues.get(position).getJam();
-        final String nama_event = mValues.get(position).getNama_event();
-        final String tema = mValues.get(position).getTemaevent();
-        final String pic = mValues.get(position).getPic();
-        final String lcoat = mValues.get(position).getLocation();
+//        final String hour = mValues.get(position).getJam();
+        final String hour = "";
+        final String nama_event = mValues.get(position).getName();
+        final String tema = mValues.get(position).getTema();
+        final String pic = mValues.get(position).getFileimg();
+        final String lcoat = mValues.get(position).getAddress();
 
         holder.tanggal.setText(date);
-        holder.jam.setText(hour);
+//        holder.jam.setText("");
         holder.namaEvent.setText(nama_event);
         holder.temaEvent.setText(tema);
         holder.PIC.setText(pic);
@@ -56,7 +58,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
         holder.btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.show_event(date,hour,nama_event,tema, pic, lcoat);
+                listener.show_event(date,hour,nama_event,tema, pic, lcoat, mValues.get(position).getFileimg());
             }
         });
     }

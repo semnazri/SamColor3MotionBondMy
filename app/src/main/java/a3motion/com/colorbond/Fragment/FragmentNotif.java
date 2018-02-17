@@ -57,7 +57,7 @@ public class FragmentNotif extends Fragment implements NotificationListener {
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
         txt_title = view.findViewById(R.id.txt_title_page);
         txt_title.setText("NOTIFICATION");
-
+        img_nav = view.findViewById(R.id.img_tolbar);
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
             MainActivity.title_page.setText("NOTIFICATION");
