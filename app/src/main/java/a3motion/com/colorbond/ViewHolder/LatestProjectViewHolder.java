@@ -15,7 +15,7 @@ import a3motion.com.colorbond.R;
  */
 
 public class LatestProjectViewHolder extends RecyclerView.ViewHolder {
-    public TextView txt_project_name,txt_project_details;
+    public TextView txt_project_name,txt_project_details,txt_project_status;
     public LatestProjectViewHolder(View itemView) {
         super(itemView);
 

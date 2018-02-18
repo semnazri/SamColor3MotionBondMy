@@ -10,6 +10,7 @@ import java.util.List;
 
 import a3motion.com.colorbond.Model.LatestProject_;
 import a3motion.com.colorbond.Model.LatestProjectfront;
+import a3motion.com.colorbond.POJO.HomeLatestProject;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder;
 
@@ -22,10 +23,10 @@ import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder;
  */
 
 public class LatestProjectAdapter extends RecyclerView.Adapter<LatestProjectViewHolder> {
-    private List<LatestProjectfront> mValues;
+    private List<HomeLatestProject> mValues;
     private Context mContext;
 
-    public LatestProjectAdapter(Context context, List<LatestProjectfront> items) {
+    public LatestProjectAdapter(Context context, List<HomeLatestProject> items) {
         mContext = context;
         mValues = items;
     }
@@ -40,13 +41,13 @@ public class LatestProjectAdapter extends RecyclerView.Adapter<LatestProjectView
     @Override
     public void onBindViewHolder(LatestProjectViewHolder holder, int position) {
 
-        holder.txt_project_name.setText(mValues.get(position).getProject_name());
-        holder.txt_project_details.setText(mValues.get(position).getProject_desc());
+//        holder.txt_project_name.setText(mValues.get(position).getProject_name());
+        holder.txt_project_details.setText(mValues.get(position).getDetail());
 
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return mValues.size();
     }
 }
