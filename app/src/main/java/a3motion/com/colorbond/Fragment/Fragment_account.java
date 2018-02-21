@@ -46,12 +46,12 @@ public class Fragment_account extends Fragment {
         txt_title.setText("MY ACCOUNT");
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
-            MainActivity.title_page.setText("MY BONDPARTNER ACCOUNT");
+            MainActivity.title_page.setText("MY ACCOUNT");
             MainActivity.img_title.setVisibility(View.GONE);
             MainActivity.title_page.setVisibility(View.VISIBLE);
         } else {
             MainActivity_owner.mToolbar.setVisibility(View.GONE);
-            MainActivity_owner.title_page.setText("MY BONDPARTNER ACCOUNT");
+            MainActivity_owner.title_page.setText("MY ACCOUNT");
             MainActivity_owner.img_title.setVisibility(View.GONE);
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
         }

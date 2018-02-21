@@ -300,7 +300,7 @@ public class FragmentHome extends Fragment implements HomeView{
     @Override
     public void ResultHome(String response_message, HomeResponse homeResponse) {
         dialog_muter.dismiss();
-        txt_name.setText("Hello ! " + homeResponse.getProfile().getName());
+        txt_name.setText("Hi " + homeResponse.getProfile().getName()+" !");
         txt_point.setText(homeResponse.getProfile().getPoin());
         txt_title_event1.setText(homeResponse.getEvent().get(0).getTitle());
         txt_date_event1.setText(homeResponse.getEvent().get(0).getDate());

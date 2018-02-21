@@ -39,11 +39,11 @@ public class Fragment_colorbond_insipiration extends Fragment {
 
         if (userid.equals("1")) {
 
-            MainActivity.title_page.setText("COLORBOND INSPIRATION");
+            MainActivity.title_page.setText("INSPIRATION");
             MainActivity.img_title.setVisibility(View.GONE);
             MainActivity.title_page.setVisibility(View.VISIBLE);
         } else {
-            MainActivity_owner.title_page.setText("COLORBOND INSPIRATION");
+            MainActivity_owner.title_page.setText("INSPIRATION");
             MainActivity_owner.img_title.setVisibility(View.GONE);
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
         }

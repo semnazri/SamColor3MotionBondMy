@@ -45,12 +45,12 @@ public class Fragment_detail_Inspirasi extends Fragment {
         img_nav = view.findViewById(R.id.img_tolbar);
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
-            MainActivity.title_page.setText("COLORBOND INSPIRATION");
+            MainActivity.title_page.setText("INSPIRATION");
             MainActivity.img_title.setVisibility(View.GONE);
             MainActivity.title_page.setVisibility(View.VISIBLE);
         } else {
             MainActivity_owner.mToolbar.setVisibility(View.GONE);
-            MainActivity_owner.title_page.setText("COLORBOND INSPIRATION");
+            MainActivity_owner.title_page.setText("INSPIRATION");
             MainActivity_owner.img_title.setVisibility(View.GONE);
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
         }

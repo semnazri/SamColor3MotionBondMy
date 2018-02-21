@@ -22,444 +22,449 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <ImageView
+                android:id="@+id/img_program"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Komunitas Ekslusif
-&amp; Reward bagi Arsitek"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:layout_height="1000dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Komunitas Ekslusif-->
+<!--&amp; Reward bagi Arsitek"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="20sp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="BENEFIT"
-                    android:textColor="@color/white" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/white"
-                    android:paddingTop="10dp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:text="BENEFIT"-->
+                    <!--android:textColor="@color/white" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lorem2"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                <!--<View-->
+                    <!--android:layout_width="1dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:paddingTop="10dp" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/lorem2"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="12sp" />-->
+            <!--</LinearLayout>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="REWARD"
-                    android:textColor="@color/white" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/white" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:text="REWARD"-->
+                    <!--android:textColor="@color/white" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lorem2"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                <!--<View-->
+                    <!--android:layout_width="1dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@color/white" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Kumpulkan poin
-sebanyak-banyaknya"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:background="@color/biru2"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="KATEGORI INDUSTRIAL:
-1 Poin = IDR 750.000"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/biru22"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Luasan Proyek (m2)*"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/lorem2"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:textSize="12sp" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:text="Kumpulkan poin-->
+<!--sebanyak-banyaknya"-->
+                <!--android:textAllCaps="true"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="20sp" />-->
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:background="@color/biru2"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:text="KATEGORI INDUSTRIAL:-->
+<!--1 Poin = IDR 750.000"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="18sp" />-->
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/biru22"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:text="Luasan Proyek (m2)*"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="18sp" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/biru2"
-                    android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical">-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:text="5.000 - 20.000 m2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/biru2"-->
+                    <!--android:orientation="horizontal">-->
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/white" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:paddingBottom="10dp"-->
+                        <!--android:paddingTop="10dp"-->
+                        <!--android:text="5.000 - 20.000 m2"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textColor="@color/white" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text=">20.000"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-                </LinearLayout>
+                    <!--<View-->
+                        <!--android:layout_width="1dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:background="@color/white" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/biru22"
-                    android:orientation="horizontal">
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text=">20.000"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textColor="@color/white" />-->
+                <!--</LinearLayout>-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:text="1 Poin/5.000 m2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/biru22"-->
+                    <!--android:orientation="horizontal">-->
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/white" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:paddingBottom="10dp"-->
+                        <!--android:paddingTop="10dp"-->
+                        <!--android:text="1 Poin/5.000 m2"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textColor="@color/white" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="2 Poin/5.000 m2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-            </LinearLayout>
+                    <!--<View-->
+                        <!--android:layout_width="1dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:background="@color/white" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/biru2"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Dapatkan poin tambahan dengan menambah jumlah proyek
-(Tidak terikat dengan syarat luasan proyek minimum)"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="2 Poin/5.000 m2"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textColor="@color/white" />-->
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/biru22"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:text="1- 4 Proyek
-2 Poin / proyek"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:text=">4 Proyek
-4 Poin / proyek"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/biru2"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="KATEGORI KOMERSIAL:
-1 Poin = IDR 400.000"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/biru22"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Luasan Proyek (m2)*"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/biru2"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:text="Dapatkan poin tambahan dengan menambah jumlah proyek-->
+<!--(Tidak terikat dengan syarat luasan proyek minimum)"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="10sp" />-->
 
 
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/biru22"-->
+                <!--android:orientation="horizontal">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:paddingBottom="10dp"-->
+                    <!--android:paddingTop="10dp"-->
+                    <!--android:text="1- 4 Proyek-->
+<!--2 Poin / proyek"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/white" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/biru2"
-                    android:orientation="horizontal">
+                <!--<View-->
+                    <!--android:layout_width="1dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:background="@color/white" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:text="2.000 - 15.000 m2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:paddingBottom="10dp"-->
+                    <!--android:paddingTop="10dp"-->
+                    <!--android:text=">4 Proyek-->
+<!--4 Poin / proyek"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/white" />-->
+            <!--</LinearLayout>-->
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:background="@color/white" />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:background="@color/biru2"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:text="KATEGORI KOMERSIAL:-->
+<!--1 Poin = IDR 400.000"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="18sp" />-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text=">15.000"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-                </LinearLayout>
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/biru22"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:text="Luasan Proyek (m2)*"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="18sp" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/biru22"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingBottom="10dp"
-                        android:paddingTop="10dp"
-                        android:text="1 Poin/2.000 m2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="10dp"
-                        android:background="@color/white" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical">-->
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="2 Poin/2.000 m2"
-                        android:textAlignment="center"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-            </LinearLayout>
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/biru2"-->
+                    <!--android:orientation="horizontal">-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/biru2"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:text="Dapatkan poin tambahan dengan menambah jumlah proyek
-(Tidak terikat dengan syarat luasan proyek minimum)"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:paddingBottom="10dp"-->
+                        <!--android:paddingTop="10dp"-->
+                        <!--android:text="2.000 - 15.000 m2"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textColor="@color/white" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/biru22"
-                android:orientation="horizontal">
+                    <!--<View-->
+                        <!--android:layout_width="1dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:background="@color/white" />-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:text="1- 4 Proyek
-3 Poin / proyek"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text=">15.000"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textColor="@color/white" />-->
+                <!--</LinearLayout>-->
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white" />
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@color/biru22"-->
+                    <!--android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    android:text=">4 Proyek
-6 Poin / proyek"
-                    android:textAlignment="center"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:paddingBottom="10dp"-->
+                        <!--android:paddingTop="10dp"-->
+                        <!--android:text="1 Poin/2.000 m2"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textColor="@color/white" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@color/biru2"
-                android:padding="5dp"
-                android:text="Kategori Komersial"
-                android:textColor="@color/white" />
+                    <!--<View-->
+                        <!--android:layout_width="1dp"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_marginBottom="10dp"-->
+                        <!--android:background="@color/white" />-->
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:text="2 Poin/2.000 m2"-->
+                        <!--android:textAlignment="center"-->
+                        <!--android:textColor="@color/white" />-->
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/rounded_white" />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/biru2"-->
+                <!--android:paddingBottom="10dp"-->
+                <!--android:paddingTop="10dp"-->
+                <!--android:text="Dapatkan poin tambahan dengan menambah jumlah proyek-->
+<!--(Tidak terikat dengan syarat luasan proyek minimum)"-->
+                <!--android:textAlignment="center"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="10sp" />-->
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/rounded_white" />
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/biru22"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/rounded_white" />
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:paddingBottom="10dp"-->
+                    <!--android:paddingTop="10dp"-->
+                    <!--android:text="1- 4 Proyek-->
+<!--3 Poin / proyek"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/white" />-->
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/rounded_white" />
-            </LinearLayout>
+                <!--<View-->
+                    <!--android:layout_width="1dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_marginBottom="10dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:background="@color/white" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@color/biru2"
-                android:padding="5dp"
-                android:text="Kategori Industrial"
-                android:textColor="@color/white" />
+                <!--<TextView-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:paddingBottom="10dp"-->
+                    <!--android:paddingTop="10dp"-->
+                    <!--android:text=">4 Proyek-->
+<!--6 Poin / proyek"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textColor="@color/white" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:background="@color/biru2"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Kategori Komersial"-->
+                <!--android:textColor="@color/white" />-->
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/rounded_white" />
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/rounded_white" />
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:src="@drawable/rounded_white" />-->
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/rounded_white" />
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:src="@drawable/rounded_white" />-->
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/rounded_white" />
-            </LinearLayout>
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:src="@drawable/rounded_white" />-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:src="@drawable/rounded_white" />-->
+            <!--</LinearLayout>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginTop="20dp"-->
+                <!--android:background="@color/biru2"-->
+                <!--android:padding="5dp"-->
+                <!--android:text="Kategori Industrial"-->
+                <!--android:textColor="@color/white" />-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_marginBottom="20dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:src="@drawable/rounded_white" />-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:src="@drawable/rounded_white" />-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:src="@drawable/rounded_white" />-->
+
+                <!--<ImageView-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:src="@drawable/rounded_white" />-->
+            <!--</LinearLayout>-->
 
         </LinearLayout>
 
