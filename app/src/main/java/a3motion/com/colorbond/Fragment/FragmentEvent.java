@@ -85,16 +85,16 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
         img_nav = view.findViewById(R.id.img_tolbar);
         txt_title = view.findViewById(R.id.txt_title_page);
-        txt_title.setText("BONDPARTNER EVENT");
+        txt_title.setText("EVENT");
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
-            MainActivity.title_page.setText("BONDPARTNER EVENT");
+            MainActivity.title_page.setText("EVENT");
             MainActivity.img_title.setVisibility(View.GONE);
             MainActivity.title_page.setVisibility(View.VISIBLE);
 
         } else {
             MainActivity_owner.mToolbar.setVisibility(View.GONE);
-            MainActivity_owner.title_page.setText("BONDPARTNER EVENT");
+            MainActivity_owner.title_page.setText("EVENT");
             MainActivity_owner.img_title.setVisibility(View.GONE);
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
 

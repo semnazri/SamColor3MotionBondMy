@@ -53,6 +53,7 @@ public class LoginActivity extends Activity implements LoginView {
         btn_login = findViewById(R.id.btn_login);
         edt_email = findViewById(R.id.edt_email);
         edt_pass = findViewById(R.id.edt_password);
+        ll_register = findViewById(R.id.ll_register);
         cd = new ConnectionDetector(this);
         loginPresenter = new LoginPresenterImp(this);
 
@@ -65,9 +66,9 @@ public class LoginActivity extends Activity implements LoginView {
             }
         });
 
-//        if (is_visible.equals("0")) {
-//            ll_register.setVisibility(View.GONE);
-//        }
+        if (is_visible.equals("1")) {
+            ll_register.setVisibility(View.GONE);
+        }
 
         txt_register.setOnClickListener(new View.OnClickListener() {
             @Override

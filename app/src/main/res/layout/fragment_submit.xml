@@ -35,13 +35,12 @@
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="5dp"
                         android:layout_weight="1"
                         android:gravity="center|start"
-                        android:text="Project Details"
+                        android:text="@string/project_detail"
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -69,7 +68,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="My Point"
+                                android:text="@string/Mypoint"
                                 android:textColor="@color/black" />
 
                             <TextView
@@ -94,7 +93,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Project Name"
+                        android:text="@string/project_name"
                         android:textColor="@color/black" />
 
                     <EditText
@@ -103,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
                         android:editable="false"
-                        android:hint="your project name"
+                        android:hint="@string/your_project_name"
                         android:paddingLeft="10dp" />
                 </LinearLayout>
 
@@ -118,7 +117,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Date"
+                        android:text="@string/date"
                         android:textColor="@color/black" />
 
                     <EditText
@@ -151,7 +150,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Location"
+                        android:text="@string/location"
                         android:textColor="@color/black" />
 
                     <EditText
@@ -175,7 +174,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Building Category"
+                        android:text="@string/building_cat"
                         android:textColor="@color/black" />
 
                     <Spinner
@@ -196,7 +195,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Size"
+                        android:text="@string/Size"
                         android:textColor="@color/black" />
 
                     <EditText
@@ -208,10 +207,11 @@
                         android:paddingLeft="10dp" />
 
                     <TextView
+                        android:id="@+id/txt_m2_sup"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="m3"
+                        android:text="m2"
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -226,7 +226,7 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Size Category"
+                        android:text="@string/size_cat"
                         android:textColor="@color/black" />
 
                     <Spinner
@@ -248,7 +248,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Upload Copy Delivery note"
+                        android:text="@string/cpy_deliv_note"
                         android:textColor="@color/black" />
 
                     <LinearLayout
@@ -291,7 +291,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Upload Supporting Project Details"
+                        android:text="@string/suport_docs"
                         android:textColor="@color/black" />
 
                     <LinearLayout
@@ -333,7 +333,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Colorbond Material Used"
+                        android:text="@string/color_material_"
                         android:textColor="@color/black" />
 
                     <LinearLayout

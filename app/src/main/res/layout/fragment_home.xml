@@ -82,6 +82,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txt_program"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
@@ -118,7 +119,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="Program"
+                        android:text="@string/program"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="24sp"
@@ -131,7 +132,8 @@
                         android:text="Bondcontractor"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        android:visibility="gone" />
                 </LinearLayout>
 
 
@@ -146,8 +148,9 @@
 
                 <LinearLayout
                     android:id="@+id/linear_project_history"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:orientation="vertical"
                     android:paddingBottom="20dp"
                     android:paddingLeft="10dp">
@@ -165,7 +168,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Selamat datang,yuk Upgrade lagi point mu."
+                        android:text="@string/welcome"
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -184,6 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="20dp"
+                    android:layout_weight="1.5"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -200,7 +204,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="My Point"
+                            android:text="@string/Mypoint"
                             android:textColor="@color/black" />
 
                         <TextView
@@ -221,7 +225,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="@color/white"
                 android:paddingTop="10dp"
-                android:text="Latest Project"
+                android:text="@string/latest_project"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -250,76 +254,77 @@
                     android:background="@color/redtra" />
 
                 <LinearLayout
-                    android:layout_marginTop="30dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/deals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="Special Deal"
                         android:textAllCaps="true"
-                        android:layout_marginLeft="20dp"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_gravity="center"
                         android:text="Get 50% Discount"
                         android:textAllCaps="true"
                         android:textColor="@color/white"
                         android:textSize="12sp" />
 
                     <LinearLayout
-                        android:layout_marginLeft="30dp"
+                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:src="@drawable/button_02"
                             android:layout_width="50dp"
-                            android:layout_height="50dp" />
+                            android:layout_height="50dp"
+                            android:src="@drawable/button_02" />
 
                         <TextView
-                            android:layout_gravity="center"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
+                            android:layout_gravity="center"
                             android:text="50"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
 
                         <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="2dp"
                             android:layout_marginTop="15dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:textSize="8sp"
                             android:text="pts"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white"
+                            android:textSize="8sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
+
                     <Button
-                        android:layout_marginLeft="20dp"
                         android:id="@+id/btn_detail_info"
                         android:layout_width="100dp"
                         android:layout_height="30dp"
-                        android:layout_gravity="end"
+                        android:layout_gravity="center"
                         android:background="@drawable/bg_white"
-                        android:text="Redem"
+                        android:text="Redeem"
                         android:textColor="@color/red" />
                 </LinearLayout>
             </RelativeLayout>
 
             <ImageView
-                android:visibility="gone"
                 android:id="@+id/home_4rd_image"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:src="@drawable/colorbond_roofing_sydney" />
+                android:src="@drawable/colorbond_roofing_sydney"
+                android:visibility="gone" />
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

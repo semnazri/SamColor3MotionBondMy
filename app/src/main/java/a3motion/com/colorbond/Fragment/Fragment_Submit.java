@@ -32,7 +32,7 @@ public class Fragment_Submit extends Fragment {
     String userid;
     private View view;
     private SharedPreferences prefsprivate;
-    private TextView txt_title;
+    private TextView txt_title,txt_m2_sup;
     private ImageView img_tolbar;
 
     @Nullable
@@ -43,7 +43,10 @@ public class Fragment_Submit extends Fragment {
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
         img_tolbar = view.findViewById(R.id.img_tolbar);
         txt_title = view.findViewById(R.id.txt_title_page);
+        txt_m2_sup = view.findViewById(R.id.txt_m2_sup);
         txt_title.setText("SUBMIT PROJECT");
+
+        txt_m2_sup.setText(getResources().getString(R.string.sup));
 
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);

@@ -32,7 +32,6 @@ import a3motion.com.colorbond.Adapter.LatestProjectAdapter;
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Followers;
-import a3motion.com.colorbond.Model.LatestProject_;
 import a3motion.com.colorbond.Model.LatestProjectfront;
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.POJO.HomeResponse;
@@ -50,15 +49,15 @@ import a3motion.com.colorbond.View.HomeView;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class FragmentHome extends Fragment implements HomeView{
+public class FragmentHome extends Fragment implements HomeView {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid, nama,points,tokenz;
+    String userid, nama, points, tokenz;
     private View view;
     private List<LatestProjectfront> latestProjects;
     private List<Followers> followers;
     private RecyclerView rv;
-    private TextView txt_name,txt_point,txt_title_event1,txt_date_event1;
+    private TextView txt_name, txt_point, txt_title_event1, txt_date_event1;
     private LinearLayoutManager lm, lm_followers;
     private LatestProjectAdapter adapter;
     private FollowersAdapter followersAdapter;
@@ -100,7 +99,7 @@ public class FragmentHome extends Fragment implements HomeView{
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
         nama = prefsprivate.getString(BlueScoopPreferences.nama, "username");
-        points = prefsprivate.getString(BlueScoopPreferences.poin,"10000");
+        points = prefsprivate.getString(BlueScoopPreferences.poin, "10000");
         homePresejter = new HomePresemterImp(this);
         checkConnections();
 
@@ -183,6 +182,7 @@ public class FragmentHome extends Fragment implements HomeView{
             getdialogerror("Tidak ada koneksi Internet");
         }
     }
+
     public void getDialog_progress() {
 
         dialog_muter = new MaterialDialog.Builder(getActivity())
@@ -207,6 +207,7 @@ public class FragmentHome extends Fragment implements HomeView{
                 })
                 .show();
     }
+
     private void showDialogProgram() {
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_bondpart_program);
@@ -300,7 +301,7 @@ public class FragmentHome extends Fragment implements HomeView{
     @Override
     public void ResultHome(String response_message, HomeResponse homeResponse) {
         dialog_muter.dismiss();
-        txt_name.setText("Hi " + homeResponse.getProfile().getName()+" !");
+        txt_name.setText(getResources().getString(R.string.hi) + " " + homeResponse.getProfile().getName() + "!");
         txt_point.setText(homeResponse.getProfile().getPoin());
         txt_title_event1.setText(homeResponse.getEvent().get(0).getTitle());
         txt_date_event1.setText(homeResponse.getEvent().get(0).getDate());

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Color Bond</string>
+    <string name="app_name">Colorbond</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</string>
@@ -12,5 +12,26 @@
     <string name="Lorem_Pendek">Project Status : Sedang menunggu Approval!</string>
     <string name="place_name">\@IKEA ALAM SUTRA</string>
     <string name="lorem_panjang">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus id ornare dolor. Nulla facilisi. Proin mollis vestibulum leo, quis tristique lectus elementum sit amet. Cras vestibulum ante eu velit suscipit, a lobortis diam luctus. Pellentesque lorem nibh, ultrices nec varius sed, viverra ac nunc. Nulla a sollicitudin neque. Quisque porta blandit pellentesque.  Morbi dictum, metus id laoreet placerat, nisi arcu consequat justo, quis ultricies orci urna eu turpis. Praesent et massa orci. Praesent accumsan consectetur sem facilisis fringilla. Nullam semper, purus in placerat pellentesque, tortor nisi suscipit nulla, id semper augue tellus laoreet ex. Vestibulum velit augue, venenatis at elit ut, iaculis malesuada velit. Quisque lacus elit, tempus ut nisi a, ultricies blandit augue. Quisque et turpis porta, sagittis ipsum sed, posuere purus. Integer mattis dolor turpis, sed hendrerit nisi ultrices vitae.  Etiam in nunc non lorem tincidunt facilisis. Duis a quam velit. Aenean sed luctus erat, sed eleifend neque. Nam a tortor ante. Phasellus sed facilisis elit. Aliquam tristique massa ligula, at luctus diam ultricies vel. Etiam euismod lectus lorem, at consectetur ipsum cursus non. Curabitur facilisis sapien ut sem pellentesque lobortis. Phasellus at arcu at urna blandit euismod. Sed sed congue mauris. Proin eget neque ipsum.  Morbi rutrum vulputate diam, nec vestibulum tortor commodo ac. Quisque bibendum libero sem, vel dignissim leo cursus quis. Nulla arcu massa, pretium a tempor id, commodo vel lorem. Mauris venenatis justo at iaculis lobortis. Fusce elementum a erat non commodo. Sed eget ullamcorper magna, vel bibendum risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Donec eu nisl non lectus accumsan placerat nec et nisl. In nec mauris vel leo fringilla tristique quis ut nulla. Proin leo leo, pulvinar id imperdiet vehicula, vestibulum sed risus. Praesent vestibulum bibendum tincidunt. Ut non tellus ac dui elementum sodales id vel sapien. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean ornare, elit eu tempor rhoncus, leo lectus consectetur quam, a faucibus massa magna eget eros. Donec malesuada, neque in aliquam vestibulum, arcu orci efficitur elit, sed porta odio ipsum vitae magna. Fusce convallis aliquet sapien, at aliquet sem consectetur tempus. In convallis convallis molestie. Quisque eu augue et enim tristique pellentesque. Maecenas venenatis, orci ut efficitur fermentum, purus urna convallis diam, eu ultricies purus arcu suscipit sapien. Praesent turpis mi, fermentum quis nunc sed, scelerisque viverra nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque eget ultricies nibh, sit amet sodales arcu.</string>
+    <string name="hi">Hi</string>
+    <string name="welcome">Welcome, let’s increase your point!</string>
+    <string name="program">Program</string>
+    <string name="Mypoint">My Points</string>
+    <string name="latest_project">Latest Project</string>
+    <string name="redeem_point">Redeem Points</string>
+    <string name="chg_pass">Change Password</string>
+    <string name="edt_profile">Edit Profile</string>
+    <string name="sup"><![CDATA[/m<sup>2</sup>]]></string>
+    <string name="project_detail">Project Details</string>
+    <string name="project_name">Project Name</string>
+    <string name="your_project_name">your project name</string>
+    <string name="date">Date</string>
+    <string name="location">Location</string>
+    <string name="building_cat">Building Category</string>
+    <string name="Size">Size</string>
+    <string name="size_cat">Size Category</string>
+    <string name="cpy_deliv_note">Upload Copy Delivery note</string>
+    <string name="suport_docs">Upload Supporting Project Details</string>
+    <string name="color_material_">Colorbond Material Used</string>
+    <string name="CANCEL">CANCEL</string>
 
 </resources>
