@@ -1,5 +1,7 @@
 package a3motion.com.colorbond.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,12 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import a3motion.com.colorbond.Adapter.ProjectHistoryAdapter;
 import a3motion.com.colorbond.Model.LatestProject_;
+import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.POJO.ProjectHistoryResponse;
+import a3motion.com.colorbond.Presenter.HomePresemterImp;
+import a3motion.com.colorbond.Presenter.ProjectHistoryPresenter;
+import a3motion.com.colorbond.Presenter.ProjectHistoryPresenterImp;
 import a3motion.com.colorbond.R;
+import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.ProjectHistoryView;
 
 /**
  * Created by Semmy
@@ -25,28 +37,76 @@ import a3motion.com.colorbond.R;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class Fragment_ProjectHostory extends Fragment {
+public class Fragment_ProjectHostory extends Fragment implements ProjectHistoryView {
 
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+    String tokenz;
     private View view;
-    private List<LatestProject_> latestProjects;
+//    private List<LatestProject_> latestProjects;
     private RecyclerView rv;
     private LinearLayoutManager lm;
     private ProjectHistoryAdapter adapter;
+    private SharedPreferences prefsprivate;
+    private ProjectHistoryPresenter projectHistoryPresenter;
+    private ConnectionDetector cd;
+    private Boolean isInternetPresent = false;
+    private MaterialDialog mDialog, dialog_muter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        cd = new ConnectionDetector(getActivity());
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_project_hostory, container, false);
-        latestProjects = getProjects();
-        rv =  view.findViewById(R.id.rv_laastProject);
+//        latestProjects = getProjects();
+        rv = view.findViewById(R.id.rv_laastProject);
+        prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        projectHistoryPresenter = new ProjectHistoryPresenterImp(this);
+        checkConnections();
 
 
-        rv.setHasFixedSize(true);
-        lm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-        adapter = new ProjectHistoryAdapter(getActivity(), latestProjects);
-        rv.setAdapter(adapter);
         return view;
+    }
+
+    private void checkConnections() {
+
+        isInternetPresent = cd.isConnectingToInternet();
+        if (isInternetPresent) {
+            tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
+            getDialog_progress();
+            projectHistoryPresenter.getProjectHistory(tokenz);
+
+        } else if (isInternetPresent.equals(false)) {
+            getdialogerror("Tidak ada koneksi Internet");
+        }
+    }
+    public void getDialog_progress() {
+
+        dialog_muter = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(R.string.please_wait)
+                .progress(true, 0)
+                .show();
+    }
+
+    private void getdialogerror(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+
+                    }
+                })
+                .show();
     }
 
     private List<LatestProject_> getProjects() {
@@ -62,5 +122,22 @@ public class Fragment_ProjectHostory extends Fragment {
 
 
         return lp;
+    }
+
+    @Override
+    public void ResultProjectHistory(String response_message, ProjectHistoryResponse projectHistoryResponse) {
+        dialog_muter.dismiss();
+
+        rv.setHasFixedSize(true);
+        lm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(lm);
+        adapter = new ProjectHistoryAdapter(getActivity(), projectHistoryResponse.getProvince());
+        rv.setAdapter(adapter);
+
+    }
+
+    @Override
+    public void setelseEror(String response_message) {
+
     }
 }

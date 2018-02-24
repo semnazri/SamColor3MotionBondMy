@@ -17,29 +17,29 @@
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:src="@drawable/color_bond"
+            android:src="@drawable/splash_logo"
             tools:layout_editor_absoluteY="27dp" />
 
         <ImageView
             android:id="@+id/btn_roll_former"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/bondclub" />
+            android:layout_marginTop="55dp"
+            android:src="@drawable/new_bondclub" />
 
         <ImageView
             android:id="@+id/btn_architect"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/color_partner" />
+            android:layout_marginTop="30dp"
+            android:src="@drawable/new_partner" />
 
         <ImageView
             android:id="@+id/btn_Contractor"
             android:layout_width="wrap_content"
             android:layout_height="100dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/color_contractor" />
+            android:layout_marginTop="35dp"
+            android:src="@drawable/new_contractor" />
     </LinearLayout>
 
     <LinearLayout

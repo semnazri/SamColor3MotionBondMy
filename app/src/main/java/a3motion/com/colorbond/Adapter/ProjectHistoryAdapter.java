@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import a3motion.com.colorbond.Model.LatestProject_;
+import a3motion.com.colorbond.POJO.Province;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder;
 import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder_;
@@ -23,10 +24,10 @@ import a3motion.com.colorbond.ViewHolder.LatestProjectViewHolder_;
  */
 
 public class ProjectHistoryAdapter extends RecyclerView.Adapter<LatestProjectViewHolder_> {
-    private List<LatestProject_> mValues;
+    private List<Province> mValues;
     private Context mContext;
 
-    public ProjectHistoryAdapter(Context context, List<LatestProject_> items) {
+    public ProjectHistoryAdapter(Context context, List<Province> items) {
         mContext = context;
         mValues = items;
     }
@@ -41,11 +42,11 @@ public class ProjectHistoryAdapter extends RecyclerView.Adapter<LatestProjectVie
     @Override
     public void onBindViewHolder(LatestProjectViewHolder_ holder, int position) {
         holder.cardView.setCardBackgroundColor(mContext.getResources().getColor(R.color.abutransparent));
-        holder.place.setText(mValues.get(position).getPlace());
-        holder.place_detail.setText(mValues.get(position).getDetail_place());
+        holder.place.setText(mValues.get(position).getLocation());
+        holder.place_detail.setText(mValues.get(position).getDetail());
         holder.dates.setText(mValues.get(position).getDate());
 
-        if (mValues.get(position).getStatusnya() == 0){
+        if (mValues.get(position).getStatus().equals("1")){
             holder.img_progess.setBackground(mContext.getResources().getDrawable(R.drawable.btn_rounded_black));
             holder.img_progess.setText("ON PROGRESS");
         }else{

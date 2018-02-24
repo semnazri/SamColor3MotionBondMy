@@ -13,7 +13,7 @@ import a3motion.com.colorbond.POJO.ProjectHistoryResponse;
 
 public interface ProjectHistoryView {
 
-    void ResulEvent(String response_message, ProjectHistoryResponse projectHistoryResponse);
+    void ResultProjectHistory(String response_message, ProjectHistoryResponse projectHistoryResponse);
 
     void setelseEror(String response_message);
 }

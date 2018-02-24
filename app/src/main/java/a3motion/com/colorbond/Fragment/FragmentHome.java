@@ -202,7 +202,7 @@ public class FragmentHome extends Fragment implements HomeView {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         mDialog.dismiss();
-                        getFragmentManager().popBackStack();
+
                     }
                 })
                 .show();
