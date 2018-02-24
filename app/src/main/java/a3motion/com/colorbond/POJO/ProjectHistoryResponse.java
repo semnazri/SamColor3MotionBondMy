@@ -18,7 +18,7 @@ public class ProjectHistoryResponse {
     @SerializedName("response")
     @Expose
     private String response;
-    @SerializedName("province")
+    @SerializedName("project")
     @Expose
     private List<Province> province = null;
 
