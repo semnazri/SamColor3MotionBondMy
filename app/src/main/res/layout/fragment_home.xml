@@ -20,8 +20,9 @@
 
                 <ImageView
                     android:id="@+id/home_top_image"
+                    android:scaleType="fitXY"
                     android:layout_width="match_parent"
-                    android:layout_height="175dp" />
+                    android:layout_height="200dp" />
 
                 <Button
                     android:id="@+id/join_event1"
@@ -69,10 +70,11 @@
 
 
                 <ImageView
-                    android:id="@+id/bonpart_program"
+                    android:id="@+id/img_2nd"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:src="@drawable/colorbond_roofing_sydney" />
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -98,7 +100,7 @@
 
                 <ImageView
                     android:layout_width="140dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:background="@color/redtra" />
 
 
@@ -111,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:paddingTop="15dp"
                         android:src="@drawable/ic_settings_black_24dp" />
 
@@ -244,19 +246,19 @@
                 <ImageView
                     android:id="@+id/home_3rd_image"
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:src="@drawable/colorbond_roofing_sydney" />
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY" />
 
 
                 <ImageView
                     android:layout_width="140dp"
-                    android:layout_height="180dp"
+                    android:layout_height="200dp"
                     android:background="@color/redtra" />
 
                 <LinearLayout
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="45dp"
                     android:orientation="vertical">
 
                     <TextView

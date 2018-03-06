@@ -24,6 +24,10 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".Activity_Help"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".MainActivity_owner"
             android:screenOrientation="portrait" />
 

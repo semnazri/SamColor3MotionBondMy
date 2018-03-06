@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import a3motion.com.colorbond.Model.Voucher;
@@ -32,16 +34,22 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
 
     @Override
     public VoucherViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_voucher, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_voucher_new, parent, false);
         return new VoucherViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(VoucherViewHolder holder, int position) {
 
-        holder.ll_parent.setBackgroundColor(mValues.get(position).getBg());
-        holder.ammount.setText(mValues.get(position).getAmount());
-        holder.place.setText(mValues.get(position).getPlace());
+        Glide.with(mContext).load(mValues.get(position).getBg()).into(holder.img_pocer);
+
+//        holder.ammount.setVisibility(View.GONE);
+//        holder.place.setVisibility(View.GONE);
+//        Glide.with(mContext).load(mValues.get(position).getBg()).into(holder.ll_parent);
+
+//        holder.ll_parent.setBackgroundColor(mValues.get(position).getBg());
+//        holder.ammount.setText(mValues.get(position).getAmount());
+//        holder.place.setText(mValues.get(position).getPlace());
 
     }
 

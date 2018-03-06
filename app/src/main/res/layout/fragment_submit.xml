@@ -72,6 +72,7 @@
                                 android:textColor="@color/black" />
 
                             <TextView
+                                android:id="@+id/point"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="1.260"
@@ -181,7 +182,7 @@
                         android:id="@+id/spinner_building_catgory"
                         style="@style/spinner_style"
                         android:layout_width="match_parent"
-                        android:layout_height="25dp" />
+                        android:layout_height="30dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -233,7 +234,7 @@
                         android:id="@+id/spinner_size_catgory"
                         style="@style/spinner_style"
                         android:layout_width="match_parent"
-                        android:layout_height="25dp" />
+                        android:layout_height="30dp" />
                 </LinearLayout>
 
 
@@ -347,7 +348,7 @@
                             android:id="@+id/spinner_material_1"
                             style="@style/spinner_style"
                             android:layout_width="match_parent"
-                            android:layout_height="25dp"
+                            android:layout_height="30dp"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1" />
 
@@ -355,7 +356,7 @@
                             android:id="@+id/spinner_material_2"
                             style="@style/spinner_style"
                             android:layout_width="match_parent"
-                            android:layout_height="25dp"
+                            android:layout_height="30dp"
                             android:layout_marginLeft="5dp"
                             android:layout_weight="1" />
                     </LinearLayout>

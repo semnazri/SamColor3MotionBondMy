@@ -9,7 +9,9 @@
         android:id="@+id/province_name__"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
         android:text="PROVINCE"
         android:textColor="@color/black"
         android:textSize="14sp" />
@@ -22,8 +24,8 @@
         android:layout_marginLeft="10dp"
         android:text="PROVINCE ID"
         android:textColor="@color/black"
-        android:visibility="gone"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:visibility="gone" />
 
 
 </LinearLayout>

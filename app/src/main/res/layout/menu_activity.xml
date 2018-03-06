@@ -1,45 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_new">
+    android:background="@drawable/new_menu_bg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <View
+            android:id="@+id/bondclub"
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:layout_marginTop="120dp" />
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/splash_logo"
-            tools:layout_editor_absoluteY="27dp" />
 
-        <ImageView
-            android:id="@+id/btn_roll_former"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_marginTop="55dp"
-            android:src="@drawable/new_bondclub" />
+        <View
+            android:id="@+id/bondpart"
+            android:layout_width="match_parent"
+            android:layout_height="145dp" />
 
-        <ImageView
-            android:id="@+id/btn_architect"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/new_partner" />
+        <View
+            android:id="@+id/boncontract"
+            android:layout_width="match_parent"
+            android:layout_height="115dp" />
 
-        <ImageView
-            android:id="@+id/btn_Contractor"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_marginTop="35dp"
-            android:src="@drawable/new_contractor" />
     </LinearLayout>
 
     <LinearLayout
@@ -50,6 +36,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txt_forgot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot password"
@@ -64,6 +51,7 @@
             android:background="@color/white" />
 
         <TextView
+            android:id="@+id/txt_help"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Need a help?"

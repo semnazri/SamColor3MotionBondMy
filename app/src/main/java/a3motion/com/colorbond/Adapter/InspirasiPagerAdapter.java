@@ -8,8 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -54,24 +55,32 @@ public class InspirasiPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        TextView txtitle, txt_subtitle;
+        TextView txtitle, txt_subtitle,txt_count;
         ImageView tximage;
 
         inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item_vp_new, container, false);
 
         tximage = (ImageView) view.findViewById(R.id.imageVP);
+        txt_count = (TextView) view.findViewById(R.id.count);
         txtitle = (TextView) view.findViewById(R.id.img_title);
         txt_subtitle = (TextView) view.findViewById(R.id.img_subtitle);
+
+        if (mValues.get(position).getCount() == 0){
+            txt_count.setVisibility(View.GONE);
+        }else{
+            txt_count.setVisibility(View.VISIBLE);
+            txt_count.setText(String.valueOf(mValues.get(position).getCount()));
+        }
 
 //        String id = mValues.get(position).getSlideId();
 //        String image = mValues.get(position).getSlideImage();
 //
-//        txtitle.setText(mValues.get(position).getSlideTitle());
-//        Glide.with(mContext).load("http://tokotigaroda.sibertama.com/images-data/slider/" + id + "/" + image).into(tximage);
+        txtitle.setText(mValues.get(position).getTitle());
+        Glide.with(mContext).load(mValues.get(position).getImg()).into(tximage);
 //        tximage.setImageResource(image[position]);
 //        txtitle.setText(title[position]);
-//        txt_subtitle.setText(subtitle[position]);
+        txt_subtitle.setText(mValues.get(position).getSubtitle());
 
         ((ViewPager) container).addView(view);
 

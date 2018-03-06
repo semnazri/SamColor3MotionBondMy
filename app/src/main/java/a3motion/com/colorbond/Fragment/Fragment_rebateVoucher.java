@@ -51,12 +51,10 @@ public class Fragment_rebateVoucher extends Fragment {
     private List<Voucher> getVouchers() {
 
         List<Voucher> vouchers = new ArrayList<>();
-        vouchers.add(new Voucher("100.000", "@IKEA ALAM SUTERA", getResources().getColor(R.color.biru)));
-        vouchers.add(new Voucher("200.000", "@PERBAKIN SHOOTING RANGE", getResources().getColor(R.color.biru_tras)));
-        vouchers.add(new Voucher("300.000", "@ACE HARDWARE", getResources().getColor(R.color.black2)));
-        vouchers.add(new Voucher("100.000", "@IKEA ALAM SUTERA", getResources().getColor(R.color.biru)));
-        vouchers.add(new Voucher("200.000", "@PERBAKIN SHOOTING RANGE", getResources().getColor(R.color.biru_tras)));
-        vouchers.add(new Voucher("300.000", "@ACE HARDWARE", getResources().getColor(R.color.black2)));
+        vouchers.add(new Voucher("100.000", "@IKEA ALAM SUTERA", R.drawable.ikea));
+        vouchers.add(new Voucher("200.000", "@PERBAKIN SHOOTING RANGE", R.drawable.indomerit));
+        vouchers.add(new Voucher("300.000", "@ACE HARDWARE",  R.drawable.cgv));
+
 
 
         return vouchers;

@@ -32,6 +32,8 @@ import a3motion.com.colorbond.Fragment.FragmentHelp;
 import a3motion.com.colorbond.Fragment.FragmentHome;
 import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
+import a3motion.com.colorbond.Fragment.Fragment_PT_NS;
+import a3motion.com.colorbond.Fragment.Fragment_VariantColor;
 import a3motion.com.colorbond.Fragment.Fragment_account;
 import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
 import a3motion.com.colorbond.Fragment.Point_Parent;
@@ -169,9 +171,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.benefit) {
             fragment = new Fragment_bondPartMerchant_benefit();
         } else if (id == R.id.variant) {
-//            getToast();
+            fragment = new Fragment_VariantColor();
         } else if (id == R.id.bluescoop) {
-//            getToast();
+            fragment = new Fragment_PT_NS();
         } else if (id == R.id.help) {
             fragment = new FragmentHelp();
         }

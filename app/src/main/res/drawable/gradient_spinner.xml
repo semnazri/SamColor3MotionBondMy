@@ -11,9 +11,6 @@
                         android:startColor="@color/abu"
                         android:type="linear" />
 
-                    <stroke
-                        android:width="0dp"
-                        android:color="#000000" />
 
                     <corners
                         android:radius="3dp" />
@@ -21,15 +18,19 @@
                     <padding
                         android:left="3dp"
                         android:right="10dp"
-                        android:top="-2dp" />
+                        android:top="0dp" />
                 </shape>
             </item>
             <item>
                 <bitmap
                     android:gravity="center|right"
-                    android:src="@drawable/drop_down_arrow"
+                    android:src="@drawable/small_arrow">
 
-                    />
+                    <padding
+                        android:left="3dp"
+                        android:right="10dp"
+                        android:top="0dp" />
+                </bitmap>
             </item>
         </layer-list>
     </item>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by Semmy
@@ -19,22 +20,33 @@ import android.widget.ImageView;
 
 public class MenuActivity extends AppCompatActivity {
 
-    ImageView btn_architect,btn_roll, btn_contractor;
+    View btn_architect,btn_roll, btn_contractor;
+    private TextView txt_forgot, txt_help;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_activity);
 
-        btn_architect =  findViewById(R.id.btn_architect);
-        btn_roll =  findViewById(R.id.btn_roll_former);
-        btn_contractor = findViewById(R.id.btn_Contractor);
+        btn_architect =  findViewById(R.id.bondclub);
+        btn_roll =  findViewById(R.id.bondpart);
+        btn_contractor = findViewById(R.id.boncontract);
+        txt_help = findViewById(R.id.txt_help);
+        txt_forgot = findViewById(R.id.txt_forgot);
 
+        txt_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, Activity_Help.class);
+                startActivity(i);
+            }
+        });
 
         btn_architect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(new Intent(MenuActivity.this, LoginActivity.class));
-                i.putExtra("visible", "1");
+                i.putExtra("visible", "0");
+                i.putExtra("img", "1");
 
                 startActivity(i);
 
@@ -45,7 +57,8 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(new Intent(MenuActivity.this, LoginActivity.class));
-                i.putExtra("visible", "0");
+                i.putExtra("visible", "1");
+                i.putExtra("img", "2");
 
                 startActivity(i);
             }
@@ -55,7 +68,8 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(new Intent(MenuActivity.this, LoginActivity.class));
-                i.putExtra("visible", "1");
+                i.putExtra("visible", "0");
+                i.putExtra("img", "3");
 
                 startActivity(i);
             }

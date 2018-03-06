@@ -9,16 +9,25 @@ package a3motion.com.colorbond.Model;
  */
 
 public class Sliderpoto {
-    int count;
+    int count,img;
     String title, subtitle;
 
     public Sliderpoto() {
     }
 
-    public Sliderpoto(int count, String title, String subtitle) {
+    public Sliderpoto(int count,int img, String title, String subtitle) {
         this.count = count;
         this.title = title;
         this.subtitle = subtitle;
+        this.img = img;
+    }
+
+    public void setImg(int img) {
+        this.img = img;
+    }
+
+    public int getImg() {
+        return img;
     }
 
     public String getSubtitle() {

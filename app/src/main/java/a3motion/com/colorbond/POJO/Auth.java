@@ -18,13 +18,19 @@ public class Auth {
     private String response;
     @SerializedName("status")
     @Expose
-    private Integer status;
+    private String status;
     @SerializedName("token")
     @Expose
     private String token;
-    @SerializedName("name")
+    @SerializedName("first_name")
     @Expose
-    private String name;
+    private String firstName;
+    @SerializedName("lasst_name")
+    @Expose
+    private String lasstName;
+    @SerializedName("username")
+    @Expose
+    private String username;
     @SerializedName("email")
     @Expose
     private String email;
@@ -34,9 +40,6 @@ public class Auth {
     @SerializedName("company")
     @Expose
     private String company;
-    @SerializedName("title")
-    @Expose
-    private String title;
     @SerializedName("poin")
     @Expose
     private String poin;
@@ -52,11 +55,11 @@ public class Auth {
         this.response = response;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -68,12 +71,28 @@ public class Auth {
         this.token = token;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLasstName() {
+        return lasstName;
+    }
+
+    public void setLasstName(String lasstName) {
+        this.lasstName = lasstName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -100,14 +119,6 @@ public class Auth {
         this.company = company;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getPoin() {
         return poin;
     }
@@ -123,4 +134,5 @@ public class Auth {
     public void setType(String type) {
         this.type = type;
     }
+
 }

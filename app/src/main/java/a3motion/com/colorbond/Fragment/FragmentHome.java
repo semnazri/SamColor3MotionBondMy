@@ -61,7 +61,7 @@ public class FragmentHome extends Fragment implements HomeView {
     private LinearLayoutManager lm, lm_followers;
     private LatestProjectAdapter adapter;
     private FollowersAdapter followersAdapter;
-    private ImageView img_top, img_bonpart_program, home_4rd_image;
+    private ImageView img_top,img_2nd, img_3rd,img_bonpart_program, home_4rd_image;
     private Button btn_join_eveng_1, btn_detail_info;
     private LinearLayout ll_project_history, ll_point;
     private MaterialDialog mDialog, dialog_muter;
@@ -86,7 +86,8 @@ public class FragmentHome extends Fragment implements HomeView {
 //        latestProjects = getProjects();
         rv = view.findViewById(R.id.home_last_project);
         img_top = view.findViewById(R.id.home_top_image);
-        img_bonpart_program = view.findViewById(R.id.bonpart_program);
+        img_2nd = view.findViewById(R.id.img_2nd);
+        img_3rd = view.findViewById(R.id.home_3rd_image);
         btn_join_eveng_1 = view.findViewById(R.id.join_event1);
         ll_project_history = view.findViewById(R.id.linear_project_history);
         btn_detail_info = view.findViewById(R.id.btn_detail_info);
@@ -122,21 +123,16 @@ public class FragmentHome extends Fragment implements HomeView {
 ////        adapter = new LatestProjectAdapter(getActivity(), latestProjects);
 //        rv.setAdapter(adapter);
 
-        img_top.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialogjoin();
-            }
-        });
 
-        btn_join_eveng_1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialogjoin();
 
-            }
-        });
-        img_bonpart_program.setOnClickListener(new View.OnClickListener() {
+//        btn_join_eveng_1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDialogjoin(homeResponse.getEvent().get(0).getFileimg());
+//
+//            }
+//        });
+        img_2nd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialogProgram();
@@ -218,7 +214,7 @@ public class FragmentHome extends Fragment implements HomeView {
         dialog.show();
     }
 
-    private void showDialogjoin() {
+    private void showDialogjoin(String fileimg) {
 
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_join);
@@ -227,8 +223,10 @@ public class FragmentHome extends Fragment implements HomeView {
         int height = metrics.heightPixels;
 //        dialog.getWindow().setLayout((8 * width) / 9, (5 * height) / 5);
 
+
         Button tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
         LinearLayout ll_folowers = (LinearLayout) dialog.findViewById(R.id.ll_folowers);
+        ImageView event_img = dialog.findViewById(R.id.event_img);
         tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,6 +239,7 @@ public class FragmentHome extends Fragment implements HomeView {
                 showDialog_listFolowers();
             }
         });
+        Glide.with(getActivity()).load(fileimg).into(event_img);
 
         dialog.show();
 
@@ -299,15 +298,22 @@ public class FragmentHome extends Fragment implements HomeView {
     }
 
     @Override
-    public void ResultHome(String response_message, HomeResponse homeResponse) {
+    public void ResultHome(String response_message, final HomeResponse homeResponse) {
         dialog_muter.dismiss();
-        txt_name.setText(getResources().getString(R.string.hi) + " " + homeResponse.getProfile().getName() + "!");
+        txt_name.setText(getResources().getString(R.string.hi) + " " + homeResponse.getProfile().getFirstName() + "!");
         txt_point.setText(homeResponse.getProfile().getPoin());
         txt_title_event1.setText(homeResponse.getEvent().get(0).getTitle());
         txt_date_event1.setText(homeResponse.getEvent().get(0).getDate());
 
         Glide.with(getActivity()).load(homeResponse.getEvent().get(0).getFileimg()).into(img_top);
-
+        Glide.with(getActivity()).load(homeResponse.getImage().getImage2()).into(img_2nd);
+        Glide.with(getActivity()).load(homeResponse.getImage().getImage3()).into(img_3rd);
+        img_top.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialogjoin(homeResponse.getEvent().get(0).getFileimg());
+            }
+        });
         rv.setHasFixedSize(true);
         lm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(lm);

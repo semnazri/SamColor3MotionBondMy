@@ -15,9 +15,12 @@ public class HomeProfile {
     @SerializedName("id_users")
     @Expose
     private String idUsers;
-    @SerializedName("name")
+    @SerializedName("first_name")
     @Expose
-    private String name;
+    private String firstName;
+    @SerializedName("last_name")
+    @Expose
+    private String lastName;
     @SerializedName("poin")
     @Expose
     private String poin;
@@ -30,12 +33,20 @@ public class HomeProfile {
         this.idUsers = idUsers;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPoin() {

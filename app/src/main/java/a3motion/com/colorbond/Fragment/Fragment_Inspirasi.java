@@ -118,11 +118,11 @@ public class Fragment_Inspirasi extends Fragment {
     private List<Sliderpoto> getSlide() {
         List<Sliderpoto> ins = new ArrayList<>();
 
-        ins.add(new Sliderpoto(1, "Lorem Ipsum", "Lorem Ipsum"));
-        ins.add(new Sliderpoto(1, "Lorem Ipsum", "Lorem Ipsum"));
-        ins.add(new Sliderpoto(1, "Lorem Ipsum", "Lorem Ipsum"));
-        ins.add(new Sliderpoto(1, "Lorem Ipsum", "Lorem Ipsum"));
-        ins.add(new Sliderpoto(1, "Lorem Ipsum", "Lorem Ipsum"));
+        ins.add(new Sliderpoto(10, R.drawable.inspirasi_slide,"Minimalism", "Style"));
+        ins.add(new Sliderpoto(5, R.drawable.inspiras_2,"Modern", "Style"));
+        ins.add(new Sliderpoto(10, R.drawable.inspiras_3," Best Minimalism", "Style"));
+        ins.add(new Sliderpoto(5, R.drawable.inspiras_4,"Modern", "Style"));
+
 
         return ins;
 

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_universal"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_solid_back" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Username"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edt_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_edtext"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/txt_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Email"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_edtext"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/txt_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Company"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edt_company"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_edtext"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/txt_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="First Name"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edt_first_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_edtext"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/txt_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Last Name"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edt_last_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_edtext"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/txt_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Date Of Birth"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edt_dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_edtext"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/txt_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Phone"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edt_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_edtext"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/txt_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Gender"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/edt_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white_edtext"
+                android:paddingBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:textColor="@color/txt_color"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/btn_rounded_red"
+            android:text="Save Change"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</LinearLayout>

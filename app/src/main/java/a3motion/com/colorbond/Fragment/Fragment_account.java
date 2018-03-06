@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,11 +31,13 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 public class Fragment_account extends Fragment {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid;
+    String userid,fullname,company,point;
+    FragmentManager fragmentManager;
     private View view;
     private SharedPreferences prefsprivate;
     private ImageView img_nav;
-    private TextView txt_title;
+    private TextView txt_title, txt_edt_profile, txt_chg_pass,person_name,person_company,txt_point,txt_redem;
+    private FragmentTransaction ft;
 
     @Nullable
     @Override
@@ -41,8 +45,20 @@ public class Fragment_account extends Fragment {
         view = inflater.inflate(R.layout.fragment_account, container, false);
         img_nav = view.findViewById(R.id.img_tolbar);
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
+        fullname = prefsprivate.getString(BlueScoopPreferences.nama, "1");
+        company = prefsprivate.getString(BlueScoopPreferences.company, "1");
+        point = prefsprivate.getString(BlueScoopPreferences.poin, "1");
+
         txt_title = view.findViewById(R.id.txt_title_page);
+        txt_edt_profile = view.findViewById(R.id.edt_profile);
+        txt_chg_pass = view.findViewById(R.id.chg_password);
+        person_name = view.findViewById(R.id.person_name);
+        person_company = view.findViewById(R.id.person_company);
+        txt_point = view.findViewById(R.id.txt_point);
+        txt_redem = view.findViewById(R.id.txt_redem_point);
+
         txt_title.setText("MY ACCOUNT");
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
@@ -56,6 +72,25 @@ public class Fragment_account extends Fragment {
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
         }
 
+        txt_edt_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager = getActivity().getSupportFragmentManager();
+                ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.container_body, new Fragment_Edit_profile(), "home").addToBackStack("menu");
+                ft.commit();
+            }
+        });
+
+        txt_chg_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager = getActivity().getSupportFragmentManager();
+                ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.container_body, new Fragment_Change_Password(), "home").addToBackStack("menu");
+                ft.commit();
+            }
+        });
         img_nav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +111,14 @@ public class Fragment_account extends Fragment {
                 }
             }
         });
+
+        person_name.setText(fullname);
+        person_company.setText(company);
+        txt_point.setText(point);
+        txt_redem.setText(point);
+
+
+
         return view;
     }
 

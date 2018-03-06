@@ -8,14 +8,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
 
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.Presenter.LoginPresenter;
@@ -41,6 +42,7 @@ public class LoginActivity extends Activity implements LoginView {
     private LoginPresenter loginPresenter;
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
+    private ImageView imageView;
     private MaterialDialog mDialog, dialog_muter;
 
 
@@ -49,13 +51,23 @@ public class LoginActivity extends Activity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         String is_visible = getIntent().getStringExtra("visible");
+        String img = getIntent().getStringExtra("img");
         txt_register = findViewById(R.id.txt_register);
         btn_login = findViewById(R.id.btn_login);
         edt_email = findViewById(R.id.edt_email);
         edt_pass = findViewById(R.id.edt_password);
         ll_register = findViewById(R.id.ll_register);
+        imageView = findViewById(R.id.imageView);
         cd = new ConnectionDetector(this);
         loginPresenter = new LoginPresenterImp(this);
+
+        if (img.equals("1")) {
+            Glide.with(this).load(R.drawable.new_bondclub).into(imageView);
+        } else if (img.equals("2")) {
+            Glide.with(this).load(R.drawable.new_partner).into(imageView);
+        } else if (img.equals("3")) {
+            Glide.with(this).load(R.drawable.new_contractor).into(imageView);
+        }
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +138,7 @@ public class LoginActivity extends Activity implements LoginView {
         preEditor.putString(BlueScoopPreferences.email, email);
         preEditor.putString(BlueScoopPreferences.Phone, phone);
         preEditor.putString(BlueScoopPreferences.company, companny);
-        preEditor.putString(BlueScoopPreferences.job_title, title);
+//        preEditor.putString(BlueScoopPreferences.job_title, title);
         preEditor.putString(BlueScoopPreferences.poin, point);
         preEditor.putString(BlueScoopPreferences.mem_type, type);
 

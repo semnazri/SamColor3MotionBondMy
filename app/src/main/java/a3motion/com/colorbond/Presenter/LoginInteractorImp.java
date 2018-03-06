@@ -31,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class LoginInteractorImp implements LoginInteractor{
-    String response_message,type,token, name, emailz, phone, company, title, point;
+    String response_message,type,token, fristname, lastname, emailz, phone, company, title, point;
 
     @Override
     public void login(String email, String password, final OnLoginFinishedListener listener) {
@@ -99,14 +99,15 @@ public class LoginInteractorImp implements LoginInteractor{
                         response_message = response.body().getResponse();
                         type = response.body().getType();
                         token = response.body().getToken();
-                        name = response.body().getName();
+                        fristname = response.body().getUsername();
+//                        lastname = response.body().getName();//TODO nanti di join aja
                         emailz = response.body().getEmail();
                         phone = response.body().getPhone();
                         company = response.body().getCompany();
-                        title = response.body().getTitle();
+//                        title = response.body().getTitle();
                         point = response.body().getPoin();
 
-                        listener.onSuccess(response_message,type,token,name,emailz,phone,company,title,point);
+                        listener.onSuccess(response_message,type,token,fristname,emailz,phone,company,title,point);
 
                     } else {
 
