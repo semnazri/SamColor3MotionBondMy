@@ -138,7 +138,7 @@ public class EditProfileInteractorImp implements EditProfileInteractor {
                                 listener.onelseError("Server is broken! Response code 500");
                                 break;
                             default:
-                                listener.onelseError("Wrong Email or Password!");
+                                listener.onelseError("Oops! Something went Wrong");
                                 break;
                         }
                     }

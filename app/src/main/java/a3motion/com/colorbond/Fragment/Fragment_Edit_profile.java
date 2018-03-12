@@ -102,7 +102,7 @@ public class Fragment_Edit_profile extends Fragment implements EditProfileView {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkconenctions(edt_usr_name.getText().toString(), edt_email.getText().toString(), edt_company.getText().toString(),edt_firstname.getText().toString(), edt_lastname.getText().toString(),edt_dob.getText().toString(), edt_phone.getText().toString(), edt_gender.getText().toString());
+//                checkconenctions(edt_usr_name.getText().toString(), edt_email.getText().toString(), edt_company.getText().toString(),edt_firstname.getText().toString(), edt_lastname.getText().toString(),edt_dob.getText().toString(), edt_phone.getText().toString(), edt_gender.getText().toString());
 
             }
         });

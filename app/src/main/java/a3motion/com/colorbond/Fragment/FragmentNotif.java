@@ -18,6 +18,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +29,13 @@ import a3motion.com.colorbond.Listener.NotificationListener;
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Notification;
+import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.POJO.ResponseNotifications;
+import a3motion.com.colorbond.Presenter.NotificationsPresenter;
+import a3motion.com.colorbond.Presenter.NotificationsPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.NotificationView;
 
 /**
  * Created by Semmy
@@ -37,10 +45,10 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class FragmentNotif extends Fragment implements NotificationListener {
+public class FragmentNotif extends Fragment implements NotificationListener, NotificationView {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid;
+    String userid, tokenz;
     private View view;
     private RecyclerView rv;
     private List<Notification> notif;
@@ -49,6 +57,18 @@ public class FragmentNotif extends Fragment implements NotificationListener {
     private TextView txt_title;
     private SharedPreferences prefsprivate;
     private ImageView img_nav;
+    private ConnectionDetector cd;
+    private Boolean isInternetPresent = false;
+    private MaterialDialog mDialog, dialog_muter;
+    private NotificationsPresenter notificationsPresenter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        cd = new ConnectionDetector(getActivity());
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -92,16 +112,32 @@ public class FragmentNotif extends Fragment implements NotificationListener {
         });
 
         rv = view.findViewById(R.id.rv_notif);
-        notif = getAllNotif();
+        notificationsPresenter = new NotificationsPresenterImp(this);
 
-        rv.setHasFixedSize(true);
-        lm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-        adapter = new NotificationAdapter(getActivity(), notif, FragmentNotif.this);
-        rv.setAdapter(adapter);
+        checkConnections();
+//        notif = getAllNotif();
+//
+//        rv.setHasFixedSize(true);
+//        lm = new LinearLayoutManager(getActivity());
+//        rv.setLayoutManager(lm);
+//        adapter = new NotificationAdapter(getActivity(), notif, FragmentNotif.this);
+//        rv.setAdapter(adapter);
 
 
         return view;
+    }
+
+    private void checkConnections() {
+        isInternetPresent = cd.isConnectingToInternet();
+        if (isInternetPresent) {
+            tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
+            getDialog_progress();
+            notificationsPresenter.getListNotifications(tokenz);
+
+        } else if (isInternetPresent.equals(false)) {
+            getdialogerror("Tidak ada koneksi Internet");
+        }
+
     }
 
     private List<Notification> getAllNotif() {
@@ -131,12 +167,12 @@ public class FragmentNotif extends Fragment implements NotificationListener {
     }
 
     @Override
-    public void typeDialog(int typeDialog) {
+    public void typeDialog(String typeDialog) {
 
-        if (typeDialog == 0) {
+        if (typeDialog.equals("0")) {
 
             getDialogthanku();
-        } else if (typeDialog == 1) {
+        } else if (typeDialog.equals("1")) {
 
             getDialogCongrats();
         } else {
@@ -198,5 +234,45 @@ public class FragmentNotif extends Fragment implements NotificationListener {
         dialog_followers.show();
 
 
+    }
+
+    @Override
+    public void ResultNotif(String response_message, ResponseNotifications responseNotifications) {
+        dialog_muter.dismiss();
+        rv.setHasFixedSize(true);
+        lm = new LinearLayoutManager(getActivity());
+        rv.setLayoutManager(lm);
+        adapter = new NotificationAdapter(getActivity(), responseNotifications.getData(), FragmentNotif.this);
+        rv.setAdapter(adapter);
+    }
+
+    @Override
+    public void setelseEror(String response_message) {
+        getdialogerror(response_message);
+    }
+
+    public void getDialog_progress() {
+
+        dialog_muter = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(R.string.please_wait)
+                .progress(true, 0)
+                .show();
+    }
+
+    private void getdialogerror(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                        getFragmentManager().popBackStack();
+                    }
+                })
+                .show();
     }
 }

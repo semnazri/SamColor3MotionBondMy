@@ -1,6 +1,7 @@
 package a3motion.com.colorbond.Interface;
 
 import a3motion.com.colorbond.POJO.Auth;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -17,5 +18,8 @@ public interface UserInterface {
 
     @POST("token")
     Call<Auth> getTasks(@Header("Authorization") String Authorization);
+
+    @POST("notif/get_notif")
+    Call<ResponseBody> getNotif(@Header("Authorization") String Authorization);
 
 }
