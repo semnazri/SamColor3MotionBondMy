@@ -33,5 +33,7 @@
     <string name="suport_docs">Upload Supporting Project Details</string>
     <string name="color_material_">Colorbond Material Used</string>
     <string name="CANCEL">CANCEL</string>
+    <string name="canot_empty">This field can not be empty</string>
+    <string name="password_miss_match">Password is not match!</string>
 
 </resources>

@@ -37,7 +37,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/variant"
-            android:title="VARIAN COLORBOND" />
+            android:title="VARIANT COLORBOND" />
         </group>
 
     <group

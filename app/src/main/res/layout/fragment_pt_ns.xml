@@ -30,7 +30,7 @@
                     android:layout_height="130dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
-                    android:src="@drawable/bluescoop_logo" />
+                    android:src="@drawable/new_img_blucup" />
 
                 <TextView
                     android:layout_width="match_parent"

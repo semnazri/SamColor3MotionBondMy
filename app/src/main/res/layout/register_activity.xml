@@ -21,19 +21,19 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/img_view"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="-30dp"
-            android:background="@drawable/new_bondclub" />
+            android:layout_marginTop="-30dp" />
 
         <LinearLayout
-            android:layout_marginTop="70dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginTop="70dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -51,12 +51,12 @@
                     android:textColor="@color/white" />
 
                 <EditText
-                    android:paddingLeft="10dp"
                     android:id="@+id/edt_name_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_white_edtext" />
+                    android:background="@drawable/bg_white_edtext"
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,12 +74,12 @@
                     android:textColor="@color/white" />
 
                 <EditText
-                    android:paddingLeft="10dp"
                     android:id="@+id/edt_profesion_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_white_edtext" />
+                    android:background="@drawable/bg_white_edtext"
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -97,12 +97,12 @@
                     android:textColor="@color/white" />
 
                 <EditText
-                    android:paddingLeft="10dp"
                     android:id="@+id/edt_title_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_white_edtext" />
+                    android:background="@drawable/bg_white_edtext"
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,12 +120,12 @@
                     android:textColor="@color/white" />
 
                 <EditText
-                    android:paddingLeft="10dp"
                     android:id="@+id/edt_email_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_white_edtext" />
+                    android:background="@drawable/bg_white_edtext"
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -143,12 +143,13 @@
                     android:textColor="@color/white" />
 
                 <EditText
-                    android:paddingLeft="10dp"
                     android:id="@+id/edt_phone_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_white_edtext" />
+                    android:inputType="textPassword"
+                    android:background="@drawable/bg_white_edtext"
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -166,15 +167,17 @@
                     android:textColor="@color/white" />
 
                 <EditText
-                    android:paddingLeft="10dp"
-                    android:id="@+id/edt_company_register"
+                    android:id="@+id/edt_retype_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_white_edtext" />
+                    android:inputType="textPassword"
+                    android:background="@drawable/bg_white_edtext"
+                    android:paddingLeft="10dp" />
             </LinearLayout>
 
             <Button
+                android:id="@+id/btn_signup"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
@@ -185,11 +188,12 @@
                 android:textColor="@color/white" />
 
             <TextView
+                android:id="@+id/txt_help"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
                 android:gravity="center_horizontal"
-                android:text="Need Help?"/>
+                android:text="Need Help?"
+                android:textColor="@color/white" />
 
         </LinearLayout>
     </LinearLayout>

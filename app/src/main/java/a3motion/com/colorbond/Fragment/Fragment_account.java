@@ -1,6 +1,7 @@
 package a3motion.com.colorbond.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,11 +13,13 @@ import android.support.v4.view.GravityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
+import a3motion.com.colorbond.MenuActivity;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 
@@ -37,6 +40,7 @@ public class Fragment_account extends Fragment {
     private SharedPreferences prefsprivate;
     private ImageView img_nav;
     private TextView txt_title, txt_edt_profile, txt_chg_pass,person_name,person_company,txt_point,txt_redem;
+    private Button btn_logout;
     private FragmentTransaction ft;
 
     @Nullable
@@ -58,6 +62,8 @@ public class Fragment_account extends Fragment {
         person_company = view.findViewById(R.id.person_company);
         txt_point = view.findViewById(R.id.txt_point);
         txt_redem = view.findViewById(R.id.txt_redem_point);
+
+        btn_logout = view.findViewById(R.id.btn_logout);
 
         txt_title.setText("MY ACCOUNT");
         if (userid.equals("1")) {
@@ -109,6 +115,15 @@ public class Fragment_account extends Fragment {
                     }
 
                 }
+            }
+        });
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), MenuActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 

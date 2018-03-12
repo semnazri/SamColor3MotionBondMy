@@ -246,19 +246,19 @@
                 <ImageView
                     android:id="@+id/home_3rd_image"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="180dp"
                     android:scaleType="fitXY" />
 
 
                 <ImageView
                     android:layout_width="140dp"
-                    android:layout_height="200dp"
+                    android:layout_height="180dp"
                     android:background="@color/redtra" />
 
                 <LinearLayout
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="45dp"
+                    android:layout_marginTop="33dp"
                     android:orientation="vertical">
 
                     <TextView

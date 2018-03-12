@@ -233,6 +233,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_do_edit"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_gravity="center"

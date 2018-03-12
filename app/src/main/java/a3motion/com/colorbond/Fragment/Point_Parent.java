@@ -119,11 +119,11 @@ public class Point_Parent extends Fragment {
     private List<Sliderpoto> getSlide() {
         List<Sliderpoto> ins = new ArrayList<>();
 
-        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Business Trip", "BondContractor"));
-        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Lorem Ipsum", "Lorem Ipsum"));
-        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Lorem Ipsum", "Lorem Ipsum"));
-        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Lorem Ipsum", "Lorem Ipsum"));
-        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Lorem Ipsum", "Lorem Ipsum"));
+        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Business Trip", ""));
+        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Lorem Ipsum", ""));
+        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Lorem Ipsum", ""));
+        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Lorem Ipsum", ""));
+        ins.add(new Sliderpoto(0,R.drawable.bisnistrip, "Lorem Ipsum", ""));
 
 
         return ins;
@@ -162,7 +162,7 @@ public class Point_Parent extends Fragment {
                 case 0:
                     return "LEARNING";
                 case 1:
-                    return "SHOPING VOUCHER";
+                    return "SHOPPING VOUCHER";
                 case 2:
                     return "BUSINES";
 

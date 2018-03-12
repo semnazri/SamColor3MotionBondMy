@@ -51,7 +51,7 @@ public class LoginActivity extends Activity implements LoginView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         String is_visible = getIntent().getStringExtra("visible");
-        String img = getIntent().getStringExtra("img");
+        final String img = getIntent().getStringExtra("img");
         txt_register = findViewById(R.id.txt_register);
         btn_login = findViewById(R.id.btn_login);
         edt_email = findViewById(R.id.edt_email);
@@ -86,6 +86,7 @@ public class LoginActivity extends Activity implements LoginView {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+                i.putExtra("img",img );
                 startActivity(i);
 
             }
@@ -195,7 +196,6 @@ public class LoginActivity extends Activity implements LoginView {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         mDialog.dismiss();
-                        getFragmentManager().popBackStack();
                     }
                 })
                 .show();

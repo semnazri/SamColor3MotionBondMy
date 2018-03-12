@@ -53,7 +53,7 @@
         app:itemTextColor="@color/white"
         app:menu="@menu/nav_view">
         <LinearLayout
-            android:layout_marginLeft="25"
+            android:layout_marginLeft="25dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
