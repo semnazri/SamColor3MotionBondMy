@@ -75,15 +75,15 @@ public class Fragment_Edit_profile extends Fragment implements EditProfileView {
         editProfilePresenter = new EditProfilePresenterImp(this);
 
 
-        txt_title.setText("Edit Profile");
+        txt_title.setText("EDIT PROFILE");
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
-            MainActivity.title_page.setText("Edit Profile");
+            MainActivity.title_page.setText("EDIT PROFILE");
             MainActivity.img_title.setVisibility(View.GONE);
             MainActivity.title_page.setVisibility(View.VISIBLE);
         } else {
             MainActivity_owner.mToolbar.setVisibility(View.GONE);
-            MainActivity_owner.title_page.setText("Edit Profile");
+            MainActivity_owner.title_page.setText("EDIT PROFILE");
             MainActivity_owner.img_title.setVisibility(View.GONE);
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
         }
@@ -102,7 +102,7 @@ public class Fragment_Edit_profile extends Fragment implements EditProfileView {
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                checkconenctions(edt_usr_name.getText().toString(), edt_email.getText().toString(), edt_company.getText().toString(),edt_firstname.getText().toString(), edt_lastname.getText().toString(),edt_dob.getText().toString(), edt_phone.getText().toString(), edt_gender.getText().toString());
+                checkconenctions(edt_usr_name.getText().toString(), edt_email.getText().toString(), edt_company.getText().toString(),edt_firstname.getText().toString(), edt_lastname.getText().toString(),edt_dob.getText().toString(), edt_phone.getText().toString(), edt_gender.getText().toString());
 
             }
         });

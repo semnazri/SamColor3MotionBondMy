@@ -25,7 +25,7 @@ public class Activity_Help extends AppCompatActivity {
         setContentView(R.layout.fragment_help);
         img_nav = findViewById(R.id.img_tolbar);
         txt_title = findViewById(R.id.txt_title_page);
-        txt_title.setText("HELP");
+        txt_title.setText("FAQ");
         img_nav.setVisibility(View.GONE);
     }
 }

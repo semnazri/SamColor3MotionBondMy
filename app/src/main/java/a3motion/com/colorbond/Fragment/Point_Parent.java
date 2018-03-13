@@ -164,7 +164,7 @@ public class Point_Parent extends Fragment {
                 case 1:
                     return "SHOPPING VOUCHER";
                 case 2:
-                    return "BUSINES";
+                    return "BUSINESS";
 
             }
             return null;

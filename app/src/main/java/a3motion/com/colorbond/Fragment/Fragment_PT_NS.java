@@ -54,7 +54,7 @@ public class Fragment_PT_NS extends Fragment {
 
         } else {
             MainActivity_owner.mToolbar.setVisibility(View.GONE);
-            MainActivity_owner.title_page.setText("PT NS BLUESCOPE INDONESIA ");
+            MainActivity_owner.title_page.setText("PT NS BLUESCOPE INDONESIA");
             MainActivity_owner.img_title.setVisibility(View.VISIBLE);
             MainActivity_owner.title_page.setVisibility(View.GONE);
         }

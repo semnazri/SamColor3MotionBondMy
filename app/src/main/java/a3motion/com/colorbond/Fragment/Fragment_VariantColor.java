@@ -49,20 +49,20 @@ public class Fragment_VariantColor extends Fragment {
         img_nav = view.findViewById(R.id.img_tolbar);
         txt_title = view.findViewById(R.id.txt_title_page);
 
-        txt_title.setText("Varian Colorbond");
+        txt_title.setText("VARIANT COLORBOND");
 
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
 
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
-            MainActivity.title_page.setText("Varian Colorbond");
+            MainActivity.title_page.setText("VARIANT COLORBOND");
             MainActivity.img_title.setVisibility(View.GONE);
             MainActivity.title_page.setVisibility(View.VISIBLE);
 
         } else {
             MainActivity_owner.mToolbar.setVisibility(View.GONE);
-            MainActivity_owner.title_page.setText("Varian Colorbond");
+            MainActivity_owner.title_page.setText("VARIANT COLORBOND");
             MainActivity_owner.img_title.setVisibility(View.VISIBLE);
             MainActivity_owner.title_page.setVisibility(View.GONE);
         }

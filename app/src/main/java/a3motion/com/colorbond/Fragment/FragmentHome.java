@@ -314,11 +314,17 @@ public class FragmentHome extends Fragment implements HomeView {
                 showDialogjoin(homeResponse.getEvent().get(0).getFileimg());
             }
         });
-        rv.setHasFixedSize(true);
-        lm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-        adapter = new LatestProjectAdapter(getActivity(), homeResponse.getLatestProject());
-        rv.setAdapter(adapter);
+
+        if (homeResponse.getLatestProject() != null){
+            rv.setHasFixedSize(true);
+            lm = new LinearLayoutManager(getActivity());
+            rv.setLayoutManager(lm);
+            adapter = new LatestProjectAdapter(getActivity(), homeResponse.getLatestProject());
+            rv.setAdapter(adapter);
+        }else{
+
+        }
+
     }
 
     @Override

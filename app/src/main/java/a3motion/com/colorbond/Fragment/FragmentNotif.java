@@ -239,11 +239,14 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     @Override
     public void ResultNotif(String response_message, ResponseNotifications responseNotifications) {
         dialog_muter.dismiss();
-        rv.setHasFixedSize(true);
-        lm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-        adapter = new NotificationAdapter(getActivity(), responseNotifications.getData(), FragmentNotif.this);
-        rv.setAdapter(adapter);
+
+        if (responseNotifications != null) {
+            rv.setHasFixedSize(true);
+            lm = new LinearLayoutManager(getActivity());
+            rv.setLayoutManager(lm);
+            adapter = new NotificationAdapter(getActivity(), responseNotifications.getData(), FragmentNotif.this);
+            rv.setAdapter(adapter);
+        }
     }
 
     @Override

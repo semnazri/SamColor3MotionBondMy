@@ -42,15 +42,15 @@ public class Fragment_Change_Password extends Fragment {
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
         txt_title = view.findViewById(R.id.txt_title_page);
         img_nav = view.findViewById(R.id.img_tolbar);
-        txt_title.setText("Change Password");
+        txt_title.setText("CHANGE PASSWORD");
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
-            MainActivity.title_page.setText("Change Password");
+            MainActivity.title_page.setText("CHANGE PASSWORD");
             MainActivity.img_title.setVisibility(View.GONE);
             MainActivity.title_page.setVisibility(View.VISIBLE);
         } else {
             MainActivity_owner.mToolbar.setVisibility(View.GONE);
-            MainActivity_owner.title_page.setText("Change Password");
+            MainActivity_owner.title_page.setText("CHANGE PASSWORD");
             MainActivity_owner.img_title.setVisibility(View.GONE);
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
         }

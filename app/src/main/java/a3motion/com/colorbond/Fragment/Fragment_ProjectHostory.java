@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -22,7 +23,6 @@ import a3motion.com.colorbond.Adapter.ProjectHistoryAdapter;
 import a3motion.com.colorbond.Model.LatestProject_;
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.POJO.ProjectHistoryResponse;
-import a3motion.com.colorbond.Presenter.HomePresemterImp;
 import a3motion.com.colorbond.Presenter.ProjectHistoryPresenter;
 import a3motion.com.colorbond.Presenter.ProjectHistoryPresenterImp;
 import a3motion.com.colorbond.R;
@@ -40,9 +40,9 @@ import a3motion.com.colorbond.View.ProjectHistoryView;
 public class Fragment_ProjectHostory extends Fragment implements ProjectHistoryView {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String tokenz;
+    String tokenz,point;
     private View view;
-//    private List<LatestProject_> latestProjects;
+    //    private List<LatestProject_> latestProjects;
     private RecyclerView rv;
     private LinearLayoutManager lm;
     private ProjectHistoryAdapter adapter;
@@ -51,6 +51,7 @@ public class Fragment_ProjectHostory extends Fragment implements ProjectHistoryV
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
     private MaterialDialog mDialog, dialog_muter;
+    private TextView txt_myPoint;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class Fragment_ProjectHostory extends Fragment implements ProjectHistoryV
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_project_hostory, container, false);
+        txt_myPoint = view.findViewById(R.id.mypoint);
 //        latestProjects = getProjects();
         rv = view.findViewById(R.id.rv_laastProject);
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
@@ -77,13 +79,16 @@ public class Fragment_ProjectHostory extends Fragment implements ProjectHistoryV
         isInternetPresent = cd.isConnectingToInternet();
         if (isInternetPresent) {
             tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
+            point = prefsprivate.getString(BlueScoopPreferences.poin, "null");
             getDialog_progress();
+            txt_myPoint.setText(point);
             projectHistoryPresenter.getProjectHistory(tokenz);
 
         } else if (isInternetPresent.equals(false)) {
             getdialogerror("Tidak ada koneksi Internet");
         }
     }
+
     public void getDialog_progress() {
 
         dialog_muter = new MaterialDialog.Builder(getActivity())
@@ -128,12 +133,13 @@ public class Fragment_ProjectHostory extends Fragment implements ProjectHistoryV
     public void ResultProjectHistory(String response_message, ProjectHistoryResponse projectHistoryResponse) {
         dialog_muter.dismiss();
 
-        rv.setHasFixedSize(true);
-        lm = new LinearLayoutManager(getActivity());
-        rv.setLayoutManager(lm);
-        adapter = new ProjectHistoryAdapter(getActivity(), projectHistoryResponse.getProvince());
-        rv.setAdapter(adapter);
-
+        if (projectHistoryResponse != null) {
+            rv.setHasFixedSize(true);
+            lm = new LinearLayoutManager(getActivity());
+            rv.setLayoutManager(lm);
+            adapter = new ProjectHistoryAdapter(getActivity(), projectHistoryResponse.getProvince());
+            rv.setAdapter(adapter);
+        }
     }
 
     @Override
