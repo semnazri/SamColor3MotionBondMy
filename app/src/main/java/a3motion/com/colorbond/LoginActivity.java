@@ -44,14 +44,14 @@ public class LoginActivity extends Activity implements LoginView {
     private Boolean isInternetPresent = false;
     private ImageView imageView;
     private MaterialDialog mDialog, dialog_muter;
-
+    private String img;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
         String is_visible = getIntent().getStringExtra("visible");
-        final String img = getIntent().getStringExtra("img");
+        img = getIntent().getStringExtra("img");
         txt_register = findViewById(R.id.txt_register);
         btn_login = findViewById(R.id.btn_login);
         edt_email = findViewById(R.id.edt_email);
@@ -61,11 +61,11 @@ public class LoginActivity extends Activity implements LoginView {
         cd = new ConnectionDetector(this);
         loginPresenter = new LoginPresenterImp(this);
 
-        if (img.equals("1")) {
+        if (img.equals("0")) {
             Glide.with(this).load(R.drawable.new_bondclub).into(imageView);
-        } else if (img.equals("2")) {
+        } else if (img.equals("1")) {
             Glide.with(this).load(R.drawable.new_partner).into(imageView);
-        } else if (img.equals("3")) {
+        } else if (img.equals("2")) {
             Glide.with(this).load(R.drawable.new_contractor).into(imageView);
         }
 
@@ -142,6 +142,7 @@ public class LoginActivity extends Activity implements LoginView {
 //        preEditor.putString(BlueScoopPreferences.job_title, title);
         preEditor.putString(BlueScoopPreferences.poin, point);
         preEditor.putString(BlueScoopPreferences.mem_type, type);
+        preEditor.putString(BlueScoopPreferences.merchant_type,img);
 
         preEditor.commit();
 
@@ -170,7 +171,7 @@ public class LoginActivity extends Activity implements LoginView {
         isInternetPresent = cd.isConnectingToInternet();
         if (isInternetPresent) {
 
-            loginPresenter.validateCredentials(edt_email.getText().toString(), edt_pass.getText().toString());
+            loginPresenter.validateCredentials(edt_email.getText().toString(), edt_pass.getText().toString(), img);
 
         } else if (isInternetPresent.equals(false)) {
             getdialogerror("Tidak ada koneksi Internet");

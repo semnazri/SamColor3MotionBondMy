@@ -68,11 +68,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         cd = new ConnectionDetector(this);
         registerPresenter = new RegisterPresenterImp(this);
 
-        if (img.equals("1")) {
+        if (img.equals("0")) {
             Glide.with(this).load(R.drawable.new_bondclub).into(imageView);
-        } else if (img.equals("2")) {
+        } else if (img.equals("1")) {
             Glide.with(this).load(R.drawable.new_partner).into(imageView);
-        } else if (img.equals("3")) {
+        } else if (img.equals("2")) {
             Glide.with(this).load(R.drawable.new_contractor).into(imageView);
         }
 
@@ -101,7 +101,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         if (isInternetPresent) {
 
             registerPresenter.validateCredentials(email, "-", "-", name, "-", profession, "-", "-", "-",
-                    "-", img, "1", ".jpg", password,"", repassword);
+                    "-", img, "0", ".jpg", password,"", repassword);
 
         } else if (isInternetPresent.equals(false)) {
             getdialogerror("Tidak ada koneksi Internet");

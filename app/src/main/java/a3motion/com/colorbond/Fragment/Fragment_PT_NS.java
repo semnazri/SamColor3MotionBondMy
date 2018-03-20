@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ public class Fragment_PT_NS extends Fragment {
     String userid;
     private SharedPreferences prefsprivate;
     private ImageView img_nav;
-    private TextView txt_title;
+    private TextView txt_title,txt_about;
 
     @Nullable
     @Override
@@ -41,6 +42,7 @@ public class Fragment_PT_NS extends Fragment {
         view = inflater.inflate(R.layout.fragment_pt_ns,container,false);
         img_nav = view.findViewById(R.id.img_tolbar);
         txt_title = view.findViewById(R.id.txt_title_page);
+        txt_about = view.findViewById(R.id.txt_about);
         txt_title.setText("PT NS BLUESCOPE INDONESIA");
 
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
@@ -78,6 +80,8 @@ public class Fragment_PT_NS extends Fragment {
                 }
             }
         });
+
+        txt_about.setText(Html.fromHtml("PT NS BlueScope Indonesia NS BlueScope Indonesia is a joint venture company between BlueScope and Nippon Steel & Sumitomo Metal Corporation (NSSMC). NS BlueScope Indonesia was formed in 1994. The business commissioned its flat steel metallic coating and painting (55% Zn AL) facility in Cilegon in 1995. The company is the pioneer of local manufacturers of zinc/aluminium metallic coated steel in Indonesia with a major manufacturing plant in Cilegon.<br><br>PT NS BLUESCOPE INDONESIA<br>BRI II Building 9th Floor, Suite 902, RT.14/RW.1, Bend. Hilir,<br>Tanah Abang, Kota Jakarta Pusat,<br>Daerah Khusus Ibukota Jakarta 10210"));
         return view;
     }
 }

@@ -21,8 +21,8 @@ public class LoginPresenterImp implements LoginPresenter, LoginInteractor.OnLogi
 
     }
     @Override
-    public void validateCredentials(String email, String password) {
-        loginInteractor.login(email,password,this);
+    public void validateCredentials(String email, String password, String img) {
+        loginInteractor.login(email,password, img,this);
     }
 
     @Override

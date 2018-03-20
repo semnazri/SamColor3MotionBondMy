@@ -33,10 +33,11 @@
                     android:src="@drawable/new_img_blucup" />
 
                 <TextView
+                    android:id="@+id/txt_about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:text="@string/lorem_panjang" />
+                    android:textColor="@color/black"
+                    android:layout_margin="20dp" />
             </LinearLayout>
 
 

@@ -97,19 +97,19 @@ public class Fragment_VariantColor extends Fragment {
 
     private ArrayList<VariantColor> getData() {
         VariantColor vc1 = new VariantColor("xpd");
-        vc1.text.add(getResources().getString(R.string.lorem));
+        vc1.text.add(getResources().getString(R.string.xpd));
 
         VariantColor vc2 = new VariantColor("xrw");
-        vc2.text.add(getResources().getString(R.string.lorem));
+        vc2.text.add(getResources().getString(R.string.xrw));
 
         VariantColor vc3 = new VariantColor("ultra");
-        vc3.text.add(getResources().getString(R.string.lorem));
+        vc3.text.add(getResources().getString(R.string.ultra));
 
         VariantColor vc4 = new VariantColor("xal");
-        vc4.text.add(getResources().getString(R.string.lorem));
+        vc4.text.add(getResources().getString(R.string.xal));
 
         VariantColor vc5 = new VariantColor("m");
-        vc5.text.add(getResources().getString(R.string.lorem));
+        vc5.text.add(getResources().getString(R.string.m));
 
         ArrayList<VariantColor> variantColors = new ArrayList<VariantColor>();
         variantColors.add(vc1);

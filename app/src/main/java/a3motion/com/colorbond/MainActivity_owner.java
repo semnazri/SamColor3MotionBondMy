@@ -1,9 +1,12 @@
 package a3motion.com.colorbond;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -36,7 +39,6 @@ import a3motion.com.colorbond.Fragment.Fragment_PT_NS;
 import a3motion.com.colorbond.Fragment.Fragment_Submit;
 import a3motion.com.colorbond.Fragment.Fragment_VariantColor;
 import a3motion.com.colorbond.Fragment.Fragment_account;
-import a3motion.com.colorbond.Fragment.Fragment_bondPartMerchant_benefit;
 import a3motion.com.colorbond.Fragment.Point_Parent;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
@@ -66,6 +68,7 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
     private CircleImageView imageview;
     private SharedPreferences prefsprivate;
     private String nama, image;
+    private ImageView img_ig, img_youtube;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,11 +117,50 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
         username = header.findViewById(R.id.name);
         imageview = header.findViewById(R.id.nav_photo_profile);
 
+        View img = navigationView.getRootView();
+        img_ig = img.findViewById(R.id.ig);
+        img_youtube = img.findViewById(R.id.yt);
+
+
         RequestOptions myoptions = new RequestOptions()
                 .placeholder(R.drawable.ic_person_black_24dp)
                 .error(R.drawable.ic_person_black_24dp);
         Glide.with(this).load("http://cdn2.tstatic.net/tribunnews/foto/bank/images/penjaga-gawang-persija-jakarta-andritany-selebrasi_20171023_121936.jpg").apply(myoptions).into(imageview);
         username.setText(nama);
+
+        img_ig.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://www.instagram.com/colorbond.id/");
+                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+                likeIng.setPackage("com.instagram.android");
+
+                try {
+                    startActivity(likeIng);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://www.instagram.com/colorbond.id/")));
+                }
+            }
+        });
+
+        img_youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://www.youtube.com/channel/UC6ob6B0lXVeKQd1ZOYRVIaA/");
+                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+                likeIng.setPackage("com.google.android.youtube");
+
+                try {
+                    startActivity(likeIng);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://www.youtube.com/channel/UC6ob6B0lXVeKQd1ZOYRVIaA/")));
+                }
+            }
+        });
 
         btmView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -181,7 +223,8 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
         } else if (id == R.id.event) {
             fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {
-            fragment = new Fragment_bondPartMerchant_benefit();
+            startNewActivity(this, "com.waw.wawcard");
+//            fragment = new Fragment_bondPartMerchant_benefit();
         } else if (id == R.id.variant) {
             fragment = new Fragment_VariantColor();
         } else if (id == R.id.bluescoop) {
@@ -211,6 +254,17 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
         Toast.makeText(this, "kepencet", Toast.LENGTH_SHORT).show();
     }
 
+    public void startNewActivity(Context context, String packageName) {
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        if (intent == null) {
+            // Bring user to the market or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + packageName));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
     @Override
     public void onBackPressed() {
 //        FragmentManager fm = getSupportFragmentManager();
@@ -230,6 +284,7 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
             getSupportFragmentManager().executePendingTransactions();
 
             navigationView.getMenu().getItem(0).setChecked(true);
+            MainActivity_owner.mToolbar.setVisibility(View.VISIBLE);
             MainActivity_owner.img_title.setVisibility(View.VISIBLE);
             MainActivity_owner.title_page.setVisibility(View.GONE);
 

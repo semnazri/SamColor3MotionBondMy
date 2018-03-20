@@ -240,7 +240,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     public void ResultNotif(String response_message, ResponseNotifications responseNotifications) {
         dialog_muter.dismiss();
 
-        if (responseNotifications != null) {
+        if (responseNotifications.getData() != null) {
             rv.setHasFixedSize(true);
             lm = new LinearLayoutManager(getActivity());
             rv.setLayoutManager(lm);

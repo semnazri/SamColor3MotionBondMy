@@ -35,5 +35,31 @@
     <string name="CANCEL">CANCEL</string>
     <string name="canot_empty">This field can not be empty</string>
     <string name="password_miss_match">Password is not match!</string>
+    <string name="xpd">COLORBOND® XPD has been developed by Bluescope to provide premium durability in excellent weather ability &amp; high form ability for exterior application.</string>
+    <string name="xrw">With our Thermatech® solar refl¬ectance technology, our dirt-resisting Clean Technology, and durable paint and base substrate, we create a future that is comfortable for people and the landscape.</string>
+    <string name="ultra">COLORBOND® Ultra prepainted steel specifically design by NS BlueScope, combine long term durability and exceptional corrosion resistance.</string>
+    <string name="xal">COLORBOND® XAL is a prepainted aluminium that has long lasting, durable good workability, lightweight alternative to other cladding materials.</string>
+    <string name="m">The secreat of Colorbond M lies in magnesium. Introduce into the alumunium-zinc alloy coating, it activates the allumunium to create a self-sealing effect that greatly improves galvanic protection and corrosion resistance.</string>
 
+    <string-array name="bondclub_reward">
+        <item>Shopping Voucher</item>
+        <item>Business Travel</item>
+        <item>Business Gathering</item>
+    </string-array>
+
+    <string-array name="bondpartner_owner">
+        <item>Rebate Voucher</item>
+        <item>Cobranding Event</item>
+    </string-array>
+
+    <string-array name="bondpartner_sales">
+        <item>Shopping Voucher</item>
+        <item>Business Travel</item>
+    </string-array>
+
+    <string-array name="bondcontractor_sales">
+        <item>Shopping Voucher</item>
+        <item>Business Travel</item>
+        <item>Business Gathering</item>
+    </string-array>
 </resources>

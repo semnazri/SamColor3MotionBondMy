@@ -10,6 +10,6 @@ package a3motion.com.colorbond.Presenter;
 
 public interface LoginPresenter {
 
-    void validateCredentials(String email, String password);
+    void validateCredentials(String email, String password, String img);
     void onDestroy();
 }

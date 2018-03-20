@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -135,7 +137,10 @@ public class FragmentHome extends Fragment implements HomeView {
         img_2nd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogProgram();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.container_body, new Fragment_bondPartMerchant_benefit(), "home").addToBackStack("pembayaran");
+                fragmentTransaction.commit();
             }
         });
         ll_project_history.setOnClickListener(new View.OnClickListener() {

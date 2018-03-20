@@ -31,7 +31,7 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 public class Fragment_bondPartMerchant_benefit extends Fragment {
     private View view;
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid;
+    String userid,user_type;
     private SharedPreferences prefsprivate;
     private ImageView img_nav,img_program;
     private TextView txt_title;
@@ -46,6 +46,7 @@ public class Fragment_bondPartMerchant_benefit extends Fragment {
 
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
+        user_type = prefsprivate.getString(BlueScoopPreferences.merchant_type, "0");
 
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
@@ -80,7 +81,15 @@ public class Fragment_bondPartMerchant_benefit extends Fragment {
             }
         });
 
-        Glide.with(getActivity()).load(R.drawable.bond_club_prog_img).into(img_program);
+        if (user_type.equals("0")){
+            Glide.with(getActivity()).load(R.drawable.club_program).into(img_program);
+        }else if (user_type.equals("1")){
+            Glide.with(getActivity()).load(R.drawable.partner_program).into(img_program);
+        }else if (user_type.equals("2")){
+            Glide.with(getActivity()).load(R.drawable.contractor_program).into(img_program);
+        }
+
+
         return view;
     }
 }

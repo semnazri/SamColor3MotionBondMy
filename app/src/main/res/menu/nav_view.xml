@@ -57,13 +57,13 @@
             android:title="FAQ" />
     </group>
 
-    <group
-        android:id="@+id/delapan"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/contatc_us"
-            android:title="Contact Us" />
-    </group>
+    <!--<group-->
+        <!--android:id="@+id/delapan"-->
+        <!--android:checkableBehavior="single">-->
+        <!--<item-->
+            <!--android:id="@+id/contatc_us"-->
+            <!--android:title="Contact Us" />-->
+    <!--</group>-->
 
 
 </menu>

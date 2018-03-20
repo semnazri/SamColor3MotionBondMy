@@ -34,7 +34,7 @@ public class LoginInteractorImp implements LoginInteractor{
     String response_message,type,token, fristname, lastname, emailz, phone, company, title, point;
 
     @Override
-    public void login(String email, String password, final OnLoginFinishedListener listener) {
+    public void login(String email, String password,String img, final OnLoginFinishedListener listener) {
 
         boolean error = false;
 
@@ -90,7 +90,7 @@ public class LoginInteractorImp implements LoginInteractor{
                     .signWith(SignatureAlgorithm.HS512, header)
                     .compact();
 
-            Call<Auth> call = service.getTasks(compactJws);
+            Call<Auth> call = service.getTasks(compactJws,img);
             call.enqueue(new Callback<Auth>() {
                 @Override
                 public void onResponse(Call<Auth> call, Response<Auth> response) {

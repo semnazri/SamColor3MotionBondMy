@@ -10,7 +10,7 @@ package a3motion.com.colorbond.Presenter;
 
 public interface LoginInteractor {
 
-    void login(String email, String password, OnLoginFinishedListener listener);
+    void login(String email, String password,String img, OnLoginFinishedListener listener);
 
     interface OnLoginFinishedListener {
         void onEmailError();

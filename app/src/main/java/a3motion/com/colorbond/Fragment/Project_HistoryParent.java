@@ -104,7 +104,7 @@ public class Project_HistoryParent extends Fragment {
                 case 0:
                     return "HISTORY";
                 case 1:
-                    return "ACHIVEMENT";
+                    return "ACHIEVEMENT";
 
             }
             return null;
