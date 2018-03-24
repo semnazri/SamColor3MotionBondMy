@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -34,11 +35,13 @@ import java.util.List;
 
 import a3motion.com.colorbond.Adapter.BuildingCatAdapter;
 import a3motion.com.colorbond.Adapter.MaterialAdapter;
+import a3motion.com.colorbond.Adapter.SizeCategotyAdapter;
 import a3motion.com.colorbond.Adapter.SizeMaterialAdapter;
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Building_cats;
 import a3motion.com.colorbond.Model.Material;
+import a3motion.com.colorbond.Model.Size_category;
 import a3motion.com.colorbond.Model.Size_material;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
@@ -57,24 +60,28 @@ public class Fragment_Submit extends Fragment {
     private static final int REQUEST_txt_delive_note = 0;
     private static final int REQUEST_txt_suporting_note = 1;
     private static final int PERMISSION_REQUEST_CODE = 1;
-    String userid, point;
+    String userid, point, user_from;
     private View view;
     private SharedPreferences prefsprivate;
-    private TextView txt_title, txt_m2_sup, txt_point, txt_delive_note, txt_suporting_note;
+    private TextView txt_title, txt_m2_sup, txt_point, txt_delive_note, txt_suporting_note,text_upload;
     private ImageView img_tolbar;
     private List<Building_cats> building_cats;
     private List<Material> materials;
     private List<Size_material> Size_material;
-    private Spinner spinner_building_catgory, spinner_material_1, spinner_material_2;
+    private List<Size_category> Size_category;
+    private Spinner spinner_building_catgory, spinner_material_1, spinner_material_2, spinner_size_catgory;
     private BuildingCatAdapter adapter;
     private MaterialAdapter adapterM;
     private SizeMaterialAdapter adapterS;
+    private SizeCategotyAdapter adapterSCat;
     private EditText submit_project_name, submit_date, submit_location, submit_size;
     private Button btn_submit;
     private Uri file;
     private Calendar myCalendar = Calendar.getInstance();
     private File delivnote, suporting_note;
     private ImageView deliv_img, sup_img;
+
+    private LinearLayout ll_build_cat, ll_size_cat;
 
     @Nullable
     @Override
@@ -83,10 +90,13 @@ public class Fragment_Submit extends Fragment {
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
         point = prefsprivate.getString(BlueScoopPreferences.poin, "1");
+        user_from = prefsprivate.getString(BlueScoopPreferences.merchant_type, "1");
+
         img_tolbar = view.findViewById(R.id.img_tolbar);
         txt_title = view.findViewById(R.id.txt_title_page);
         txt_m2_sup = view.findViewById(R.id.txt_m2_sup);
         txt_point = view.findViewById(R.id.point);
+        text_upload = view.findViewById(R.id.text_upload);
 
         submit_project_name = view.findViewById(R.id.submit_project_name);
         submit_date = view.findViewById(R.id.submit_date);
@@ -97,14 +107,34 @@ public class Fragment_Submit extends Fragment {
         btn_submit = view.findViewById(R.id.btn_submit);
         deliv_img = view.findViewById(R.id.deliv_img);
         sup_img = view.findViewById(R.id.sup_img);
+        ll_build_cat = view.findViewById(R.id.ll_build_cat);
+        ll_size_cat = view.findViewById(R.id.ll_size_cat);
 
 
         txt_title.setText("SUBMIT PROJECT");
 
-        txt_m2_sup.setText(Html.fromHtml(getResources().getString(R.string.sup)));
+        if (user_from.equals("0")){
+            ll_build_cat.setVisibility(View.GONE);
+            ll_size_cat.setVisibility(View.VISIBLE);
+            txt_m2_sup.setText(Html.fromHtml(getResources().getString(R.string.sup)));
+            text_upload.setText(getResources().getString(R.string.cpy_deliv_note));
+        }
+        else if (user_from.equals("1")) {
+            ll_build_cat.setVisibility(View.GONE);
+            ll_size_cat.setVisibility(View.GONE);
+            txt_m2_sup.setText("TON");
+            text_upload.setText(getResources().getString(R.string.upload_po));
+        } else if (equals("2")){
+            ll_build_cat.setVisibility(View.VISIBLE);
+            ll_size_cat.setVisibility(View.GONE);
+            txt_m2_sup.setText(Html.fromHtml(getResources().getString(R.string.sup)));
+            text_upload.setText(getResources().getString(R.string.cpy_deliv_note));
+        }
+
         spinner_building_catgory = view.findViewById(R.id.spinner_building_catgory);
         spinner_material_1 = view.findViewById(R.id.spinner_material_1);
         spinner_material_2 = view.findViewById(R.id.spinner_material_2);
+        spinner_size_catgory = view.findViewById(R.id.spinner_size_catgory);
 
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
@@ -144,6 +174,7 @@ public class Fragment_Submit extends Fragment {
         building_cats = getTipe();
         materials = getMaterial();
         Size_material = getSize();
+        Size_category = getSizeCat();
 
         adapter = new BuildingCatAdapter(getActivity(), building_cats);
         spinner_building_catgory.setAdapter(adapter);
@@ -153,6 +184,9 @@ public class Fragment_Submit extends Fragment {
 
         adapterS = new SizeMaterialAdapter(getActivity(), Size_material);
         spinner_material_2.setAdapter(adapterS);
+
+        adapterSCat = new SizeCategotyAdapter(getActivity(), Size_category);
+        spinner_size_catgory.setAdapter(adapterSCat);
 
         txt_delive_note.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,6 +215,7 @@ public class Fragment_Submit extends Fragment {
 
         return view;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -274,5 +309,14 @@ public class Fragment_Submit extends Fragment {
         tp.add(new Size_material("0.70 BMT", "8"));
 
         return tp;
+    }
+
+    private List<Size_category> getSizeCat() {
+        List<Size_category> sc = new ArrayList<>();
+
+        sc.add(new Size_category("SPECIFIED","0"));
+        sc.add(new Size_category("WIN","1"));
+        sc.add(new Size_category("WIN COLORBOND+LYSAGHT","2"));
+        return sc;
     }
 }

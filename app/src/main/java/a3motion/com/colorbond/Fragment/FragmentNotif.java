@@ -184,10 +184,10 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     private void getDialogApproveDisapprove() {
 
         final Dialog dialog_followers = new Dialog(getActivity());
-        dialog_followers.setContentView(R.layout.layout_approve);
+        dialog_followers.setContentView(R.layout.layout_notapprove);
         dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-        final Button btn_back = dialog_followers.findViewById(R.id.btn_dissapprove);
+        final Button btn_back = dialog_followers.findViewById(R.id.btn_approve);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
