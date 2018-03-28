@@ -17,9 +17,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.text.Html;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -27,6 +30,10 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,8 +50,13 @@ import a3motion.com.colorbond.Model.Building_cats;
 import a3motion.com.colorbond.Model.Material;
 import a3motion.com.colorbond.Model.Size_category;
 import a3motion.com.colorbond.Model.Size_material;
+import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.POJO.SubmitResponse;
+import a3motion.com.colorbond.Presenter.SubmitPresenter;
+import a3motion.com.colorbond.Presenter.SubmitPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.SubmitProjectView;
 
 /**
  * Created by Semmy
@@ -54,7 +66,7 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class Fragment_Submit extends Fragment {
+public class Fragment_Submit extends Fragment implements SubmitProjectView {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     private static final int REQUEST_txt_delive_note = 0;
@@ -63,7 +75,7 @@ public class Fragment_Submit extends Fragment {
     String userid, point, user_from;
     private View view;
     private SharedPreferences prefsprivate;
-    private TextView txt_title, txt_m2_sup, txt_point, txt_delive_note, txt_suporting_note,text_upload;
+    private TextView txt_title, txt_m2_sup, txt_point, txt_delive_note, txt_suporting_note, text_upload;
     private ImageView img_tolbar;
     private List<Building_cats> building_cats;
     private List<Material> materials;
@@ -81,7 +93,20 @@ public class Fragment_Submit extends Fragment {
     private File delivnote, suporting_note;
     private ImageView deliv_img, sup_img;
 
+    private SubmitPresenter submitPresenter;
+    private ConnectionDetector cd;
+    private Boolean isInternetPresent = false;
+    private MaterialDialog mDialog, dialog_muter;
+
+    private String building_cat_txt, size_cat_txt, deliv_img_txt, sup_img_txt, material_1_txt, material_2_txt;
+
     private LinearLayout ll_build_cat, ll_size_cat;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        cd = new ConnectionDetector(getActivity());
+    }
 
     @Nullable
     @Override
@@ -102,6 +127,10 @@ public class Fragment_Submit extends Fragment {
         submit_date = view.findViewById(R.id.submit_date);
         submit_location = view.findViewById(R.id.submit_location);
         submit_size = view.findViewById(R.id.submit_size);
+        spinner_building_catgory = view.findViewById(R.id.spinner_building_catgory);
+        spinner_material_1 = view.findViewById(R.id.spinner_material_1);
+        spinner_material_2 = view.findViewById(R.id.spinner_material_2);
+        spinner_size_catgory = view.findViewById(R.id.spinner_size_catgory);
         txt_delive_note = view.findViewById(R.id.txt_delive_note);
         txt_suporting_note = view.findViewById(R.id.txt_suporting_note);
         btn_submit = view.findViewById(R.id.btn_submit);
@@ -110,31 +139,34 @@ public class Fragment_Submit extends Fragment {
         ll_build_cat = view.findViewById(R.id.ll_build_cat);
         ll_size_cat = view.findViewById(R.id.ll_size_cat);
 
-
+        submitPresenter = new SubmitPresenterImp(this);
         txt_title.setText("SUBMIT PROJECT");
+        building_cats = getTipe();
+        materials = getMaterial();
+        Size_material = getSize();
+        Size_category = getSizeCat();
 
-        if (user_from.equals("0")){
+        if (user_from.equals("0")) {
             ll_build_cat.setVisibility(View.GONE);
             ll_size_cat.setVisibility(View.VISIBLE);
             txt_m2_sup.setText(Html.fromHtml(getResources().getString(R.string.sup)));
             text_upload.setText(getResources().getString(R.string.cpy_deliv_note));
-        }
-        else if (user_from.equals("1")) {
+
+        } else if (user_from.equals("1")) {
             ll_build_cat.setVisibility(View.GONE);
             ll_size_cat.setVisibility(View.GONE);
             txt_m2_sup.setText("TON");
+            building_cat_txt = "0";
+            size_cat_txt = "0";
             text_upload.setText(getResources().getString(R.string.upload_po));
-        } else if (equals("2")){
+        } else if (equals("2")) {
             ll_build_cat.setVisibility(View.VISIBLE);
             ll_size_cat.setVisibility(View.GONE);
             txt_m2_sup.setText(Html.fromHtml(getResources().getString(R.string.sup)));
             text_upload.setText(getResources().getString(R.string.cpy_deliv_note));
+            size_cat_txt = "0";
         }
 
-        spinner_building_catgory = view.findViewById(R.id.spinner_building_catgory);
-        spinner_material_1 = view.findViewById(R.id.spinner_material_1);
-        spinner_material_2 = view.findViewById(R.id.spinner_material_2);
-        spinner_size_catgory = view.findViewById(R.id.spinner_size_catgory);
 
         if (userid.equals("1")) {
             MainActivity.mToolbar.setVisibility(View.GONE);
@@ -171,10 +203,7 @@ public class Fragment_Submit extends Fragment {
 
 
         txt_point.setText(point);
-        building_cats = getTipe();
-        materials = getMaterial();
-        Size_material = getSize();
-        Size_category = getSizeCat();
+
 
         adapter = new BuildingCatAdapter(getActivity(), building_cats);
         spinner_building_catgory.setAdapter(adapter);
@@ -212,10 +241,134 @@ public class Fragment_Submit extends Fragment {
             }
         });
 
+        spinner_size_catgory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item_id = String.valueOf(((TextView) view.findViewById(R.id.province_id__)).getText().toString());
+                String item_name = ((TextView) view.findViewById(R.id.province_name__)).getText().toString();
+//                size_cat_txt = item_id;
+                size_cat_txt = item_name;
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinner_building_catgory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item_id = String.valueOf(((TextView) view.findViewById(R.id.province_id__)).getText().toString());
+                String item_name = ((TextView) view.findViewById(R.id.province_name__)).getText().toString();
+//                size_cat_txt = item_id;
+
+                building_cat_txt = item_name;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinner_material_1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item_id = String.valueOf(((TextView) view.findViewById(R.id.province_id__)).getText().toString());
+                String item_name = ((TextView) view.findViewById(R.id.province_name__)).getText().toString();
+//                size_cat_txt = item_id;
+                material_1_txt = item_name;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinner_material_2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String item_id = String.valueOf(((TextView) view.findViewById(R.id.province_id__)).getText().toString());
+                String item_name = ((TextView) view.findViewById(R.id.province_name__)).getText().toString();
+//                size_cat_txt = item_id;
+                material_2_txt = item_name;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        btn_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
+                String mem_type = prefsprivate.getString(BlueScoopPreferences.merchant_type, "null");
+
+                if (sup_img_txt.equals("")) {
+                    sup_img_txt = "0";
+                }
+
+                if (user_from.equals("0")) {
+                    building_cat_txt = "0";
+
+                } else if (user_from.equals("1")) {
+
+                    building_cat_txt = "0";
+                    size_cat_txt = "0";
+                } else if (equals("2")) {
+                    size_cat_txt = "0";
+                }
+
+                checkconenctions(tokenz, submit_project_name.getText().toString(), mem_type, submit_date.getText().toString(),
+                        submit_location.getText().toString(), building_cat_txt, submit_size.getText().toString(),
+                        size_cat_txt, material_1_txt, material_2_txt, deliv_img_txt, sup_img_txt);
+            }
+        });
+
 
         return view;
     }
 
+    private void checkconenctions(String tokenz, String submit_project_name, String mem_type, String submit_date, String submit_location, String building_cat_txt, String submit_size, String size_cat_txt, String material_1_txt, String material_2_txt, String deliv_img_txt, String sup_img_txt) {
+
+        isInternetPresent = cd.isConnectingToInternet();
+        if (isInternetPresent) {
+            submitPresenter.validateCredentials(tokenz,submit_project_name,mem_type,submit_date,submit_location,building_cat_txt,submit_size,size_cat_txt,material_1_txt,material_2_txt,deliv_img_txt,sup_img_txt);
+
+        } else if (isInternetPresent.equals(false)) {
+            getdialogerror("Tidak ada koneksi Internet");
+        }
+    }
+
+    public void getDialog_progress() {
+
+        dialog_muter = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(R.string.please_wait)
+                .progress(true, 0)
+                .show();
+    }
+
+    private void getdialogerror(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+
+                    }
+                })
+                .show();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -231,6 +384,18 @@ public class Fragment_Submit extends Fragment {
 
                     txt_delive_note.setText(getFiledeliv().getName());
 
+
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                    delivery.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+
+                    byte[] byteArrayImage = baos.toByteArray();
+
+                    String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
+                    Log.d("encoded", String.valueOf(encodedImage));
+
+                    deliv_img_txt = encodedImage;
+
                     break;
                 case 1:
                     Bitmap suporting = (Bitmap) data.getExtras().get("data");
@@ -238,6 +403,17 @@ public class Fragment_Submit extends Fragment {
                     sup_img.setImageBitmap(suporting);
 
                     txt_suporting_note.setText(getFilesuport().getName());
+
+                    ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+
+                    suporting.compress(Bitmap.CompressFormat.JPEG, 100, baos1);
+
+                    byte[] byteArraySupImage = baos1.toByteArray();
+
+                    String encodedImageSup = Base64.encodeToString(byteArraySupImage, Base64.DEFAULT);
+                    Log.d("encoded", String.valueOf(encodedImageSup));
+
+                    sup_img_txt = encodedImageSup;
                     break;
             }
         }
@@ -314,9 +490,50 @@ public class Fragment_Submit extends Fragment {
     private List<Size_category> getSizeCat() {
         List<Size_category> sc = new ArrayList<>();
 
-        sc.add(new Size_category("SPECIFIED","0"));
-        sc.add(new Size_category("WIN","1"));
-        sc.add(new Size_category("WIN COLORBOND+LYSAGHT","2"));
+        sc.add(new Size_category("SPECIFIED", "0"));
+        sc.add(new Size_category("WIN", "1"));
+        sc.add(new Size_category("WIN COLORBOND+LYSAGHT", "2"));
         return sc;
+    }
+
+    @Override
+    public void ResultSubmit(String response_message, SubmitResponse submitResponse) {
+        dialog_muter.dismiss();
+        getdialogerror(submitResponse.getMessage());
+    }
+
+    @Override
+    public void setelseEror(String response_message) {
+        getdialogerror(response_message);
+    }
+
+    @Override
+    public void setProjectNameError() {
+        submit_project_name.setError(getString(R.string.canot_empty));
+    }
+
+    @Override
+    public void setProjectDateError() {
+        submit_date.setError(getString(R.string.canot_empty));
+    }
+
+    @Override
+    public void setLocationError() {
+        submit_location.setError(getString(R.string.canot_empty));
+    }
+
+    @Override
+    public void setquantitiyError() {
+        submit_size.setError(getString(R.string.canot_empty));
+    }
+
+    @Override
+    public void setDeliveryNoteError() {
+        txt_delive_note.setError(getString(R.string.canot_empty));
+    }
+
+    @Override
+    public void setValid() {
+        getDialog_progress();
     }
 }

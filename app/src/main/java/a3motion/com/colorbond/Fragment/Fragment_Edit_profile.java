@@ -37,7 +37,7 @@ import a3motion.com.colorbond.View.EditProfileView;
 
 public class Fragment_Edit_profile extends Fragment implements EditProfileView {
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid;
+    String userid, point, user_from;
     private ImageView img_nav;
     private TextView txt_title;
     private SharedPreferences prefsprivate;

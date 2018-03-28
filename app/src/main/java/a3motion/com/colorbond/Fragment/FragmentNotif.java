@@ -21,7 +21,6 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import a3motion.com.colorbond.Adapter.NotificationAdapter;
@@ -140,51 +139,50 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
 
     }
 
-    private List<Notification> getAllNotif() {
-
-
-        List<Notification> lp = new ArrayList<>();
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 0));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 1));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 2));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 0));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 1));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 2));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 0));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 1));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 2));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 0));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 1));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 2));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 0));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 1));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 2));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 0));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 1));
-        lp.add(new Notification("PROJECT UPDATE", "LOREM IPSUM", getString(R.string.lorem), 2));
-
-        return lp;
-    }
-
     @Override
     public void typeDialog(String typeDialog) {
 
         if (typeDialog.equals("0")) {
 
             getDialogthanku();
+
         } else if (typeDialog.equals("1")) {
 
             getDialogCongrats();
-        } else {
 
-            getDialogApproveDisapprove();
+        } else if (typeDialog.equals("2")) {
+
+            getDialogDisapprove();
+
+        } else if (typeDialog.equals("3")) {
+
+            getDialogApproveDisaprove();
+
         }
     }
 
-    private void getDialogApproveDisapprove() {
+    private void getDialogDisapprove() {
 
         final Dialog dialog_followers = new Dialog(getActivity());
         dialog_followers.setContentView(R.layout.layout_notapprove);
+        dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        final Button btn_back = dialog_followers.findViewById(R.id.btn_approve);
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_followers.dismiss();
+            }
+        });
+
+        dialog_followers.show();
+    }
+
+    private void getDialogApproveDisaprove() {
+
+        final Dialog dialog_followers = new Dialog(getActivity());
+        dialog_followers.setContentView(R.layout.layout_approve);
         dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
         final Button btn_back = dialog_followers.findViewById(R.id.btn_approve);
