@@ -16,19 +16,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.robohorse.pagerbullet.PagerBullet;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import a3motion.com.colorbond.Adapter.InspirasiPagerAdapter;
 import a3motion.com.colorbond.Adapter.ListBeritaParentAdapter;
+import a3motion.com.colorbond.Adapter.RewardsPagerAdapter;
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Sliderpoto;
+import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.POJO.RewardSliderResponse;
+import a3motion.com.colorbond.Presenter.RewardSliderPresenter;
+import a3motion.com.colorbond.Presenter.RewardSliderPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.RewardSliderVIew;
 
 /**
  * Created by Semmy
@@ -38,21 +45,33 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class Point_Parent extends Fragment {
+public class Point_Parent extends Fragment implements RewardSliderVIew {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     public static int int_items = 3;
     String userid, merchant_type;
-    List<Sliderpoto> slide;
-    InspirasiPagerAdapter adapter;
+    //    List<Sliderpoto> slide;
+    RewardsPagerAdapter adapter;
     private View view;
     private SharedPreferences prefsprivate;
     private TextView txt_title;
     private PagerBullet pager;
     private ImageView img_nav;
-    private String[] tab_name;
+    private String[] tab_name,tab_id;
+    private String tokenz;
+    private RewardSliderPresenter rewardSliderPresenter;
+
+    private ConnectionDetector cd;
+    private Boolean isInternetPresent = false;
+    private MaterialDialog mDialog, dialog_muter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        cd = new ConnectionDetector(getActivity());
+    }
 
     @Nullable
     @Override
@@ -61,6 +80,7 @@ public class Point_Parent extends Fragment {
         tabLayout = view.findViewById(R.id.home_tabs);
         viewPager = view.findViewById(R.id.homeviewpager);
         txt_title = view.findViewById(R.id.txt_title_page);
+        rewardSliderPresenter = new RewardSliderPresenterImp(this);
         txt_title.setText("REWARD");
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
@@ -86,14 +106,18 @@ public class Point_Parent extends Fragment {
 
         if (merchant_type.equals("0")) {
             tab_name = getResources().getStringArray(R.array.bondclub_reward);
+            tab_id = getResources().getStringArray(R.array.bondclub_reward_id);
         } else if (merchant_type.equals("1")) {
             if (userid.equals("0")) {
                 tab_name = getResources().getStringArray(R.array.bondpartner_sales);
+                tab_id = getResources().getStringArray(R.array.bondpartner_sales_id);
             } else {
                 tab_name = getResources().getStringArray(R.array.bondpartner_owner);
+                tab_id = getResources().getStringArray(R.array.bondpartner_owner_id);
             }
         } else if (merchant_type.equals("2")) {
             tab_name = getResources().getStringArray(R.array.bondcontractor_sales);
+            tab_id = getResources().getStringArray(R.array.bondcontractor_sales_id);
         }
 
         img_nav.setOnClickListener(new View.OnClickListener() {
@@ -118,9 +142,7 @@ public class Point_Parent extends Fragment {
         });
 
 
-        slide = getSlide();
-        adapter = new InspirasiPagerAdapter(getActivity(), slide);
-        pager.setAdapter(adapter);
+        checkConnections();
 
 //        viewPager.setAdapter(new Adapter(getChildFragmentManager()));
         getTab();
@@ -133,6 +155,18 @@ public class Point_Parent extends Fragment {
         return view;
     }
 
+    private void checkConnections() {
+        isInternetPresent = cd.isConnectingToInternet();
+        if (isInternetPresent) {
+            tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
+            getDialog_progress();
+            rewardSliderPresenter.getListEvent(tokenz,merchant_type);
+
+        } else if (isInternetPresent.equals(false)) {
+            getdialogerror("Tidak ada koneksi Internet");
+        }
+    }
+
     private void getTab() {
 
         List<HashMap<String, Fragment>> halamannya = new ArrayList<HashMap<String, Fragment>>();
@@ -140,7 +174,7 @@ public class Point_Parent extends Fragment {
 
             Fragment_rebateVoucher fragment = new Fragment_rebateVoucher();
             Bundle bundle = new Bundle();
-//            bundle.putString("kanal_id", kanal_id);
+            bundle.putString("reward_id", tab_id[i]);
             fragment.setArguments(bundle);
             HashMap<String, Fragment> halaman = new HashMap<String, Fragment>();
             halaman.put(tab_name[i], fragment);
@@ -168,44 +202,41 @@ public class Point_Parent extends Fragment {
 
     }
 
-//    static class Adapter extends FragmentPagerAdapter {
-//
-//        public Adapter(FragmentManager fm) {
-//            super(fm);
-//        }
-//
-//        @Override
-//        public Fragment getItem(int position) {
-//            switch (position) {
-//                case 0:
-//                    return new Fragment_rebateVoucher();
-//                case 1:
-//                    return new Fragment_rebateVoucher();
-//                case 2:
-//                    return new Fragment_rebateVoucher();
-//                default:
-//                    return null;
-//            }
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return int_items;
-//        }
-//
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//
-//            switch (position) {
-//                case 0:
-//                    return "Shopping Voucher";
-//                case 1:
-//                    return "Business Travel";
-//                case 2:
-//                    return "Business Gathering";
-//
-//            }
-//            return null;
-//        }
-//    }
+    @Override
+    public void ResultSlider(String response_message, RewardSliderResponse rewardSliderResponse) {
+        dialog_muter.dismiss();
+        adapter = new RewardsPagerAdapter(getActivity(), rewardSliderResponse.getData());
+        pager.setAdapter(adapter);
+    }
+
+    @Override
+    public void setelseEror(String response_message) {
+        getdialogerror(response_message);
+
+    }
+
+    public void getDialog_progress() {
+
+        dialog_muter = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(R.string.please_wait)
+                .progress(true, 0)
+                .show();
+    }
+
+    private void getdialogerror(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                        getFragmentManager().popBackStack();
+                    }
+                })
+                .show();
+    }
 }

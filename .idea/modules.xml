@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ColorBond.iml" filepath="$PROJECT_DIR$/ColorBond.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SamColor3MotionBondMy.iml" filepath="$PROJECT_DIR$/SamColor3MotionBondMy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

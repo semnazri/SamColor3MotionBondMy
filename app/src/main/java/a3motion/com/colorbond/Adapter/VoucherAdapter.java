@@ -5,14 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import a3motion.com.colorbond.Model.Voucher;
+import a3motion.com.colorbond.POJO.DatumList;
 import a3motion.com.colorbond.R;
-import a3motion.com.colorbond.ViewHolder.EventViewHolder;
 import a3motion.com.colorbond.ViewHolder.VoucherViewHolder;
 
 /**
@@ -24,10 +24,10 @@ import a3motion.com.colorbond.ViewHolder.VoucherViewHolder;
  */
 
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
-    private List<Voucher> mValues;
+    private List<DatumList> mValues;
     private Context mContext;
 
-    public VoucherAdapter(Context context, List<Voucher> items) {
+    public VoucherAdapter(Context context, List<DatumList> items) {
         mContext = context;
         mValues = items;
     }
@@ -39,17 +39,15 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(VoucherViewHolder holder, int position) {
+    public void onBindViewHolder(VoucherViewHolder holder, final int position) {
 
-        Glide.with(mContext).load(mValues.get(position).getBg()).into(holder.img_pocer);
-
-//        holder.ammount.setVisibility(View.GONE);
-//        holder.place.setVisibility(View.GONE);
-//        Glide.with(mContext).load(mValues.get(position).getBg()).into(holder.ll_parent);
-
-//        holder.ll_parent.setBackgroundColor(mValues.get(position).getBg());
-//        holder.ammount.setText(mValues.get(position).getAmount());
-//        holder.place.setText(mValues.get(position).getPlace());
+        Glide.with(mContext).load(mValues.get(position).getImage()).into(holder.img_pocer);
+        holder.img_pocer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, mValues.get(position).getPoin() + "Point", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

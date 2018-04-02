@@ -39,25 +39,7 @@ public class LoginInteractorImp implements LoginInteractor{
         boolean error = false;
 
 
-        if (TextUtils.isEmpty(email)) {
-            listener.onEmailError();
-            error = true;
 
-        } else if (!email.contains("@")) {
-            listener.onEmailInValid();
-            error = true;
-
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            listener.onPasswordError();
-            error = true;
-
-        } else if (password.length() < 6) {
-            listener.onPasswordInValid();
-            error = true;
-
-        }
 
         if (!error) {
             listener.onValid();
