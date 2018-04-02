@@ -5,12 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import a3motion.com.colorbond.Listener.RewardListener;
 import a3motion.com.colorbond.POJO.DatumList;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.VoucherViewHolder;
@@ -26,10 +26,12 @@ import a3motion.com.colorbond.ViewHolder.VoucherViewHolder;
 public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
     private List<DatumList> mValues;
     private Context mContext;
+    private RewardListener listener;
 
-    public VoucherAdapter(Context context, List<DatumList> items) {
+    public VoucherAdapter(Context context, List<DatumList> items, RewardListener listener) {
         mContext = context;
         mValues = items;
+        this.listener = listener;
     }
 
     @Override
@@ -45,7 +47,8 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
         holder.img_pocer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, mValues.get(position).getPoin() + "Point", Toast.LENGTH_SHORT).show();
+                listener.show_dialog(mValues.get(position).getImage(), mValues.get(position).getPoin(), mValues.get(position).getDescription());
+
             }
         });
 

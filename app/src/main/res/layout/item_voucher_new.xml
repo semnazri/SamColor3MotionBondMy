@@ -7,6 +7,6 @@
     android:id="@+id/img_pocer"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    android:scaleType="fitXY"
+    android:scaleType="centerCrop"
     android:src="@drawable/ikea"/>
 </LinearLayout>

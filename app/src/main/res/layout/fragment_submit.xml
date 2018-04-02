@@ -129,6 +129,7 @@
                         android:layout_weight="1"
                         android:background="@color/abu2"
                         android:hint="mm/dd/yyyy"
+                        android:editable="false"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp" />
 

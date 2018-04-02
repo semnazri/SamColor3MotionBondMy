@@ -1,7 +1,9 @@
 package a3motion.com.colorbond.Fragment;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,14 +14,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import a3motion.com.colorbond.Adapter.VoucherAdapter;
+import a3motion.com.colorbond.Listener.RewardListener;
 import a3motion.com.colorbond.Model.Voucher;
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.POJO.RewardListResponse;
@@ -37,7 +45,7 @@ import a3motion.com.colorbond.View.RewardListVIew;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class Fragment_rebateVoucher extends Fragment implements RewardListVIew {
+public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, RewardListener {
 
     private View view;
     //    private List<Voucher> vouchers;
@@ -45,7 +53,7 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew {
     private LinearLayoutManager lm;
     private VoucherAdapter adapter;
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid, merchant_type, tokenz,reward_id;
+    String userid, merchant_type, tokenz, reward_id;
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
     private MaterialDialog mDialog, dialog_muter;
@@ -112,7 +120,7 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew {
         rv.setHasFixedSize(true);
         lm = new LinearLayoutManager(getActivity());
         rv.setLayoutManager(lm);
-        adapter = new VoucherAdapter(getActivity(), rewardListResponse.getData());
+        adapter = new VoucherAdapter(getActivity(), rewardListResponse.getData(), this);
         rv.setAdapter(adapter);
     }
 
@@ -144,5 +152,38 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew {
                     }
                 })
                 .show();
+    }
+
+    @Override
+    public void show_dialog(String image, String point, String nama_reward) {
+
+        final Dialog dialog_followers = new Dialog(getActivity());
+        dialog_followers.setContentView(R.layout.layout_request);
+        dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        final Button btn_back = dialog_followers.findViewById(R.id.btn_close);
+        final Button btn_reedem = dialog_followers.findViewById(R.id.btn_redem);
+        final TextView txt_detail = dialog_followers.findViewById(R.id.txt_detail_voucher);
+        final ImageView img_voucher = dialog_followers.findViewById(R.id.img_voucher);
+
+        Glide.with(getActivity()).load(image).into(img_voucher);
+
+        txt_detail.setText(nama_reward + "\n" + point + "Point");
+        btn_reedem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Action Reedem", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_followers.dismiss();
+            }
+        });
+
+        dialog_followers.show();
+
     }
 }

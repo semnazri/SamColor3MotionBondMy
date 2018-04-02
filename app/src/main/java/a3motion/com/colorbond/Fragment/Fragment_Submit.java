@@ -2,6 +2,7 @@ package a3motion.com.colorbond.Fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,6 +41,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import a3motion.com.colorbond.Adapter.BuildingCatAdapter;
 import a3motion.com.colorbond.Adapter.MaterialAdapter;
@@ -90,6 +93,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
     private Button btn_submit;
     private Uri file;
     private Calendar myCalendar = Calendar.getInstance();
+    private Calendar myCalendar1 = Calendar.getInstance();
     private File delivnote, suporting_note;
     private ImageView deliv_img, sup_img;
 
@@ -145,6 +149,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         materials = getMaterial();
         Size_material = getSize();
         Size_category = getSizeCat();
+
 
         if (user_from.equals("0")) {
             ll_build_cat.setVisibility(View.GONE);
@@ -203,6 +208,31 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
 
 
         txt_point.setText(point);
+
+        submit_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                          int dayOfMonth) {
+                        // TODO Auto-generated method stub
+                        myCalendar1.set(Calendar.YEAR, year);
+                        myCalendar1.set(Calendar.MONTH, monthOfYear);
+                        myCalendar1.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        updateLabel();
+                    }
+
+                };
+
+                new DatePickerDialog(getActivity(), date, myCalendar1
+                        .get(Calendar.YEAR), myCalendar1.get(Calendar.MONTH),
+                        myCalendar1.get(Calendar.DAY_OF_MONTH)).show();
+
+            }
+        });
 
 
         adapter = new BuildingCatAdapter(getActivity(), building_cats);
@@ -334,11 +364,20 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         return view;
     }
 
+    private void updateLabel() {
+
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        submit_date.setText(sdf.format(myCalendar1.getTime()));
+
+
+    }
+
     private void checkconenctions(String tokenz, String submit_project_name, String mem_type, String submit_date, String submit_location, String building_cat_txt, String submit_size, String size_cat_txt, String material_1_txt, String material_2_txt, String deliv_img_txt, String sup_img_txt) {
 
         isInternetPresent = cd.isConnectingToInternet();
         if (isInternetPresent) {
-            submitPresenter.validateCredentials(tokenz,submit_project_name,mem_type,submit_date,submit_location,building_cat_txt,submit_size,size_cat_txt,material_1_txt,material_2_txt,deliv_img_txt,sup_img_txt);
+            submitPresenter.validateCredentials(tokenz, submit_project_name, mem_type, submit_date, submit_location, building_cat_txt, submit_size, size_cat_txt, material_1_txt, material_2_txt, deliv_img_txt, sup_img_txt);
 
         } else if (isInternetPresent.equals(false)) {
             getdialogerror("Tidak ada koneksi Internet");
@@ -495,6 +534,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         sc.add(new Size_category("WIN COLORBOND+LYSAGHT", "2"));
         return sc;
     }
+
 
     @Override
     public void ResultSubmit(String response_message, SubmitResponse submitResponse) {
