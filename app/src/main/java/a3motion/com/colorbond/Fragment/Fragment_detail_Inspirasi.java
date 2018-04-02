@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,21 +83,6 @@ public class Fragment_detail_Inspirasi extends Fragment {
             @Override
             public void onClick(View v) {
                 getFragmentManager().popBackStack();
-//                if (userid.equals("1")) {
-//                    if (MainActivity.mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-//                        MainActivity.mDrawerLayout.closeDrawer(GravityCompat.START);
-//                    } else {
-//                        MainActivity.mDrawerLayout.openDrawer(GravityCompat.START);
-//                    }
-//
-//                } else {
-//                    if (MainActivity_owner.mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
-//                        MainActivity_owner.mDrawerLayout.closeDrawer(GravityCompat.START);
-//                    } else {
-//                        MainActivity_owner.mDrawerLayout.openDrawer(GravityCompat.START);
-//                    }
-
-//                }
             }
         });
 
@@ -112,12 +95,12 @@ public class Fragment_detail_Inspirasi extends Fragment {
         txt_titleInspirasi.setText(title);
         txt_author.setText(author);
         txt_content.setText(detailcontent);
-        SimpleDateFormat dateformat=new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date date;
         try {
             date = dateformat.parse(datez);
-            DateFormat dayFormate=new SimpleDateFormat("EEEE dd MMMM yyyy hh:mm");
-            String dayFromDate=dayFormate.format(date);
+            DateFormat dayFormate = new SimpleDateFormat("EEEE dd MMMM yyyy hh:mm");
+            String dayFromDate = dayFormate.format(date);
             txt_date.setText(dayFromDate + " WIB");
 
         } catch (ParseException e) {
