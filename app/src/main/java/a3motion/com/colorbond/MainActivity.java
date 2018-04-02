@@ -258,13 +258,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment f = fm.findFragmentById(R.id.container_body); // get the fragment that is currently loaded in placeholder
+        Object tag = f.getTag();
 
         int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
 
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            Log.d("ada disini ya", "drower close");
-        } else if (backStackCount >= 2) {
+        }else if (backStackCount >= 2) {
             fragmentManager.popBackStack();
             FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(
                     1);
@@ -277,9 +279,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MainActivity.title_page.setVisibility(View.GONE);
             MainActivity.mToolbar.setVisibility(View.VISIBLE);
 
-
-
-        } else {
+        } else if (tag.equals("home")||(tag.equals("inspirasi"))){
+            getFragmentManager().popBackStack();
+        }else {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage("Do you want to close this application?")

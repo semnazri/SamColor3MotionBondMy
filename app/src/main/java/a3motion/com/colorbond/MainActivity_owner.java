@@ -19,7 +19,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -267,14 +266,14 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
 
     @Override
     public void onBackPressed() {
-//        FragmentManager fm = getSupportFragmentManager();
-//        Fragment f = fm.findFragmentById(R.id.container_body); // get the fragment that is currently loaded in placeholder
-//        Object tag = f.getTag();
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment f = fm.findFragmentById(R.id.container_body); // get the fragment that is currently loaded in placeholder
+        Object tag = f.getTag();
+
         int backStackCount = getSupportFragmentManager().getBackStackEntryCount();
 
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-            Log.d("ada disini ya", "drower close");
         } else if (backStackCount >= 2) {
             fragmentManager.popBackStack();
             FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(
@@ -284,10 +283,12 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
             getSupportFragmentManager().executePendingTransactions();
 
             navigationView.getMenu().getItem(0).setChecked(true);
-            MainActivity_owner.mToolbar.setVisibility(View.VISIBLE);
             MainActivity_owner.img_title.setVisibility(View.VISIBLE);
             MainActivity_owner.title_page.setVisibility(View.GONE);
+            MainActivity_owner.mToolbar.setVisibility(View.VISIBLE);
 
+        } else if (tag.equals("home") || (tag.equals("inspirasi"))) {
+            getFragmentManager().popBackStack();
         } else {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)

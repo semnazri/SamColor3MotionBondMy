@@ -3,7 +3,10 @@ package a3motion.com.colorbond.ViewHolder;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.security.PublicKey;
 
 import a3motion.com.colorbond.R;
 
@@ -16,18 +19,16 @@ import a3motion.com.colorbond.R;
  */
 
 public class InspirasiViewHolder extends RecyclerView.ViewHolder{
-    public ImageView image_inspiarsi, image_inspirasi_creator;
-    public TextView txt_inspirasi_title, txt_inspirasi_creator_name, txt_inspirasi_creator_job;
+    public ImageView image_inspiarsi;
+    public TextView txt_inspirasi_title;
+    public RelativeLayout relativeLayout;
 
 
     public InspirasiViewHolder(View itemView) {
         super(itemView);
 
         image_inspiarsi = itemView.findViewById(R.id.img_inspirasi);
-        image_inspirasi_creator = itemView.findViewById(R.id.img_inspirasi_creator);
-        txt_inspirasi_title = itemView.findViewById(R.id.inspirasi_title);
-        txt_inspirasi_creator_name = itemView.findViewById(R.id.inspirasi_creator_name);
-        txt_inspirasi_creator_job = itemView.findViewById(R.id.inspirasi_creator_job);
-
+        txt_inspirasi_title = itemView.findViewById(R.id.txt_title_inspirasi);
+        relativeLayout = itemView.findViewById(R.id.parent);
     }
 }

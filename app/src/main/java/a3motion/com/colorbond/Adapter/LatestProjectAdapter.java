@@ -48,6 +48,6 @@ public class LatestProjectAdapter extends RecyclerView.Adapter<LatestProjectView
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return 3;
     }
 }

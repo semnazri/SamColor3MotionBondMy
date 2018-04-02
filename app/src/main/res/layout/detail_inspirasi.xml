@@ -23,6 +23,7 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
+                android:id="@+id/img_thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="305dp"
                 android:scaleType="fitXY"
@@ -32,7 +33,7 @@
 
             <include
                 android:id="@+id/toolbar"
-                layout="@layout/toolbar_solid" />
+                layout="@layout/toolbar_solid_back" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -59,12 +60,14 @@
                 android:paddingRight="20dp">
 
                 <TextView
+                    android:id="@+id/txt_inspirasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Inspiration"
                     android:textColor="@color/red" />
 
                 <TextView
+                    android:id="@+id/txt_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="10 Minimalism Style
@@ -79,6 +82,7 @@ Arsitektur Populer"
                     android:background="@color/black" />
 
                 <TextView
+                    android:id="@+id/author"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -86,6 +90,7 @@ Arsitektur Populer"
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/txt_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -93,6 +98,7 @@ Arsitektur Populer"
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/txt_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -100,6 +106,7 @@ Arsitektur Populer"
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/img_content"
                 android:layout_width="match_parent"
                 android:layout_height="255dp"
                 android:paddingBottom="20dp"
