@@ -13,6 +13,10 @@ public interface RewardInterface {
     Call<ResponseBody> getSlider(@Header("Authorization") String Authorization, @Field("type") String merchat_type);
 
     @FormUrlEncoded
+    @POST("reward/redeem")
+    Call<ResponseBody> doReedem(@Header("Authorization") String Authorization, @Field("id_master_reward") String id_master_reward,@Field("status") String status);
+
+    @FormUrlEncoded
     @POST("reward/get_reward")
     Call<ResponseBody> getList(@Header("Authorization") String Authorization, @Field("type_user") String type_user,@Field("type_reward")String type_reward);
 }

@@ -47,7 +47,7 @@ public class VoucherAdapter extends RecyclerView.Adapter<VoucherViewHolder> {
         holder.img_pocer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.show_dialog(mValues.get(position).getImage(), mValues.get(position).getPoin(), mValues.get(position).getDescription());
+                listener.show_dialog(mValues.get(position).getImage(), mValues.get(position).getPoin(), mValues.get(position).getDescription(),mValues.get(position).getIdMasterReward());
 
             }
         });

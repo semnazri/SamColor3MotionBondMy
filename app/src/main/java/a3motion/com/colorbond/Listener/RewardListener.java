@@ -10,5 +10,5 @@ package a3motion.com.colorbond.Listener;
 
 public interface RewardListener {
 
-    void show_dialog(String image, String point, String nama_reward);
+    void show_dialog(String image, String point, String nama_reward,String id_master_reward);
 }

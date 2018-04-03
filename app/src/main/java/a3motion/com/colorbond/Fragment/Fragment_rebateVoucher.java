@@ -31,11 +31,15 @@ import a3motion.com.colorbond.Listener.RewardListener;
 import a3motion.com.colorbond.Model.Voucher;
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.POJO.RewardListResponse;
+import a3motion.com.colorbond.POJO.SubmitResponse;
 import a3motion.com.colorbond.Presenter.RewardListPresenter;
 import a3motion.com.colorbond.Presenter.RewardListPresenterImp;
+import a3motion.com.colorbond.Presenter.RewardReedemPresenter;
+import a3motion.com.colorbond.Presenter.RewardReedemPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.View.RewardListVIew;
+import a3motion.com.colorbond.View.RewardReedemView;
 
 /**
  * Created by Semmy
@@ -45,7 +49,7 @@ import a3motion.com.colorbond.View.RewardListVIew;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, RewardListener {
+public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, RewardListener, RewardReedemView {
 
     private View view;
     //    private List<Voucher> vouchers;
@@ -53,12 +57,14 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
     private LinearLayoutManager lm;
     private VoucherAdapter adapter;
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid, merchant_type, tokenz, reward_id;
+    String userid, merchant_type, tokenz, reward_id, point_user;
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
     private MaterialDialog mDialog, dialog_muter;
     private RewardListPresenter rewardListPresenter;
+    private RewardReedemPresenter rewardReedemPresenter;
     private SharedPreferences prefsprivate;
+    private Dialog dialog_followers;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,12 +80,13 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
 
         reward_id = getArguments().getString("reward_id");
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
-
+        point_user = prefsprivate.getString(BlueScoopPreferences.poin, "null");
         Log.d("ahhaha", reward_id);
 
 //        vouchers = getVouchers();
         rv = view.findViewById(R.id.rv_vocer);
         rewardListPresenter = new RewardListPresenterImp(this);
+        rewardReedemPresenter = new RewardReedemPresenterImp(this);
 
         checkConnections();
 
@@ -125,6 +132,12 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
     }
 
     @Override
+    public void ResultList(String response_message, SubmitResponse submitResponse) {
+        getSUcessREquest("Your request is being processed");
+
+    }
+
+    @Override
     public void setelseEror(String response_message) {
         getdialogerror(response_message);
     }
@@ -135,6 +148,22 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
                 .title(R.string.app_name)
                 .content(R.string.please_wait)
                 .progress(true, 0)
+                .show();
+    }
+
+    private void getSUcessREquest(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                        dialog_followers.dismiss();
+                    }
+                })
                 .show();
     }
 
@@ -155,9 +184,9 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
     }
 
     @Override
-    public void show_dialog(String image, String point, String nama_reward) {
+    public void show_dialog(String image, final String point, String nama_reward, final String id_master_reward) {
 
-        final Dialog dialog_followers = new Dialog(getActivity());
+        dialog_followers = new Dialog(getActivity());
         dialog_followers.setContentView(R.layout.layout_request);
         dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
@@ -172,7 +201,13 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
         btn_reedem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Action Reedem", Toast.LENGTH_SHORT).show();
+
+                if (Integer.parseInt(point_user) < Integer.parseInt(point)) {
+                    getdialogerror("insufficient points to proceed");
+                } else {
+                    rewardReedemPresenter.doOrderReward(tokenz,id_master_reward,userid);
+                }
+
             }
         });
 
