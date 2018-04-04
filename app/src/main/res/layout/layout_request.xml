@@ -43,7 +43,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/btn_rounded_reedem"
-                android:text="Reedem"
+                android:text="Redeem"
                 android:textColor="@color/white" />
 
             <Button

@@ -56,7 +56,7 @@ public class FragmentHome extends Fragment implements HomeView {
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     String userid, nama, points, tokenz;
     private View view;
-    private List<LatestProjectfront> latestProjects;
+//    private List<LatestProjectfront> latestProjects;
     private List<Followers> followers;
     private RecyclerView rv;
     private TextView txt_name, txt_point, txt_title_event1, txt_date_event1;

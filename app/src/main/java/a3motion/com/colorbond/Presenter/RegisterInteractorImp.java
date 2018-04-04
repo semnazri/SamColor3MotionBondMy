@@ -120,7 +120,8 @@ public class RegisterInteractorImp implements RegisterInteractor {
                         switch (response.code()) {
 
                             //TODO ini tolong contextnya di benerin
-
+                            case 400:
+                                listener.onelseError(response.message());
                             case 401:
                                 listener.onelseError(response.message() + " 401");
                                 break;
