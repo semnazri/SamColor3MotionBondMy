@@ -20,7 +20,7 @@ public class HomeResponse {
     private String response;
     @SerializedName("Event")
     @Expose
-    private List<EventHome> event = null;
+    private List<Event> event = null;
     @SerializedName("Profile")
     @Expose
     private HomeProfile profile;
@@ -39,11 +39,11 @@ public class HomeResponse {
         this.response = response;
     }
 
-    public List<EventHome> getEvent() {
+    public List<Event> getEvent() {
         return event;
     }
 
-    public void setEvent(List<EventHome> event) {
+    public void setEvent(List<Event> event) {
         this.event = event;
     }
 

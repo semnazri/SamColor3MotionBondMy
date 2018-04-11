@@ -30,7 +30,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/benefit"
-            android:title="MERCHANT BENEFIT" />
+            android:title="MERCHANT PROMO" />
         </group>
     <group
         android:id="@+id/lima"

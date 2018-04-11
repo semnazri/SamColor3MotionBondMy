@@ -56,6 +56,7 @@ public class LoginActivity extends Activity implements LoginView {
         btn_login = findViewById(R.id.btn_login);
         edt_email = findViewById(R.id.edt_email);
         edt_pass = findViewById(R.id.edt_password);
+        txt_forgotpass = findViewById(R.id.txt_forgot);
         ll_register = findViewById(R.id.ll_register);
         imageView = findViewById(R.id.imageView);
         cd = new ConnectionDetector(this);
@@ -89,6 +90,15 @@ public class LoginActivity extends Activity implements LoginView {
                 i.putExtra("img",img );
                 startActivity(i);
 
+            }
+        });
+
+        txt_forgotpass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),ForgotActivity.class);
+                i.putExtra("img",img);
+                startActivity(i);
             }
         });
 
@@ -127,7 +137,7 @@ public class LoginActivity extends Activity implements LoginView {
     }
 
     @Override
-    public void ResultLogin(String response_message, String type, String token, String name, String email, String phone, String companny, String title, String point) {
+    public void ResultLogin(String response_message, String type, String token, String firstname,String lastname,String username, String email, String phone, String companny, String title, String point) {
         dialog_muter.dismiss();
 
         prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
@@ -135,7 +145,10 @@ public class LoginActivity extends Activity implements LoginView {
 
         preEditor.putString(BlueScoopPreferences.token, token);
         preEditor.putString(BlueScoopPreferences.mem_type, type);
-        preEditor.putString(BlueScoopPreferences.nama, name);
+        preEditor.putString(BlueScoopPreferences.nama, username);
+        preEditor.putString(BlueScoopPreferences.firstname, firstname);
+        preEditor.putString(BlueScoopPreferences.lastname, lastname);
+
         preEditor.putString(BlueScoopPreferences.email, email);
         preEditor.putString(BlueScoopPreferences.Phone, phone);
         preEditor.putString(BlueScoopPreferences.company, companny);

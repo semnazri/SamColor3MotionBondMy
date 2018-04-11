@@ -15,7 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import a3motion.com.colorbond.Adapter.ExpandableNewAdapter;
 import a3motion.com.colorbond.Adapter.VariantAdapter;
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
@@ -34,13 +37,16 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 public class Fragment_VariantColor extends Fragment {
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     String userid;
+    List<String> listDataHeader;
+    HashMap<String, List<String>> listDataChild;
     private View view;
     private SharedPreferences prefsprivate;
     private ImageView img_nav;
     private TextView txt_title;
     private ExpandableListView elv;
-//    private ArrayList<VariantColor> variantColorArrayList;
+    //    private ArrayList<VariantColor> variantColorArrayList;
     private VariantAdapter adapter;
+    private ExpandableNewAdapter newAdapter;
 
     @Nullable
     @Override
@@ -88,12 +94,55 @@ public class Fragment_VariantColor extends Fragment {
         });
         elv = view.findViewById(R.id.eListview);
 //        variantColorArrayList = getData();
-        final ArrayList<VariantColor> variantColorArrayList = getData();
+//        final ArrayList<VariantColor> variantColorArrayList = getData();
+//
+//        adapter = new VariantAdapter(getActivity(), variantColorArrayList);
+//        elv.setAdapter(adapter);
 
-        adapter = new VariantAdapter(getActivity(), variantColorArrayList);
-        elv.setAdapter(adapter);
+        getnewData();
+
+        newAdapter = new ExpandableNewAdapter(getActivity(), listDataHeader, listDataChild);
+        elv.setAdapter(newAdapter);
+
         return view;
     }
+
+    private void getnewData() {
+        listDataHeader = new ArrayList<String>();
+        listDataChild = new HashMap<String, List<String>>();
+        // Adding child data
+        listDataHeader.add("xpd");
+        listDataHeader.add("xrw");
+        listDataHeader.add("ultra");
+        listDataHeader.add("xal");
+        listDataHeader.add("m");
+
+        // Adding child data
+        List<String> xpd = new ArrayList<String>();
+        xpd.add(getResources().getString(R.string.xpd));
+
+
+        List<String> xrw = new ArrayList<String>();
+        xrw.add(getResources().getString(R.string.xrw));
+
+
+        List<String> ultra = new ArrayList<String>();
+        ultra.add(getResources().getString(R.string.ultra));
+
+        List<String> xal = new ArrayList<String>();
+        xal.add(getResources().getString(R.string.xal));
+
+        List<String> m = new ArrayList<String>();
+        m.add(getResources().getString(R.string.m));
+
+
+        listDataChild.put(listDataHeader.get(0), xpd); // Header, Child data
+        listDataChild.put(listDataHeader.get(1), xrw);
+        listDataChild.put(listDataHeader.get(2), ultra);
+        listDataChild.put(listDataHeader.get(3), xal);
+        listDataChild.put(listDataHeader.get(4), m);
+    }
+
 
     private ArrayList<VariantColor> getData() {
         VariantColor vc1 = new VariantColor("xpd");

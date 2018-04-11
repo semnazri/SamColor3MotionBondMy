@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,17 +38,18 @@ import a3motion.com.colorbond.View.RegisterView;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterView {
 
-    private Spinner spinner_profesi;
+    private Spinner spinner_profesi,spinner_title;
     private List<Profesi> profsi;
     private SpinnerPorfesiAdapter adapter;
     private TextView txt_title;
     private ImageView imageView;
-    private EditText edt_name, edt_profesion, edt_title, edt_email, edt_password, edt_rePass;
+    private EditText edt_name,edt_firstname, edt_profesion, edt_email, edt_password, edt_rePass,edt_dob;
     private Button btn_signUp;
     private MaterialDialog mDialog, dialog_muter;
     private Boolean isInternetPresent = false;
     private ConnectionDetector cd;
     private RegisterPresenter registerPresenter;
+    private String titles;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,11 +61,13 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
         imageView = findViewById(R.id.img_view);
         edt_name = findViewById(R.id.edt_name_register);
+        edt_firstname = findViewById(R.id.edt_firstname_register);
         edt_profesion = findViewById(R.id.edt_profesion_register);
-        edt_title = findViewById(R.id.edt_title_register);
+        spinner_title = findViewById(R.id.spinner_title);
         edt_email = findViewById(R.id.edt_email_register);
         edt_password = findViewById(R.id.edt_phone_register);
         edt_rePass = findViewById(R.id.edt_retype_register);
+        edt_dob = findViewById(R.id.edt_dob);
         btn_signUp = findViewById(R.id.btn_signup);
         cd = new ConnectionDetector(this);
         registerPresenter = new RegisterPresenterImp(this);
@@ -77,17 +81,34 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         }
 
 
+
+
         btn_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkConnections(edt_name.getText().toString(), edt_profesion.getText().toString(), edt_title.getText().toString(), edt_email.getText().toString(),
+                checkConnections(edt_name.getText().toString(), edt_profesion.getText().toString(),edt_firstname.getText().toString(),edt_dob.getText().toString(), titles, edt_email.getText().toString(),
                         edt_password.getText().toString(), edt_rePass.getText().toString(), img);
             }
         });
 
-//        profsi = getTipe();
-//        adapter = new SpinnerPorfesiAdapter(this, profsi);
-//        spinner_profesi.setAdapter(adapter);
+        profsi = getTipe();
+        adapter = new SpinnerPorfesiAdapter(this, profsi);
+        spinner_title.setAdapter(adapter);
+
+        spinner_title.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item_id = String.valueOf(((TextView) view.findViewById(R.id.province_id__)).getText().toString());
+                String item_name = ((TextView) view.findViewById(R.id.province_name__)).getText().toString();
+//                size_cat_txt = item_id;
+                titles = item_name;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override
@@ -96,12 +117,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         super.onDestroy();
     }
 
-    private void checkConnections(String name, String profession, String title, String email, String password, String repassword, String img) {
+    private void checkConnections(String name, String profession,String firstname, String title,String dob, String email, String password, String repassword, String img) {
         isInternetPresent = cd.isConnectingToInternet();
         if (isInternetPresent) {
 
-            registerPresenter.validateCredentials(email, "-", "-", name, "-", profession, "-", "-", "-",
-                    "-", img, "0", ".jpg", password,"", repassword);
+            registerPresenter.validateCredentials(email, firstname, "-", "", "-", profession, "-", dob, "-",
+                    "-", img, "0", ".jpg", password,titles, repassword);
 
         } else if (isInternetPresent.equals(false)) {
             getdialogerror("Tidak ada koneksi Internet");
@@ -136,10 +157,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     private List<Profesi> getTipe() {
 
         List<Profesi> tp = new ArrayList<>();
-        tp.add(new Profesi("Pilih", "0"));
-        tp.add(new Profesi("Architect", "1"));
-        tp.add(new Profesi("Structural Consultant", "2"));
-        tp.add(new Profesi("Quantity Surveyor", "3"));
+        tp.add(new Profesi("MR.", "0"));
+        tp.add(new Profesi("MRS", "1"));
+
 
         return tp;
     }
@@ -246,11 +266,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     @Override
     public void ResultRegister(String response_message, RegisterResponse registerResponse) {
         dialog_muter.dismiss();
-        getdialogerror(registerResponse.getMessage());
+
+        getdialogerror("Thank you for signing up. You will receive notification email once your data has been approved.");
     }
 
     @Override
     public void setelseEror(String response_message) {
-        getdialogerror(response_message);
+        getdialogerror("Email Already Exists!");
     }
 }

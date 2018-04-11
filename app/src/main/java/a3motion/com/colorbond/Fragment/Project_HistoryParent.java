@@ -9,6 +9,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +64,27 @@ public class Project_HistoryParent extends Fragment {
             MainActivity_owner.title_page.setVisibility(View.VISIBLE);
 
         }
+
+        img_nav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (userid.equals("1")) {
+                    if (MainActivity.mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                        MainActivity.mDrawerLayout.closeDrawer(GravityCompat.START);
+                    } else {
+                        MainActivity.mDrawerLayout.openDrawer(GravityCompat.START);
+                    }
+
+                } else {
+                    if (MainActivity_owner.mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                        MainActivity_owner.mDrawerLayout.closeDrawer(GravityCompat.START);
+                    } else {
+                        MainActivity_owner.mDrawerLayout.openDrawer(GravityCompat.START);
+                    }
+
+                }
+            }
+        });
 
         viewPager.setAdapter(new Adapter(getChildFragmentManager()));
         tabLayout.post(new Runnable() {

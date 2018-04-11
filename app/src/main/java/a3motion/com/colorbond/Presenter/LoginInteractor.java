@@ -23,7 +23,7 @@ public interface LoginInteractor {
 
         void onValid();
 
-        void onSuccess(String response_message, String type, String token, String name, String email, String phone, String companny, String title, String point);
+        void onSuccess(String response_message, String type, String token, String firstname,String Lastname, String username, String email, String phone, String companny, String title, String point);
 
         void onelseError(String response_message);
 

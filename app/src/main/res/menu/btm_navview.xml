@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_reward"
         android:enabled="true"
         android:icon="@drawable/button_03"
-        app:showAsAction="ifRoom"
-        tools:ignore="MenuTitle"/>
+        android:title="Reward"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/history_project"
         android:enabled="true"
         android:icon="@drawable/ic_history"
-        app:showAsAction="ifRoom"
-        tools:ignore="MenuTitle"/>
+        android:title="History"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_notification"
         android:enabled="true"
         android:icon="@drawable/button_05"
-        app:showAsAction="ifRoom"
-        tools:ignore="MenuTitle"/>
+        android:title="Notification"
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/inspiration"
         android:enabled="true"
         android:icon="@drawable/button_06"
-        app:showAsAction="ifRoom"
-        tools:ignore="MenuTitle"/>
+        android:title="Ideas"
+        app:showAsAction="ifRoom" />
 
 </menu>

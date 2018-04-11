@@ -20,7 +20,7 @@ public interface LoginView {
 
     void setvalid();
 
-    void ResultLogin(String response_message, String type, String token, String name, String email, String phone, String companny, String title, String point);
+    void ResultLogin(String response_message, String type, String token, String firstname,String lastname,String username, String email, String phone, String companny, String title, String point);
 
     void setelseEror(String response_message);
 }

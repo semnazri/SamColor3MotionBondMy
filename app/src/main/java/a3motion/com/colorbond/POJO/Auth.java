@@ -134,5 +134,4 @@ public class Auth {
     public void setType(String type) {
         this.type = type;
     }
-
 }

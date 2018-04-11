@@ -38,6 +38,22 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:layout_margin="20dp" />
+
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="130dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/colorbond_black" />
+
+                <TextView
+                    android:id="@+id/txt_about2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="5dp"/>
             </LinearLayout>
 
 

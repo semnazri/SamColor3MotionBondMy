@@ -292,6 +292,7 @@
                             android:src="@drawable/button_02" />
 
                         <TextView
+                            android:id="@+id/txt_point_"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -311,6 +312,7 @@
                     </LinearLayout>
 
                     <Button
+                        android:visibility="gone"
                         android:id="@+id/btn_detail_info"
                         android:layout_width="100dp"
                         android:layout_height="30dp"

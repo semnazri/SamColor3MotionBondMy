@@ -38,14 +38,41 @@
     <string name="password_miss_match">Password is not match!</string>
     <string name="xpd">COLORBOND® XPD has been developed by Bluescope to provide premium durability in excellent weather ability &amp; high form ability for exterior application.</string>
     <string name="xrw">With our Thermatech® solar refl¬ectance technology, our dirt-resisting Clean Technology, and durable paint and base substrate, we create a future that is comfortable for people and the landscape.</string>
-    <string name="ultra">COLORBOND® Ultra prepainted steel specifically design by NS BlueScope, combine long term durability and exceptional corrosion resistance.</string>
+    <string name="ultra">COLORBOND® Ultra prepainted steel speci­fically design by NS BlueScope, combines long term durability and exceptional corrosion resistance</string>
     <string name="xal">COLORBOND® XAL is a prepainted aluminium that has long lasting, durable good workability, lightweight alternative to other cladding materials.</string>
-    <string name="m">The secreat of Colorbond M lies in magnesium. Introduce into the alumunium-zinc alloy coating, it activates the allumunium to create a self-sealing effect that greatly improves galvanic protection and corrosion resistance.</string>
+    <string name="m">The secreat of Colorbond M lies in magnesium. Introduce into the alumunium-zinc alloy coating, it activates the allumunium to create a self-sealing effect that greatly improves galvanic protection and corrosion</string>
+    <string name="faq">
+        Q : How to upload document(s)?
+        A : Click (icon), then fill the fields and documents required.
+
+        Q : If I have uploaded document(s), will I receive notification whether said document(s) has passed all requirements needed?
+        A : Yes
+
+        Q : How is the point counting mechanism?
+        A : Please open “Bond…Program” menu to learn more details about point counting mechanism.
+
+        Q : How to redeem point(s) I have earned?
+        A : Please enter the Reward menu and choose your prize in accordance to your current point, you will later receive notification wheteher the reward is available and you redeem has been accepted.
+
+        Q : Can I log in using the same email and password (account) on BondPartner menu and BondContractor menu?
+        A : No, one account can only be used for one menu. Please contact Colorbond for more information.
+
+        Q : How do I know the status of my submitted project(s)?
+        A : In your home page you will know the status of submitted project(s), and you will also receive notification email if your submitted document(s) is approved.</string>
+    <string name="cons_date">Construction
+        start date</string>
+    <string name="note_suplier">Upload delivery note from supplier</string>
+    <string name="project_owner">Project Owner</string>
+    <string name="your_project_owner">Building / Project owner\'s name / developer name</string>
+    <string name="project_contractor">Contractor</string>
+    <string name="your_project_contractor">Company Name</string>
+    <string name="project_color">Color</string>
+    <string name="your_project_color">Product\'s color in your project</string>
 
     <string-array name="bondclub_reward">
-        <item>Shopping Voucher</item>
-        <item>Business Travel</item>
-        <item>Business Gathering</item>
+        <item>Shopping\nVoucher</item>
+        <item>Business\nTravel</item>
+        <item>Business\nGathering</item>
     </string-array>
 
     <string-array name="bondclub_reward_id">
@@ -75,9 +102,9 @@
     </string-array>
 
     <string-array name="bondcontractor_sales">
-        <item>Shopping Voucher</item>
-        <item>Business Travel</item>
-        <item>Business Gathering</item>
+        <item>Shopping\nVoucher</item>
+        <item>Business\nTravel</item>
+        <item>Business\nGathering</item>
     </string-array>
 
     <string-array name="bondcontractor_sales_id">

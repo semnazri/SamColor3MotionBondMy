@@ -78,7 +78,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
     String userid, point, user_from;
     private View view;
     private SharedPreferences prefsprivate;
-    private TextView txt_title, txt_m2_sup, txt_point, txt_delive_note, txt_suporting_note, text_upload;
+    private TextView txt_title, txt_m2_sup, txt_point, txt_delive_note, txt_suporting_note, text_upload,txt_size,txt_supporting,txt_contractor;
     private ImageView img_tolbar;
     private List<Building_cats> building_cats;
     private List<Material> materials;
@@ -89,7 +89,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
     private MaterialAdapter adapterM;
     private SizeMaterialAdapter adapterS;
     private SizeCategotyAdapter adapterSCat;
-    private EditText submit_project_name, submit_date, submit_location, submit_size;
+    private EditText submit_project_name, submit_date, submit_location, submit_size,submit_project_owner,submit_project_contractor,submit_project_color;
     private Button btn_submit;
     private Uri file;
     private Calendar myCalendar = Calendar.getInstance();
@@ -104,7 +104,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
 
     private String building_cat_txt, size_cat_txt, deliv_img_txt, sup_img_txt, material_1_txt, material_2_txt;
 
-    private LinearLayout ll_build_cat, ll_size_cat;
+    private LinearLayout ll_build_cat, ll_size_cat,ll_project_owner,ll_project_contractor;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -126,11 +126,17 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         txt_m2_sup = view.findViewById(R.id.txt_m2_sup);
         txt_point = view.findViewById(R.id.point);
         text_upload = view.findViewById(R.id.text_upload);
+        txt_size = view.findViewById(R.id.txt_size);
+        txt_supporting = view.findViewById(R.id.txt_supporting);
+        txt_contractor = view.findViewById(R.id.txt_contractor);
 
         submit_project_name = view.findViewById(R.id.submit_project_name);
         submit_date = view.findViewById(R.id.submit_date);
         submit_location = view.findViewById(R.id.submit_location);
         submit_size = view.findViewById(R.id.submit_size);
+        submit_project_owner = view.findViewById(R.id.submit_project_owner);
+        submit_project_contractor = view.findViewById(R.id.submit_project_contractor);
+        submit_project_color = view.findViewById(R.id.submit_project_color);
         spinner_building_catgory = view.findViewById(R.id.spinner_building_catgory);
         spinner_material_1 = view.findViewById(R.id.spinner_material_1);
         spinner_material_2 = view.findViewById(R.id.spinner_material_2);
@@ -142,6 +148,8 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         sup_img = view.findViewById(R.id.sup_img);
         ll_build_cat = view.findViewById(R.id.ll_build_cat);
         ll_size_cat = view.findViewById(R.id.ll_size_cat);
+        ll_project_owner = view.findViewById(R.id.ll_project_owner);
+        ll_project_contractor = view.findViewById(R.id.ll_project_contractor);
 
         submitPresenter = new SubmitPresenterImp(this);
         txt_title.setText("SUBMIT PROJECT");
@@ -150,10 +158,13 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         Size_material = getSize();
         Size_category = getSizeCat();
 
+        Log.d("asuk",user_from);
+
 
         if (user_from.equals("0")) {
             ll_build_cat.setVisibility(View.GONE);
             ll_size_cat.setVisibility(View.VISIBLE);
+            txt_supporting.setText("Upload Specification & Additional document");
             txt_m2_sup.setText(Html.fromHtml(getResources().getString(R.string.sup)));
             text_upload.setText(getResources().getString(R.string.cpy_deliv_note));
 
@@ -163,13 +174,15 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
             txt_m2_sup.setText("TON");
             building_cat_txt = "0";
             size_cat_txt = "0";
+            txt_size.setText("Volume");
             text_upload.setText(getResources().getString(R.string.upload_po));
-        } else if (equals("2")) {
+        } else if (user_from.equals("2")) {
             ll_build_cat.setVisibility(View.VISIBLE);
             ll_size_cat.setVisibility(View.GONE);
             txt_m2_sup.setText(Html.fromHtml(getResources().getString(R.string.sup)));
-            text_upload.setText(getResources().getString(R.string.cpy_deliv_note));
+            text_upload.setText(getResources().getString(R.string.note_suplier));
             size_cat_txt = "0";
+            txt_contractor.setText("Colorbond Supplier");
         }
 
 
@@ -339,6 +352,8 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
                 String tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
                 String mem_type = prefsprivate.getString(BlueScoopPreferences.merchant_type, "null");
 
+                sup_img_txt = txt_suporting_note.getText().toString();
+
                 if (sup_img_txt.equals("")) {
                     sup_img_txt = "0";
                 }
@@ -507,7 +522,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         tp.add(new Material("XPD", "0"));
         tp.add(new Material("XRW", "1"));
         tp.add(new Material("XAL", "2"));
-        tp.add(new Material("Ultimate", "3"));
+        tp.add(new Material("Ultra", "3"));
         return tp;
     }
 

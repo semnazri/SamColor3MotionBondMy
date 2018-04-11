@@ -12,9 +12,9 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class EventHome {
-    @SerializedName("id")
+    @SerializedName("id_events")
     @Expose
-    private String id;
+    private String idEvents;
     @SerializedName("name")
     @Expose
     private String name;
@@ -30,25 +30,22 @@ public class EventHome {
     @SerializedName("cp")
     @Expose
     private String cp;
-    @SerializedName("attendee")
+    @SerializedName("followers")
     @Expose
-    private String attendee;
-    @SerializedName("joinevent")
-    @Expose
-    private String joinevent;
-    @SerializedName("title")
-    @Expose
-    private String title;
+    private String followers;
     @SerializedName("fileimg")
     @Expose
     private String fileimg;
+    @SerializedName("type")
+    @Expose
+    private String type;
 
-    public String getId() {
-        return id;
+    public String getIdEvents() {
+        return idEvents;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setIdEvents(String idEvents) {
+        this.idEvents = idEvents;
     }
 
     public String getName() {
@@ -91,28 +88,12 @@ public class EventHome {
         this.cp = cp;
     }
 
-    public String getAttendee() {
-        return attendee;
+    public String getFollowers() {
+        return followers;
     }
 
-    public void setAttendee(String attendee) {
-        this.attendee = attendee;
-    }
-
-    public String getJoinevent() {
-        return joinevent;
-    }
-
-    public void setJoinevent(String joinevent) {
-        this.joinevent = joinevent;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setFollowers(String followers) {
+        this.followers = followers;
     }
 
     public String getFileimg() {
@@ -122,4 +103,13 @@ public class EventHome {
     public void setFileimg(String fileimg) {
         this.fileimg = fileimg;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 }

@@ -2,9 +2,11 @@ package a3motion.com.colorbond.Fragment;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -143,9 +145,20 @@ public class FragmentHome extends Fragment implements HomeView {
                 fragmentTransaction.commit();
             }
         });
+        img_3rd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startNewActivity(getActivity(), "com.waw.wawcard");
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.add(R.id.container_body, new Point_Parent(), "home").addToBackStack("pembayaran");
+//                fragmentTransaction.commit();
+            }
+        });
         ll_project_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
 
@@ -170,6 +183,17 @@ public class FragmentHome extends Fragment implements HomeView {
             }
         });
         return view;
+    }
+
+    public void startNewActivity(Context context, String packageName) {
+        Intent intent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        if (intent == null) {
+            // Bring user to the market or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("market://details?id=" + packageName));
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     private void checkConnections() {
@@ -280,17 +304,6 @@ public class FragmentHome extends Fragment implements HomeView {
 
     }
 
-    private List<LatestProjectfront> getProjects() {
-        List<LatestProjectfront> lp = new ArrayList<>();
-        lp.add(new LatestProjectfront("Project 1", getString(R.string.Lorem_Pendek)));
-        lp.add(new LatestProjectfront("Project 2", getString(R.string.Lorem_Pendek)));
-        lp.add(new LatestProjectfront("Project 3", getString(R.string.Lorem_Pendek)));
-        lp.add(new LatestProjectfront("Project 4", getString(R.string.Lorem_Pendek)));
-
-
-        return lp;
-    }
-
     private List<Followers> getFollowers() {
         List<Followers> flw = new ArrayList<>();
         flw.add(new Followers("Syafira Muthiary", "PhotoGrapger", "Freelancer"));
@@ -321,6 +334,7 @@ public class FragmentHome extends Fragment implements HomeView {
         });
 
         if (homeResponse.getLatestProject() != null){
+
             rv.setHasFixedSize(true);
             lm = new LinearLayoutManager(getActivity());
             rv.setLayoutManager(lm);

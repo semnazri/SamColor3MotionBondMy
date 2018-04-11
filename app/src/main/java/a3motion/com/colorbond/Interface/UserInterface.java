@@ -28,4 +28,8 @@ public interface UserInterface {
     @FormUrlEncoded
     @POST("forgot/change")
     Call<ResponseBody> doChange(@Header("Authorization")String Authorization, @Field("old_pass")String old_pass,@Field("new_pass")String new_pass);
+
+    @FormUrlEncoded
+    @POST("forgot/send")
+    Call<ResponseBody> doForgot(@Field("email")String email);
 }

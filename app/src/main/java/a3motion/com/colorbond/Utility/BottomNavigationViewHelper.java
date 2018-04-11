@@ -32,8 +32,8 @@ public class BottomNavigationViewHelper {
                 // set once again checked value, so view will be updated
                 //noinspection RestrictedApi
                 item.setChecked(false);
-                item.setTitle(null);
-                item.setPadding(0,25,0,0);
+//                item.setTitle(null);
+                item.setPadding(0,0,0,0);
             }
         } catch (NoSuchFieldException e) {
             Log.e("BNVHelper", "Unable to get shift mode field", e);

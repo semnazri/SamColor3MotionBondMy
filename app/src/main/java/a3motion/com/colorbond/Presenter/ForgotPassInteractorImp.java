@@ -8,9 +8,9 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import a3motion.com.colorbond.Interface.RegisterInterface;
+import a3motion.com.colorbond.Interface.UserInterface;
 import a3motion.com.colorbond.Network.APICONSTANT;
-import a3motion.com.colorbond.POJO.RegisterResponse;
+import a3motion.com.colorbond.POJO.ChangePassResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -22,62 +22,32 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Semmy
- * mr.shanky08@gmail.com on 09/03/18.
+ * mr.shanky08@gmail.com on 15/03/18.
  *
  * @copyright 2016
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class RegisterInteractorImp implements RegisterInteractor {
+public class ForgotPassInteractorImp implements ForgotPassInteractor {
     String response_message;
 
+
     @Override
-    public void doRegister(String email, String fristname, String lastname, String Username, String address, String proffesion, String phone, String DOB, String Gender, String company, String Type, String Typeuser, String image, String password, String title, String repass, final OnSuccessgetRegisterListener listener) {
+    public void doChangePassword(String email, final onSuccessForgotPassListener listener) {
 
         boolean error = false;
 
         if (TextUtils.isEmpty(email)) {
             listener.onEmailError();
-            error = true;
-        } else if (!email.contains("@")) {
-            listener.onEmailInValid();
-            error = true;
-
         }
 
-        if (TextUtils.isEmpty(Username)) {
-            listener.OnUsernameError();
-            error = true;
+        if (!email.contains("@")) {
+            listener.onEmailinvalid();
         }
 
-        if (TextUtils.isEmpty(proffesion)) {
-            listener.onProffesionError();
-            error = true;
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            listener.onPasswordError();
-            error = true;
-
-        } else if (password.length() < 6) {
-            listener.onPasswordInValid();
-            error = true;
-
-        }
-
-        if (TextUtils.isEmpty(repass)) {
-            listener.onRePassError();
-            error = true;
-
-        }
-
-        if (!repass.equals(password)) {
-            listener.onRePassInvalid();
-            error = true;
-
-        }
         if (!error) {
             listener.onValid();
+
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder()
@@ -91,16 +61,16 @@ public class RegisterInteractorImp implements RegisterInteractor {
                     .create();
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(APICONSTANT.API_Parent)
+                    .baseUrl(APICONSTANT.API_Parent_forgot)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build();
 
 
-            RegisterInterface service = retrofit.create(RegisterInterface.class);
+            UserInterface service = retrofit.create(UserInterface.class);
 
 
-            final Call<ResponseBody> call = service.doRegisterUser(fristname, lastname, Username, address, email, password, phone, DOB, Gender, company, Type, Typeuser, image);
+            final Call<ResponseBody> call = service.doForgot(email);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -108,8 +78,8 @@ public class RegisterInteractorImp implements RegisterInteractor {
                     if (response.isSuccessful()) {
                         Gson gson = new Gson();
                         try {
-                            RegisterResponse registerResponse = gson.fromJson(response.body().string(), RegisterResponse.class);
-                            listener.onSuccess(response_message, registerResponse);
+                            ChangePassResponse changePassResponse = gson.fromJson(response.body().string(), ChangePassResponse.class);
+                            listener.onSuccess(response_message, changePassResponse);
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -120,19 +90,18 @@ public class RegisterInteractorImp implements RegisterInteractor {
                         switch (response.code()) {
 
                             //TODO ini tolong contextnya di benerin
-                            case 400:
-                                listener.onelseError(response.message()+" 400");
+
                             case 401:
-                                listener.onelseError(response.message() + " 401");
+                                listener.onElseError(response.message() + " 401");
                                 break;
                             case 404:
-                                listener.onelseError(response.message() + " Cannot find the right path! Response code 404");
+                                listener.onElseError(response.message() + " Cannot find the right path! Response code 404");
                                 break;
                             case 500:
-                                listener.onelseError(response.message() + " Server is broken! Response code 500");
+                                listener.onElseError(response.message() + " Server is broken! Response code 500");
                                 break;
                             default:
-                                listener.onelseError(response.message()+"");
+                                listener.onElseError(response.message());
                                 break;
                         }
                     }

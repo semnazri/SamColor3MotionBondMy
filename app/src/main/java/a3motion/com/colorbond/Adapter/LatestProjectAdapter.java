@@ -41,13 +41,13 @@ public class LatestProjectAdapter extends RecyclerView.Adapter<LatestProjectView
     @Override
     public void onBindViewHolder(LatestProjectViewHolder holder, int position) {
 
-//        holder.txt_project_name.setText(mValues.get(position).getProject_name());
-        holder.txt_project_details.setText(mValues.get(position).getDetail());
+        holder.txt_project_name.setText(mValues.get(position).getProjectName());
+        holder.txt_project_details.setText(mValues.get(position).getLocation());
 
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return mValues.size();
     }
 }

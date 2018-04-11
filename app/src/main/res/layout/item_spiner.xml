@@ -8,11 +8,11 @@
     <TextView
         android:id="@+id/province_name__"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
         android:text="PROVINCE"
+        android:gravity="center"
         android:textColor="@color/black"
         android:textSize="14sp" />
 

@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical">
 
         <ImageView
@@ -45,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10sp"
+            android:visibility="gone"
             android:text="Made by PT NS BlueScope Indonesia"
             android:textColor="@color/white" />
     </LinearLayout>

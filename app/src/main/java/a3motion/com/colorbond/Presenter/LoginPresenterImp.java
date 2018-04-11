@@ -66,12 +66,11 @@ public class LoginPresenterImp implements LoginPresenter, LoginInteractor.OnLogi
     }
 
     @Override
-    public void onSuccess(String response_message, String type, String token, String name, String email, String phone, String companny, String title, String point) {
+    public void onSuccess(String response_message, String type, String token, String firstname, String Lastname, String username, String email, String phone, String companny, String title, String point) {
         if (loginView != null){
-            loginView.ResultLogin(response_message,type,token,name,email,phone,companny,title,point);
+            loginView.ResultLogin(response_message,type,token,firstname,Lastname,username,email,phone,companny,title,point);
         }
     }
-
 
     @Override
     public void onelseError(String response_message) {

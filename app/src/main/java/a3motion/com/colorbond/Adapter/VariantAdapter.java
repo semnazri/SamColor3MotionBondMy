@@ -107,29 +107,29 @@ public class VariantAdapter extends BaseExpandableListAdapter {
             TextView xt = convertView.findViewById(R.id.txt_child_elistv);
 
             String type_variant = getGroup(groupPosition).toString();
-//            if (type_variant.equals("xpd")) {
-//                xt.setText(Html.fromHtml("<strong>COLORBOND XPD</strong> " + child));
-//            } else if (type_variant.equals("xrw")) {
-//                xt.setText(Html.fromHtml(child));
-//            } else if (type_variant.equals("ultra")) {
-//                xt.setText(Html.fromHtml("<strong>COLORBOND ULTRA</strong> " + child));
-//            } else if (type_variant.equals("xal")) {
-//                xt.setText(Html.fromHtml("<strong>COLORBOND XAL</strong> " + child));
-//            } else if (type_variant.equals("m")) {
-//                xt.setText(Html.fromHtml("<strong>COLORBOND M</strong> " + child));
-//            }
-            
             if (type_variant.equals("xpd")) {
-                xt.setText(Html.fromHtml(child));
+                xt.setText(Html.fromHtml("<strong>COLORBOND XPD</strong> " + child));
             } else if (type_variant.equals("xrw")) {
                 xt.setText(Html.fromHtml(child));
             } else if (type_variant.equals("ultra")) {
-                xt.setText(Html.fromHtml(child));
+                xt.setText(Html.fromHtml("<strong>COLORBOND ULTRA</strong> " + child));
             } else if (type_variant.equals("xal")) {
-                xt.setText(Html.fromHtml(child));
+                xt.setText(Html.fromHtml("<strong>COLORBOND XAL</strong> " + child));
             } else if (type_variant.equals("m")) {
-                xt.setText(Html.fromHtml(child));
+                xt.setText(Html.fromHtml("<strong>COLORBOND M</strong> " + child));
             }
+            
+//            if (type_variant.equals("xpd")) {
+//                xt.setText(Html.fromHtml(child));
+//            } else if (type_variant.equals("xrw")) {
+//                xt.setText(Html.fromHtml(child));
+//            } else if (type_variant.equals("ultra")) {
+//                xt.setText(Html.fromHtml(child));
+//            } else if (type_variant.equals("xal")) {
+//                xt.setText(Html.fromHtml(child));
+//            } else if (type_variant.equals("m")) {
+//                xt.setText(Html.fromHtml(child));
+//            }
         }
 
         return convertView;

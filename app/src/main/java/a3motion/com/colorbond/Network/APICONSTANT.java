@@ -12,6 +12,7 @@ public class APICONSTANT {
 
     public static final String API_Auth = "http://188.166.227.147/bluescope/api/auth/";
     public static final String API_Parent = "http://188.166.227.147/bluescope/api/";
+    public static final String API_Parent_forgot = "http://188.166.227.147/bluescope/access/";
 
 
 }
