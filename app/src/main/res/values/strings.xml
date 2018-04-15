@@ -68,6 +68,7 @@
     <string name="your_project_contractor">Company Name</string>
     <string name="project_color">Color</string>
     <string name="your_project_color">Product\'s color in your project</string>
+    <string name="JOIN">JOIN</string>
 
     <string-array name="bondclub_reward">
         <item>Shopping\nVoucher</item>

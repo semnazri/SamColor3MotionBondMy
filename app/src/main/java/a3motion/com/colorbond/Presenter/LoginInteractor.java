@@ -1,5 +1,7 @@
 package a3motion.com.colorbond.Presenter;
 
+import a3motion.com.colorbond.POJO.Auth;
+
 /**
  * Created by Semmy
  * mr.shanky08@gmail.com on 07/01/18.
@@ -23,7 +25,7 @@ public interface LoginInteractor {
 
         void onValid();
 
-        void onSuccess(String response_message, String type, String token, String firstname,String Lastname, String username, String email, String phone, String companny, String title, String point);
+        void onSuccess(String response_message, Auth auth);
 
         void onelseError(String response_message);
 

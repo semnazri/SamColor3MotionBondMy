@@ -1,20 +1,23 @@
 package a3motion.com.colorbond.Presenter;
 
-import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import a3motion.com.colorbond.Interface.UserInterface;
 import a3motion.com.colorbond.Network.APICONSTANT;
 import a3motion.com.colorbond.POJO.Auth;
+import a3motion.com.colorbond.POJO.EditProfileResponse;
 import a3motion.com.colorbond.POJO.PayloadJSON;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,11 +33,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class LoginInteractorImp implements LoginInteractor{
-    String response_message,type,token, fristname, lastname, emailz, phone, company, title, point,username;
+public class LoginInteractorImp implements LoginInteractor {
+    String response_message, type, token, fristname, lastname, emailz, phone, company, title, point, username;
 
     @Override
-    public void login(String email, String password,String img, final OnLoginFinishedListener listener) {
+    public void login(String email, String password, String img, final OnLoginFinishedListener listener) {
         boolean error = false;
         if (!error) {
             listener.onValid();
@@ -67,25 +70,21 @@ public class LoginInteractorImp implements LoginInteractor{
                     .signWith(SignatureAlgorithm.HS512, header)
                     .compact();
 
-            Call<Auth> call = service.getTasks(compactJws,img);
-            call.enqueue(new Callback<Auth>() {
+            Call<ResponseBody> call = service.getTasks(compactJws, img);
+            call.enqueue(new Callback<ResponseBody>() {
                 @Override
-                public void onResponse(Call<Auth> call, Response<Auth> response) {
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                     if (response.isSuccessful()) {
-                        response_message = response.body().getResponse();
-                        type = response.body().getType();
-                        token = response.body().getToken();
-                        username = response.body().getUsername();
-                        fristname = response.body().getFirstName();
-                        lastname = response.body().getLasstName();//TODO nanti di join aja
-                        emailz = response.body().getEmail();
-                        phone = response.body().getPhone();
-                        company = response.body().getCompany();
-//                        title = response.body().getTitle();
-                        point = response.body().getPoin();
 
-                        listener.onSuccess(response_message,type,token,fristname,lastname,username,emailz,phone,company,title,point);
+                        Gson gson = new Gson();
+                        try {
+                            Auth auth = gson.fromJson(response.body().string(), Auth.class);
+                            listener.onSuccess(response_message, auth);
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
                     } else {
 
@@ -110,7 +109,7 @@ public class LoginInteractorImp implements LoginInteractor{
                 }
 
                 @Override
-                public void onFailure(Call<Auth> call, Throwable t) {
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
                     android.util.Log.d("onFailure", t.toString());
                 }
             });

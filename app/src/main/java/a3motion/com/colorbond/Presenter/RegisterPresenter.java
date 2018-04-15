@@ -10,6 +10,8 @@ package a3motion.com.colorbond.Presenter;
 
 public interface RegisterPresenter {
 
-    void validateCredentials(String email,String fristname, String lastname, String Username, String address, String proffesion, String phone, String DOB, String Gender, String company, String Type, String Typeuser, String image, String password,String title,String repassword);
+    void validateCredentials(String fristname, String lastname, String company,String title,
+                             String DOB,String Gender,String email,String phone,
+                             String image,String password,String repassword,String Type, String Typeuser);
     void onDestroy();
 }

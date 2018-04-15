@@ -18,10 +18,8 @@ public interface RegisterInterface {
     @FormUrlEncoded
     @POST("daftar/submit")
     Call<ResponseBody> doRegisterUser(@Field("first_name") String frist_name, @Field("last_name") String last_name,
-                                      @Field("username") String username, @Field("address") String address,
-                                      @Field("email") String email, @Field("password") String password,
-                                      @Field("phone") String phone, @Field("date") String DOB,
-                                      @Field("gender") String gender, @Field("company") String company,
-                                      @Field("type") String type, @Field("type_user") String type_user,
-                                      @Field("image") String image);
+                                      @Field("company") String company, @Field("title") String title,
+                                      @Field("date") String DOB, @Field("gender") String gender,
+                                      @Field("email") String email, @Field("phone") String phone,@Field("image") String image,
+                                      @Field("password")String password, @Field("type")String type, @Field("type_user")String type_user);
 }

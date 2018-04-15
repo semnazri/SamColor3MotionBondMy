@@ -18,9 +18,9 @@ import retrofit2.http.POST;
 public interface EditProfileInterface {
     @FormUrlEncoded
     @POST("myaccount/edit")
-    Call<ResponseBody> getTasks(@Header("Authorization") String Authorization,
-                                @Field("username") String username, @Field("first_name") String first_name,
-                                @Field("last_name") String last_name, @Field("date_of_birth") String date_of_birth,
-                                @Field("email") String email, @Field("company") String companny,
-                                @Field("phone") String phone, @Field("gender") String gender);
+    Call<ResponseBody> getTasks(@Header("Authorization") String Authorization, @Field("first_name") String first_name,
+                                @Field("last_name") String last_name, @Field("company") String companny,
+                                @Field("title") String title,@Field("date_of_birth") String date_of_birth,
+                                @Field("gender") String gender,@Field("email") String email,
+                                @Field("phone") String phone);
 }

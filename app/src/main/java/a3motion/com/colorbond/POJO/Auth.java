@@ -25,12 +25,13 @@ public class Auth {
     @SerializedName("first_name")
     @Expose
     private String firstName;
-    @SerializedName("lasst_name")
+    @SerializedName("last_name")
     @Expose
     private String lasstName;
-    @SerializedName("username")
+
+    @SerializedName("date_of_birth")
     @Expose
-    private String username;
+    private String date_of_birth;
     @SerializedName("email")
     @Expose
     private String email;
@@ -87,14 +88,6 @@ public class Auth {
         this.lasstName = lasstName;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -133,5 +126,13 @@ public class Auth {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setDate_of_birth(String date_of_birth) {
+        this.date_of_birth = date_of_birth;
+    }
+
+    public String getDate_of_birth() {
+        return date_of_birth;
     }
 }

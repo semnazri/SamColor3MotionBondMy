@@ -16,31 +16,21 @@ public interface RegisterView {
 
     void setlastNameError();
 
-    void setNameError();
+    void setCompanyError();
 
-    void setAddressError();
-
-    void setProfessionError();
-
-    void setPhoneError();
+    void setTitleError();
 
     void setDOBError();
 
     void setGenderError();
 
-    void setCompanyError();
-
-    void setTypeError();
-
-    void setimageError();
-
-    void setTypeUserError();
-
-    void setTitleError();
-
     void setEmailError();
 
     void setEmailInvalid();
+
+    void setPhoneError();
+
+    void setimageError();
 
     void setPasswordError();
 

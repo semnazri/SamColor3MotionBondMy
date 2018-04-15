@@ -24,8 +24,9 @@ public class EditProfilePresenterImp implements EditProfilePresenter, EditProfil
 
 
     @Override
-    public void validateCredentials(String tokoen,String username, String email, String companny, String firstname, String lastname, String dob, String phone, String gender) {
-        editProfileInteractor.doEdit(tokoen,username,firstname,lastname,dob,email,companny,phone,gender,this);
+    public void validateCredentials(String token, String firstname, String lastname, String companny, String title, String dob, String gender, String email, String phone) {
+        editProfileInteractor.doEdit(token,firstname,lastname,companny,title,dob,gender,email,phone,this);
+
     }
 
     @Override
@@ -40,12 +41,7 @@ public class EditProfilePresenterImp implements EditProfilePresenter, EditProfil
         }
     }
 
-    @Override
-    public void OnUsernameError() {
-        if (editProfileView != null){
-            editProfileView.setUsernameError();
-        }
-    }
+
 
     @Override
     public void onEmailError() {
@@ -71,14 +67,14 @@ public class EditProfilePresenterImp implements EditProfilePresenter, EditProfil
     @Override
     public void OnFirstnameError() {
         if (editProfileView != null){
-            editProfileView.setFirstError();
+            editProfileView.setfristNameError();
         }
     }
 
     @Override
     public void OnLastnameError() {
         if (editProfileView != null){
-            editProfileView.setLastError();
+            editProfileView.setlastNameError();
         }
     }
 
@@ -93,13 +89,6 @@ public class EditProfilePresenterImp implements EditProfilePresenter, EditProfil
     public void onPoneError() {
         if (editProfileView != null){
             editProfileView.setPhoneError();
-        }
-    }
-
-    @Override
-    public void onGenderError() {
-        if (editProfileView != null){
-            editProfileView.setGenderError();
         }
     }
 

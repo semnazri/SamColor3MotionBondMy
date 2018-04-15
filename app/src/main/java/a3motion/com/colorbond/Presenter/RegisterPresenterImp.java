@@ -20,10 +20,10 @@ public class RegisterPresenterImp implements RegisterPresenter, RegisterInteract
         this.registerInteractor = new RegisterInteractorImp();
     }
 
-
     @Override
-    public void validateCredentials(String email, String fristname, String lastname, String Username, String address, String proffesion, String phone, String DOB, String Gender, String company, String Type, String Typeuser, String image, String password, String title,String repassword) {
-        registerInteractor.doRegister(email, fristname, lastname, Username, address, proffesion, phone, DOB, Gender, company, Type, Typeuser, image, password, title, repassword,this);
+    public void validateCredentials(String fristname, String lastname, String company, String title, String DOB, String Gender, String email, String phone, String image, String password, String repassword, String Type, String Typeuser) {
+        registerInteractor.doRegister(fristname, lastname, company, title, DOB, Gender, email,phone,image,password,repassword,Type,Typeuser,this);
+
     }
 
     @Override
@@ -41,6 +41,34 @@ public class RegisterPresenterImp implements RegisterPresenter, RegisterInteract
     }
 
     @Override
+    public void onFirstnameError() {
+        if (registerView != null){
+            registerView.setfristNameError();
+        }
+    }
+
+    @Override
+    public void onLastnameError() {
+        if (registerView != null){
+            registerView.setlastNameError();
+        }
+    }
+
+    @Override
+    public void onCompanyError() {
+        if (registerView != null){
+            registerView.setCompanyError();
+        }
+    }
+
+    @Override
+    public void onDateError() {
+        if (registerView != null){
+            registerView.setDOBError();
+        }
+    }
+
+    @Override
     public void onEmailError() {
         if (registerView != null){
             registerView.setEmailError();
@@ -51,6 +79,13 @@ public class RegisterPresenterImp implements RegisterPresenter, RegisterInteract
     public void onEmailInValid() {
         if (registerView != null){
             registerView.setEmailInvalid();
+        }
+    }
+
+    @Override
+    public void onPhoneError() {
+        if (registerView != null){
+            registerView.setPhoneError();
         }
     }
 
@@ -82,19 +117,6 @@ public class RegisterPresenterImp implements RegisterPresenter, RegisterInteract
         }
     }
 
-    @Override
-    public void onProffesionError() {
-        if (registerView != null){
-            registerView.setProfessionError();
-        }
-    }
-
-    @Override
-    public void OnUsernameError() {
-        if (registerView != null){
-            registerView.setNameError();
-        }
-    }
 
     @Override
     public void onValid() {

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +20,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 
 import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.POJO.Auth;
 import a3motion.com.colorbond.Presenter.LoginPresenter;
 import a3motion.com.colorbond.Presenter.LoginPresenterImp;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
@@ -137,29 +139,29 @@ public class LoginActivity extends Activity implements LoginView {
     }
 
     @Override
-    public void ResultLogin(String response_message, String type, String token, String firstname,String lastname,String username, String email, String phone, String companny, String title, String point) {
+    public void ResultLogin(String response_message, Auth auth) {
         dialog_muter.dismiss();
 
         prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         SharedPreferences.Editor preEditor = prefsprivate.edit();
 
-        preEditor.putString(BlueScoopPreferences.token, token);
-        preEditor.putString(BlueScoopPreferences.mem_type, type);
-        preEditor.putString(BlueScoopPreferences.nama, username);
-        preEditor.putString(BlueScoopPreferences.firstname, firstname);
-        preEditor.putString(BlueScoopPreferences.lastname, lastname);
+        preEditor.putString(BlueScoopPreferences.token, auth.getToken());
+        preEditor.putString(BlueScoopPreferences.mem_type, auth.getType());
+//        preEditor.putString(BlueScoopPreferences.nama, username);
+        preEditor.putString(BlueScoopPreferences.firstname, auth.getFirstName());
+        preEditor.putString(BlueScoopPreferences.lastname, auth.getLasstName());
 
-        preEditor.putString(BlueScoopPreferences.email, email);
-        preEditor.putString(BlueScoopPreferences.Phone, phone);
-        preEditor.putString(BlueScoopPreferences.company, companny);
-//        preEditor.putString(BlueScoopPreferences.job_title, title);
-        preEditor.putString(BlueScoopPreferences.poin, point);
-        preEditor.putString(BlueScoopPreferences.mem_type, type);
+        preEditor.putString(BlueScoopPreferences.email, auth.getEmail());
+        preEditor.putString(BlueScoopPreferences.Phone, auth.getPhone());
+        preEditor.putString(BlueScoopPreferences.company, auth.getCompany());
+        preEditor.putString(BlueScoopPreferences.DOB, auth.getDate_of_birth());
+        preEditor.putString(BlueScoopPreferences.poin, auth.getPoin());
         preEditor.putString(BlueScoopPreferences.merchant_type,img);
+
 
         preEditor.commit();
 
-        if (type.equals("1")) {
+        if (auth.getType().equals("1")) {
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
         } else {
@@ -167,7 +169,9 @@ public class LoginActivity extends Activity implements LoginView {
             startActivity(i);
 
         }
+
     }
+
 
 
     @Override

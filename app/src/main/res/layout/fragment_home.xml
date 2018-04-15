@@ -46,7 +46,7 @@
                         android:id="@+id/title_event1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="23dp"
                         android:text="Sharing Session"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
@@ -221,22 +221,30 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
+            <LinearLayout
+                android:id="@+id/ll_latestproject"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="@color/white"
-                android:paddingTop="10dp"
-                android:text="@string/latest_project"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/home_last_project"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/white"
+                    android:paddingTop="10dp"
+                    android:text="@string/latest_project"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/home_last_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white" />
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -312,14 +320,14 @@
                     </LinearLayout>
 
                     <Button
-                        android:visibility="gone"
                         android:id="@+id/btn_detail_info"
                         android:layout_width="100dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:background="@drawable/bg_white"
                         android:text="Redeem"
-                        android:textColor="@color/red" />
+                        android:textColor="@color/red"
+                        android:visibility="gone" />
                 </LinearLayout>
             </RelativeLayout>
 

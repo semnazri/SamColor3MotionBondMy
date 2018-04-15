@@ -111,12 +111,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
-        nama = prefsprivate.getString(BlueScoopPreferences.nama, "Username");
+        nama = prefsprivate.getString(BlueScoopPreferences.firstname, "Username");
+        image = prefsprivate.getString(BlueScoopPreferences.lastname, "Username");
+
         RequestOptions myoptions = new RequestOptions()
                 .placeholder(R.drawable.ic_person_black_24dp)
                 .error(R.drawable.ic_person_black_24dp);
-        Glide.with(this).load("http://cdn2.tstatic.net/tribunnews/foto/bank/images/penjaga-gawang-persija-jakarta-andritany-selebrasi_20171023_121936.jpg").apply(myoptions).into(imageview);
-        username.setText(nama);
+        Glide.with(this).load("")
+                .apply(myoptions).into(imageview);
+        username.setText(nama + " " + image);
 
         img_ig.setOnClickListener(new View.OnClickListener() {
             @Override

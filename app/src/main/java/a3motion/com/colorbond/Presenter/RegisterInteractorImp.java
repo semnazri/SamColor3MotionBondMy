@@ -32,8 +32,7 @@ public class RegisterInteractorImp implements RegisterInteractor {
     String response_message;
 
     @Override
-    public void doRegister(String email, String fristname, String lastname, String Username, String address, String proffesion, String phone, String DOB, String Gender, String company, String Type, String Typeuser, String image, String password, String title, String repass, final OnSuccessgetRegisterListener listener) {
-
+    public void doRegister(String firstname, String lastname, String company, String title, String date, String gender, String email, String phone, String image, String password, String repassword, String type, String type_user, final OnSuccessgetRegisterListener listener) {
         boolean error = false;
 
         if (TextUtils.isEmpty(email)) {
@@ -42,18 +41,33 @@ public class RegisterInteractorImp implements RegisterInteractor {
         } else if (!email.contains("@")) {
             listener.onEmailInValid();
             error = true;
-
         }
 
-        if (TextUtils.isEmpty(Username)) {
-            listener.OnUsernameError();
+        if (TextUtils.isEmpty(firstname)) {
+            listener.onFirstnameError();
             error = true;
         }
 
-        if (TextUtils.isEmpty(proffesion)) {
-            listener.onProffesionError();
+        if (TextUtils.isEmpty(lastname)) {
+            listener.onLastnameError();
             error = true;
         }
+
+        if (TextUtils.isEmpty(company)) {
+            listener.onCompanyError();
+            error = true;
+        }
+
+        if (TextUtils.isEmpty(title)) {
+            listener.onDateError();
+            error = true;
+        }
+
+        if (TextUtils.isEmpty(phone)) {
+            listener.onPhoneError();
+            error = true;
+        }
+
 
         if (TextUtils.isEmpty(password)) {
             listener.onPasswordError();
@@ -62,16 +76,13 @@ public class RegisterInteractorImp implements RegisterInteractor {
         } else if (password.length() < 6) {
             listener.onPasswordInValid();
             error = true;
-
         }
 
-        if (TextUtils.isEmpty(repass)) {
+        if (TextUtils.isEmpty(repassword)) {
             listener.onRePassError();
             error = true;
 
-        }
-
-        if (!repass.equals(password)) {
+        } else if (!repassword.equals(password)) {
             listener.onRePassInvalid();
             error = true;
 
@@ -100,7 +111,8 @@ public class RegisterInteractorImp implements RegisterInteractor {
             RegisterInterface service = retrofit.create(RegisterInterface.class);
 
 
-            final Call<ResponseBody> call = service.doRegisterUser(fristname, lastname, Username, address, email, password, phone, DOB, Gender, company, Type, Typeuser, image);
+//            final Call<ResponseBody> call = service.doRegisterUser(fristname, lastname, Username, address, email, password, phone, DOB, Gender, company, Type, Typeuser, image);
+            final Call<ResponseBody> call = service.doRegisterUser(firstname,lastname,company,title,date,gender,email,phone,image,password,type,type_user);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -121,7 +133,7 @@ public class RegisterInteractorImp implements RegisterInteractor {
 
                             //TODO ini tolong contextnya di benerin
                             case 400:
-                                listener.onelseError(response.message()+" 400");
+                                listener.onelseError(response.message() + " 400");
                             case 401:
                                 listener.onelseError(response.message() + " 401");
                                 break;
@@ -132,7 +144,7 @@ public class RegisterInteractorImp implements RegisterInteractor {
                                 listener.onelseError(response.message() + " Server is broken! Response code 500");
                                 break;
                             default:
-                                listener.onelseError(response.message()+"");
+                                listener.onelseError(response.message() + "");
                                 break;
                         }
                     }

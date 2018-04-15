@@ -1,5 +1,6 @@
 package a3motion.com.colorbond.Presenter;
 
+import a3motion.com.colorbond.POJO.Auth;
 import a3motion.com.colorbond.View.LoginView;
 
 /**
@@ -66,11 +67,12 @@ public class LoginPresenterImp implements LoginPresenter, LoginInteractor.OnLogi
     }
 
     @Override
-    public void onSuccess(String response_message, String type, String token, String firstname, String Lastname, String username, String email, String phone, String companny, String title, String point) {
+    public void onSuccess(String response_message, Auth auth) {
         if (loginView != null){
-            loginView.ResultLogin(response_message,type,token,firstname,Lastname,username,email,phone,companny,title,point);
+            loginView.ResultLogin(response_message,auth);
         }
     }
+
 
     @Override
     public void onelseError(String response_message) {

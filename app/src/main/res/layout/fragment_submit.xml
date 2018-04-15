@@ -102,6 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
+                        android:textSize="14sp"
                         android:hint="@string/your_project_name"
                         android:paddingLeft="10dp" />
                 </LinearLayout>
@@ -125,6 +126,7 @@
                         android:id="@+id/submit_project_owner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:background="@color/abu2"
                         android:hint="@string/your_project_owner"
                         android:paddingLeft="10dp" />
@@ -151,6 +153,7 @@
                         android:id="@+id/submit_project_contractor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:background="@color/abu2"
                         android:hint="@string/your_project_contractor"
                         android:paddingLeft="10dp" />
@@ -180,6 +183,7 @@
                         android:background="@color/abu2"
                         android:editable="false"
                         android:hint="mm/dd/yyyy"
+                        android:textSize="14sp"
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp" />
 
@@ -211,6 +215,7 @@
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
                         android:hint="somewhere"
+                        android:textSize="14sp"
                         android:paddingLeft="10dp" />
                 </LinearLayout>
 
@@ -256,6 +261,7 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
+                        android:textSize="14sp"
                         android:paddingLeft="10dp" />
 
                     <TextView
@@ -335,6 +341,7 @@
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:paddingTop="5dp"
+                            android:textSize="14sp"
                             android:singleLine="false"
                             android:textStyle="italic" />
 
@@ -423,6 +430,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
+                        android:textSize="14sp"
                         android:hint="@string/your_project_color"
                         android:paddingLeft="10dp" />
                 </LinearLayout>

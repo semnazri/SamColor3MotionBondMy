@@ -1,6 +1,5 @@
 package a3motion.com.colorbond.Presenter;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 
@@ -11,10 +10,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import a3motion.com.colorbond.Interface.EditProfileInterface;
-import a3motion.com.colorbond.Interface.EventInterface;
 import a3motion.com.colorbond.Network.APICONSTANT;
 import a3motion.com.colorbond.POJO.EditProfileResponse;
-import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -23,7 +20,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
 
 
 /**
@@ -37,15 +33,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class EditProfileInteractorImp implements EditProfileInteractor {
     String response_message;
     private SharedPreferences prefsprivate;
-    @Override
-    public void doEdit(String token,String username, String fristname, String lastname, String DOB, String email, String company, String phone, String gender, final OnSuccessEditProfileListener listener) {
 
+    @Override
+    public void doEdit(String token, String fristname, String lastname, String company, String title, String DOB, String gender, String email, String phone, final OnSuccessEditProfileListener listener) {
         boolean error = false;
 
-        if (TextUtils.isEmpty(username)) {
-            listener.OnUsernameError();
-            error = true;
-        }
+
         if (TextUtils.isEmpty(fristname)) {
             listener.OnFirstnameError();
             error = true;
@@ -79,11 +72,6 @@ public class EditProfileInteractorImp implements EditProfileInteractor {
             error = true;
         }
 
-        if (TextUtils.isEmpty(gender)) {
-            listener.onGenderError();
-            error = true;
-        }
-
         if (!error) {
             listener.onValid();
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
@@ -107,7 +95,8 @@ public class EditProfileInteractorImp implements EditProfileInteractor {
 
             EditProfileInterface service = retrofit.create(EditProfileInterface.class);
 
-            final Call<ResponseBody> call = service.getTasks(token,username,fristname,lastname,DOB,email,company,phone,gender);
+//            final Call<ResponseBody> call = service.getTasks(token,username,fristname,lastname,DOB,email,company,phone,gender);
+            final Call<ResponseBody> call = service.getTasks(token, fristname, lastname, company, title, DOB, gender, email, phone);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -150,5 +139,6 @@ public class EditProfileInteractorImp implements EditProfileInteractor {
                 }
             });
         }
+
     }
 }

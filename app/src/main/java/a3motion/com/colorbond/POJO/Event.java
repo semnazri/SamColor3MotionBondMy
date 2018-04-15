@@ -31,6 +31,10 @@ public class Event {
     @SerializedName("cp")
     @Expose
     private String cp;
+
+    @SerializedName("CP_Name")
+    @Expose
+    private String CP_Name;
     @SerializedName("attendee")
     @Expose
     private String attendee;
@@ -43,6 +47,14 @@ public class Event {
     @SerializedName("fileimg")
     @Expose
     private String fileimg;
+
+    public void setCP_Name(String CP_Name) {
+        this.CP_Name = CP_Name;
+    }
+
+    public String getCP_Name() {
+        return CP_Name;
+    }
 
     public String getId() {
         return id;

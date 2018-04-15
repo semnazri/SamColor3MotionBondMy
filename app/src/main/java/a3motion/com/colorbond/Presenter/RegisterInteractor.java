@@ -12,25 +12,34 @@ import a3motion.com.colorbond.POJO.RegisterResponse;
 
 public interface RegisterInteractor {
 
-    void doRegister(String email, String fristname, String lastname, String Username, String address, String proffesion, String phone, String DOB, String Gender, String company, String Type, String Typeuser, String image, String password, String title,String repassword, RegisterInteractor.OnSuccessgetRegisterListener listener);
+    void doRegister(String firstname, String lastname, String company, String title, String date, String gender, String email,
+                    String phone, String image, String password, String repassword, String type, String type_user,
+                    RegisterInteractor.OnSuccessgetRegisterListener listener);
 
     interface OnSuccessgetRegisterListener {
         void onSuccess(String response_message, RegisterResponse registerResponse);
 
+        void onFirstnameError();
+
+        void onLastnameError();
+
+        void onCompanyError();
+
+        void onDateError();
+
         void onEmailError();
 
         void onEmailInValid();
+
+        void onPhoneError();
 
         void onPasswordError();
 
         void onPasswordInValid();
 
         void onRePassError();
+
         void onRePassInvalid();
-
-        void onProffesionError();
-
-        void OnUsernameError();
 
         void onValid();
 

@@ -51,7 +51,7 @@ public class Fragment_account extends Fragment {
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
 
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
-        fullname = prefsprivate.getString(BlueScoopPreferences.nama, "1");
+        fullname = prefsprivate.getString(BlueScoopPreferences.firstname, "") + prefsprivate.getString(BlueScoopPreferences.lastname,"");
         company = prefsprivate.getString(BlueScoopPreferences.company, "1");
         point = prefsprivate.getString(BlueScoopPreferences.poin, "1");
 

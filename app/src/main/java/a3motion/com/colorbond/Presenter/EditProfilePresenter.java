@@ -9,7 +9,8 @@ package a3motion.com.colorbond.Presenter;
  */
 
 public interface EditProfilePresenter {
-    void validateCredentials(String token, String username, String email, String companny, String firstname, String lastname, String dob,String phone, String gender);
+    void validateCredentials(String token, String firstname, String lastname, String companny, String title, String dob,
+                             String gender,String email, String phone);
     void onDestroy();
 
 }

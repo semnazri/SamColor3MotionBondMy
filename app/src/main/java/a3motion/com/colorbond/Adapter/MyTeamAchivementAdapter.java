@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import a3motion.com.colorbond.Model.TeamAchivement;
+import a3motion.com.colorbond.POJO.SalesAchievement;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.MyTeamAchivementViewHolder;
 
@@ -22,10 +22,10 @@ import a3motion.com.colorbond.ViewHolder.MyTeamAchivementViewHolder;
 
 public class MyTeamAchivementAdapter extends RecyclerView.Adapter<MyTeamAchivementViewHolder> {
 
-    private List<TeamAchivement> mValues;
+    private List<SalesAchievement> mValues;
     private Context mContext;
 
-    public MyTeamAchivementAdapter(Context context, List<TeamAchivement> items) {
+    public MyTeamAchivementAdapter(Context context, List<SalesAchievement> items) {
         mContext = context;
         mValues = items;
     }
@@ -39,10 +39,11 @@ public class MyTeamAchivementAdapter extends RecyclerView.Adapter<MyTeamAchiveme
     @Override
     public void onBindViewHolder(MyTeamAchivementViewHolder holder, int position) {
         holder.cardView.setCardBackgroundColor(mContext.getResources().getColor(R.color.abutransparent));
-        holder.team_name.setText(mValues.get(position).getTeam_name());
-        holder.team_position.setText(mValues.get(position).getTeam_position());
-        holder.team_point.setText("Reward Point :" + mValues.get(position).getTeam_point());
-        holder.team_order.setText(mValues.get(position).getTeam_order_q() + "ton");
+        holder.team_name.setText(mValues.get(position).getFirstName() + " " + mValues.get(position).getLastName());
+//        holder.team_position.setText(mValues.get(position).getTeam_position());
+        holder.team_position.setText("Sales");
+//        holder.team_point.setText("Reward Point :" + mValues.get(position).getTeam_point());
+        holder.team_order.setText(mValues.get(position).getOrderIntact() + " ton");
     }
 
     @Override

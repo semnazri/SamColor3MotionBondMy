@@ -17,4 +17,7 @@ public interface ProjectHistoryInterface {
 
     @POST("project/history")
     Call<ResponseBody> getProjectHistory(@Header("Authorization") String Authorization);
+
+    @POST("myachievment/get_achievment")
+    Call<ResponseBody> getAchievement(@Header("Authorization") String Authorization);
 }

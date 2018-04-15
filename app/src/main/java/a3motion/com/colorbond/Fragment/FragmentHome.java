@@ -36,7 +36,6 @@ import a3motion.com.colorbond.Adapter.LatestProjectAdapter;
 import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Followers;
-import a3motion.com.colorbond.Model.LatestProjectfront;
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.POJO.HomeResponse;
 import a3motion.com.colorbond.Presenter.HomePresejter;
@@ -58,16 +57,16 @@ public class FragmentHome extends Fragment implements HomeView {
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     String userid, nama, points, tokenz;
     private View view;
-//    private List<LatestProjectfront> latestProjects;
+    //    private List<LatestProjectfront> latestProjects;
     private List<Followers> followers;
     private RecyclerView rv;
     private TextView txt_name, txt_point, txt_title_event1, txt_date_event1;
     private LinearLayoutManager lm, lm_followers;
     private LatestProjectAdapter adapter;
     private FollowersAdapter followersAdapter;
-    private ImageView img_top,img_2nd, img_3rd,img_bonpart_program, home_4rd_image;
+    private ImageView img_top, img_2nd, img_3rd, img_bonpart_program, home_4rd_image;
     private Button btn_join_eveng_1, btn_detail_info;
-    private LinearLayout ll_project_history, ll_point;
+    private LinearLayout ll_project_history, ll_point, ll_latestproject;
     private MaterialDialog mDialog, dialog_muter;
     private SharedPreferences prefsprivate;
     private HomePresejter homePresejter;
@@ -96,6 +95,7 @@ public class FragmentHome extends Fragment implements HomeView {
         ll_project_history = view.findViewById(R.id.linear_project_history);
         btn_detail_info = view.findViewById(R.id.btn_detail_info);
         ll_point = view.findViewById(R.id.layout_point);
+        ll_latestproject = view.findViewById(R.id.ll_latestproject);
         home_4rd_image = view.findViewById(R.id.home_4rd_image);
         txt_name = view.findViewById(R.id.home_name);
         txt_point = view.findViewById(R.id.txt_point);
@@ -121,21 +121,7 @@ public class FragmentHome extends Fragment implements HomeView {
         }
 
         img_top.setFocusable(true);
-//        rv.setHasFixedSize(true);
-//        lm = new LinearLayoutManager(getActivity());
-//        rv.setLayoutManager(lm);
-////        adapter = new LatestProjectAdapter(getActivity(), latestProjects);
-//        rv.setAdapter(adapter);
 
-
-
-//        btn_join_eveng_1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                showDialogjoin(homeResponse.getEvent().get(0).getFileimg());
-//
-//            }
-//        });
         img_2nd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,10 +135,6 @@ public class FragmentHome extends Fragment implements HomeView {
             @Override
             public void onClick(View view) {
                 startNewActivity(getActivity(), "com.waw.wawcard");
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.add(R.id.container_body, new Point_Parent(), "home").addToBackStack("pembayaran");
-//                fragmentTransaction.commit();
             }
         });
         ll_project_history.setOnClickListener(new View.OnClickListener() {
@@ -243,7 +225,7 @@ public class FragmentHome extends Fragment implements HomeView {
         dialog.show();
     }
 
-    private void showDialogjoin(String fileimg) {
+    private void showDialogjoin(String fileimg, String name, String tema, String address, String cp, String cp_name, String date) {
 
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_join);
@@ -253,21 +235,50 @@ public class FragmentHome extends Fragment implements HomeView {
 //        dialog.getWindow().setLayout((8 * width) / 9, (5 * height) / 5);
 
 
-        Button tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
-        LinearLayout ll_folowers = (LinearLayout) dialog.findViewById(R.id.ll_folowers);
+        final Button tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
+        final Button tv_join_join = dialog.findViewById(R.id.txt_join_join);
+
+        LinearLayout ll_folowers = dialog.findViewById(R.id.ll_folowers);
         ImageView event_img = dialog.findViewById(R.id.event_img);
+        TextView title = dialog.findViewById(R.id.title);
+        TextView date_top = dialog.findViewById(R.id.date);
+        TextView event_name = dialog.findViewById(R.id.event_name_desc);
+        TextView address_event = dialog.findViewById(R.id.event_address_desc);
+        TextView cp_event = dialog.findViewById(R.id.event_contact_person_desc);
+
+        title.setText(name);
+        date_top.setText(date);
+        event_name.setText(tema);
+        address_event.setText(address);
+        cp_event.setText(cp_name + " " + cp);
+
+
+
         tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+//                dialog.dismiss();
+                tv_join_disjoin.setVisibility(View.GONE);
+                tv_join_join.setVisibility(View.VISIBLE);
             }
         });
-        ll_folowers.setOnClickListener(new View.OnClickListener() {
+
+        tv_join_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog_listFolowers();
+                tv_join_join.setVisibility(View.GONE);
+                tv_join_disjoin.setVisibility(View.VISIBLE);
+//                dialog.dismiss();
             }
         });
+
+//        ll_folowers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDialog_listFolowers();
+//            }
+//        });
+
         Glide.with(getActivity()).load(fileimg).into(event_img);
 
         dialog.show();
@@ -320,7 +331,7 @@ public class FragmentHome extends Fragment implements HomeView {
         dialog_muter.dismiss();
         txt_name.setText(getResources().getString(R.string.hi) + " " + homeResponse.getProfile().getFirstName() + "!");
         txt_point.setText(homeResponse.getProfile().getPoin());
-        txt_title_event1.setText(homeResponse.getEvent().get(0).getTitle());
+        txt_title_event1.setText(homeResponse.getEvent().get(0).getName());
         txt_date_event1.setText(homeResponse.getEvent().get(0).getDate());
 
         Glide.with(getActivity()).load(homeResponse.getEvent().get(0).getFileimg()).into(img_top);
@@ -329,18 +340,27 @@ public class FragmentHome extends Fragment implements HomeView {
         img_top.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialogjoin(homeResponse.getEvent().get(0).getFileimg());
+                showDialogjoin(
+                        homeResponse.getEvent().get(0).getFileimg(),
+                        homeResponse.getEvent().get(0).getName(),
+                        homeResponse.getEvent().get(0).getTema(),
+                        homeResponse.getEvent().get(0).getAddress(),
+                        homeResponse.getEvent().get(0).getCp(),
+                        homeResponse.getEvent().get(0).getCP_Name(),
+                        homeResponse.getEvent().get(0).getDate());
             }
         });
 
-        if (homeResponse.getLatestProject() != null){
+        if (homeResponse.getLatestProject() != null) {
 
             rv.setHasFixedSize(true);
             lm = new LinearLayoutManager(getActivity());
             rv.setLayoutManager(lm);
             adapter = new LatestProjectAdapter(getActivity(), homeResponse.getLatestProject());
             rv.setAdapter(adapter);
-        }else{
+        } else {
+
+            ll_latestproject.setVisibility(View.GONE);
 
         }
 

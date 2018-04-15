@@ -143,22 +143,6 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
 
     }
 
-    private List<Event> getAllEVent() {
-
-        List<Event> lp = new ArrayList<>();
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-        lp.add(new Event("20 November 2017", "18:00 AM till end", "ARCHITECT 101", "Mempererat Persaudaraan", "Muthiarys", "Tokyo Dome"));
-
-        return lp;
-
-    }
 
     @Override
     public void onDestroy() {

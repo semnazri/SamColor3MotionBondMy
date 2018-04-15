@@ -12,28 +12,25 @@ import a3motion.com.colorbond.POJO.EditProfileResponse;
 
 public interface EditProfileInteractor {
 
-    void doEdit(String token,String username, String fristname, String lastname, String DOB, String email, String company, String phone, String gender, EditProfileInteractor.OnSuccessEditProfileListener listener);
+    void doEdit(String token,String fristname, String lastname, String company, String title, String DOB, String gender,
+                String email, String phone, EditProfileInteractor.OnSuccessEditProfileListener listener);
 
     interface OnSuccessEditProfileListener {
         void onSuccess(String response_message, EditProfileResponse editProfileResponse);
-
-        void OnUsernameError();
-
-        void onEmailError();
-
-        void onEmailInValid();
-
-        void OnCompanynameError();
 
         void OnFirstnameError();
 
         void OnLastnameError();
 
+        void OnCompanynameError();
+
         void onDOBError();
 
-        void onPoneError();
+        void onEmailError();
 
-        void onGenderError();
+        void onEmailInValid();
+
+        void onPoneError();
 
         void onValid();
 

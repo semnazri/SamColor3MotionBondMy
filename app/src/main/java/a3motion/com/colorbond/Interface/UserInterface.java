@@ -20,7 +20,7 @@ import retrofit2.http.POST;
 public interface UserInterface {
     @FormUrlEncoded
     @POST("token")
-    Call<Auth> getTasks(@Header("Authorization") String Authorization, @Field("tipe") String type);
+    Call<ResponseBody> getTasks(@Header("Authorization") String Authorization, @Field("tipe") String type);
 
     @POST("notif/get_notif")
     Call<ResponseBody> getNotif(@Header("Authorization") String Authorization);

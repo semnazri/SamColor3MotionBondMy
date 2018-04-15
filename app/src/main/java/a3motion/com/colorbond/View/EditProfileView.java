@@ -16,23 +16,25 @@ public interface EditProfileView {
 
     void setelseEror(String response_message);
 
-    void setUsernameError();
+    void setfristNameError();
+
+    void setlastNameError();
+
+    void setCompanyError();
+
+    void setTitleError();
+
+    void setDOBError();
+
+    void setGenderError();
 
     void setEmailError();
 
     void setEmailInvalid();
 
-    void setCompanyError();
-
-    void setFirstError();
-
-    void setLastError();
-
-    void setDOBError();
-
     void setPhoneError();
 
-    void setGenderError();
+    void setimageError();
 
     void setValid();
 }
