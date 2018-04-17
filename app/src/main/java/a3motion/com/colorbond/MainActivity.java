@@ -20,6 +20,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -59,8 +62,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView username;
     private CircleImageView imageview;
     private SharedPreferences prefsprivate;
-    private String nama, image;
+    private String nama, image,merchant_type;
     private ImageView img_ig,img_youtube;
+    private MaterialDialog mDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +105,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
+
+        Menu navmenu = navigationView.getMenu();
+
+
+
+
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
         View header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.name);
@@ -113,6 +124,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         nama = prefsprivate.getString(BlueScoopPreferences.firstname, "Username");
         image = prefsprivate.getString(BlueScoopPreferences.lastname, "Username");
+        merchant_type = prefsprivate.getString(BlueScoopPreferences.merchant_type, "Username");
+
+
+        if (merchant_type.equals("1") || merchant_type.equals("2")){
+            navmenu.findItem(R.id.benefit).setVisible(false);
+
+        }
+
 
         RequestOptions myoptions = new RequestOptions()
                 .placeholder(R.drawable.ic_person_black_24dp)
@@ -215,7 +234,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.event) {
             fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {
-            startNewActivity(this, "com.waw.wawcard");
+            if (merchant_type.equals("0")){
+                startNewActivity(this, "com.waw.wawcard");
+            }else{
+                getdialogerror("This menu only for Bond Club Program");
+            }
 //            fragment = new Fragment_bondPartMerchant_benefit();
         } else if (id == R.id.variant) {
             fragment = new Fragment_VariantColor();
@@ -297,6 +320,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 }
                             }).setNegativeButton("No", null).show();
         }
+    }
+
+    private void getdialogerror(String response_message) {
+
+        mDialog = new MaterialDialog.Builder(MainActivity.this)
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+
+                    }
+                })
+                .show();
     }
 
 }

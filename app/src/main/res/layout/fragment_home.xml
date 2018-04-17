@@ -27,11 +27,13 @@
                 <Button
                     android:id="@+id/join_event1"
                     android:layout_width="80dp"
-                    android:layout_height="40dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="130dp"
-                    android:background="@drawable/button_06_02"
+                    android:background="@drawable/bg_red"
+                    android:text="Details"
+                    android:textAllCaps="false"
                     android:textColor="@color/white" />
 
 
@@ -244,6 +246,19 @@
                     android:layout_height="wrap_content"
                     android:background="@color/white" />
 
+                <TextView
+                    android:id="@+id/txt_no_project"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:text="No project submitted"
+                    android:textAlignment="center"
+                    android:textColor="@color/black" />
+
             </LinearLayout>
 
             <RelativeLayout
@@ -261,13 +276,15 @@
                 <ImageView
                     android:layout_width="140dp"
                     android:layout_height="180dp"
-                    android:background="@color/redtra" />
+                    android:background="@color/redtra"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="140dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="33dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/deals"

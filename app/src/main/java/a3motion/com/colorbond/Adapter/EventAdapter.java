@@ -41,13 +41,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
 
     @Override
     public void onBindViewHolder(EventViewHolder holder, final int position) {
-        final String date = mValues.get(position).getDate();
 //        final String hour = mValues.get(position).getJam();
         final String hour = "";
         final String nama_event = mValues.get(position).getName();
         final String tema = mValues.get(position).getTema();
-        final String pic = mValues.get(position).getFileimg();
+        final String date = mValues.get(position).getDate();
         final String lcoat = mValues.get(position).getAddress();
+        final String cpname = mValues.get(position).getCp();
+        final String cp = mValues.get(position).getCP_Name();
+        final String pic = mValues.get(position).getFileimg();
 
         holder.tanggal.setText(date);
 //        holder.jam.setText("");
@@ -58,7 +60,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventViewHolder> {
         holder.btn_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.show_event(date,hour,nama_event,tema, pic, lcoat, mValues.get(position).getFileimg());
+//                listener.show_event(date,hour,nama_event,tema, pic, lcoat, mValues.get(position).getFileimg());
+                listener.show_event(nama_event,tema,date,lcoat,cpname,cp,pic);
             }
         });
     }

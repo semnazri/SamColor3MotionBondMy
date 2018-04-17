@@ -102,9 +102,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
-                        android:textSize="14sp"
                         android:hint="@string/your_project_name"
-                        android:paddingLeft="10dp" />
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -126,10 +128,12 @@
                         android:id="@+id/submit_project_owner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
                         android:background="@color/abu2"
                         android:hint="@string/your_project_owner"
-                        android:paddingLeft="10dp" />
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -144,8 +148,8 @@
                     <TextView
                         android:id="@+id/txt_contractor"
                         android:layout_width="100dp"
-                        android:paddingTop="2dp"
                         android:layout_height="match_parent"
+                        android:paddingTop="2dp"
                         android:text="@string/project_contractor"
                         android:textColor="@color/black" />
 
@@ -153,10 +157,12 @@
                         android:id="@+id/submit_project_contractor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
                         android:background="@color/abu2"
                         android:hint="@string/your_project_contractor"
-                        android:paddingLeft="10dp" />
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -170,6 +176,8 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
                         android:text="@string/cons_date"
                         android:textColor="@color/black" />
 
@@ -182,10 +190,12 @@
                         android:layout_weight="1"
                         android:background="@color/abu2"
                         android:editable="false"
-                        android:hint="mm/dd/yyyy"
-                        android:textSize="14sp"
+                        android:hint="yyyy/mm/dd"
+                        android:paddingBottom="5dp"
                         android:paddingLeft="10dp"
-                        android:paddingRight="10dp" />
+                        android:paddingRight="10dp"
+                        android:paddingTop="5dp"
+                        android:textSize="14sp" />
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -214,9 +224,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
-                        android:hint="somewhere"
-                        android:textSize="14sp"
-                        android:paddingLeft="10dp" />
+                        android:hint="Your project locaton"
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -261,8 +273,10 @@
                         android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
-                        android:textSize="14sp"
-                        android:paddingLeft="10dp" />
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/txt_m2_sup"
@@ -341,8 +355,8 @@
                             android:paddingLeft="10dp"
                             android:paddingRight="10dp"
                             android:paddingTop="5dp"
-                            android:textSize="14sp"
                             android:singleLine="false"
+                            android:textSize="14sp"
                             android:textStyle="italic" />
 
                         <ImageView
@@ -430,9 +444,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/abu2"
-                        android:textSize="14sp"
                         android:hint="@string/your_project_color"
-                        android:paddingLeft="10dp" />
+                        android:paddingBottom="5dp"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="5dp"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout

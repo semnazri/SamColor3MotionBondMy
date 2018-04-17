@@ -171,7 +171,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         } else if (user_from.equals("1")) {
             ll_build_cat.setVisibility(View.GONE);
             ll_size_cat.setVisibility(View.GONE);
-            txt_m2_sup.setText("TON");
+            txt_m2_sup.setText("ton");
             building_cat_txt = "0";
             size_cat_txt = "0";
             txt_size.setText("Volume");
@@ -537,6 +537,8 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         tp.add(new Size_material("0.60 BMT", "6"));
         tp.add(new Size_material("0.65 BMT", "7"));
         tp.add(new Size_material("0.70 BMT", "8"));
+        tp.add(new Size_material("0.75 BMT", "9"));
+        tp.add(new Size_material("0.80 BMT", "10"));
 
         return tp;
     }

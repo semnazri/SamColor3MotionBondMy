@@ -14,9 +14,9 @@ public interface RewardInterface {
 
     @FormUrlEncoded
     @POST("reward/redeem")
-    Call<ResponseBody> doReedem(@Header("Authorization") String Authorization, @Field("id_master_reward") String id_master_reward,@Field("status") String status);
+    Call<ResponseBody> doReedem(@Header("Authorization") String Authorization, @Field("id_master_reward") String id_master_reward, @Field("status") String status, @Field("poin_redeem") String poin_redeem);
 
     @FormUrlEncoded
     @POST("reward/get_reward")
-    Call<ResponseBody> getList(@Header("Authorization") String Authorization, @Field("type_user") String type_user,@Field("type_reward")String type_reward);
+    Call<ResponseBody> getList(@Header("Authorization") String Authorization, @Field("type_user") String type_user, @Field("type_reward") String type_reward);
 }

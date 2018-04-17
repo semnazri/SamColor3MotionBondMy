@@ -29,18 +29,20 @@ import a3motion.com.colorbond.Utility.BlueScoopPreferences;
  */
 
 public class Fragment_bondPartMerchant_benefit extends Fragment {
-    private View view;
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid,user_type;
+    String userid, user_type;
+    private View view;
     private SharedPreferences prefsprivate;
-    private ImageView img_nav,img_program;
+    private ImageView img_nav, img_program, img_bondpart;
     private TextView txt_title;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_bondpart_benefit, container, false);
         img_nav = view.findViewById(R.id.img_tolbar);
         img_program = view.findViewById(R.id.img_program);
+        img_bondpart = view.findViewById(R.id.img_programbondpart);
         txt_title = view.findViewById(R.id.txt_title_page);
         txt_title.setText("PROGRAM");
 
@@ -81,12 +83,23 @@ public class Fragment_bondPartMerchant_benefit extends Fragment {
             }
         });
 
-        if (user_type.equals("0")){
-            Glide.with(getActivity()).load(R.drawable.club_program).into(img_program);
-        }else if (user_type.equals("1")){
-            Glide.with(getActivity()).load(R.drawable.partner_program).into(img_program);
-        }else if (user_type.equals("2")){
-            Glide.with(getActivity()).load(R.drawable.contractor_program).into(img_program);
+        if (user_type.equals("0")) {
+
+            img_bondpart.setVisibility(View.GONE);
+            img_program.setVisibility(View.VISIBLE);
+            Glide.with(getActivity()).load(R.drawable.bondclub_program).into(img_program);
+
+//            img_program.setImageDrawable(getResources().getDrawable(R.drawable.club_program));
+        } else if (user_type.equals("1")) {
+            img_bondpart.setVisibility(View.VISIBLE);
+            img_program.setVisibility(View.GONE);
+            Glide.with(getActivity()).load(R.drawable.partner_program).into(img_bondpart);
+//            img_program.setImageDrawable(getResources().getDrawable(R.drawable.partner_program));
+        } else if (user_type.equals("2")) {
+            img_bondpart.setVisibility(View.VISIBLE);
+            img_program.setVisibility(View.GONE);
+            Glide.with(getActivity()).load(R.drawable.bondcontractor_program).into(img_program);
+//            img_program.setImageDrawable(getResources().getDrawable(R.drawable.contractor_program));
         }
 
 

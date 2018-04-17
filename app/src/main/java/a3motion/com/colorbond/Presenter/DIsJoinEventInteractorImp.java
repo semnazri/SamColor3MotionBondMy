@@ -6,9 +6,9 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import a3motion.com.colorbond.Interface.RewardInterface;
+import a3motion.com.colorbond.Interface.EventInterface;
 import a3motion.com.colorbond.Network.APICONSTANT;
-import a3motion.com.colorbond.POJO.SubmitResponse;
+import a3motion.com.colorbond.POJO.RegisterResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -26,11 +26,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class RewardReedemInteractorImp implements RewardReedemInteractor {
+public class DIsJoinEventInteractorImp implements DIsJoinEventInteractor {
     String response_message;
 
     @Override
-    public void doRequest(String token, String id_master_reward, String status, String point_redeem, final OnSuccessOrderRewardListener listener) {
+    public void doDisJoinEvent(String token, String id_event, final OnSuccessDIsJoinEventListener listener) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
@@ -50,10 +50,10 @@ public class RewardReedemInteractorImp implements RewardReedemInteractor {
                 .build();
 
 
-        RewardInterface service = retrofit.create(RewardInterface.class);
+        EventInterface service = retrofit.create(EventInterface.class);
 
 
-        final Call<ResponseBody> call = service.doReedem(token, id_master_reward, status,point_redeem);
+        final Call<ResponseBody> call = service.disjoin(token,id_event);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -61,8 +61,8 @@ public class RewardReedemInteractorImp implements RewardReedemInteractor {
                 if (response.isSuccessful()) {
                     Gson gson = new Gson();
                     try {
-                        SubmitResponse submitResponse = gson.fromJson(response.body().string(), SubmitResponse.class);
-                        listener.onSuccess(response_message, submitResponse);
+                        RegisterResponse registerResponse = gson.fromJson(response.body().string(), RegisterResponse.class);
+                        listener.onSuccess(response_message, registerResponse);
 
                     } catch (IOException e) {
                         e.printStackTrace();

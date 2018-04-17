@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,13 +52,13 @@ import a3motion.com.colorbond.View.RewardReedemView;
 
 public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, RewardListener, RewardReedemView {
 
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
+    String userid, merchant_type, tokenz, reward_id, point_user;
     private View view;
     //    private List<Voucher> vouchers;
     private RecyclerView rv;
     private LinearLayoutManager lm;
     private VoucherAdapter adapter;
-    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid, merchant_type, tokenz, reward_id, point_user;
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
     private MaterialDialog mDialog, dialog_muter;
@@ -194,18 +195,24 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
         final Button btn_reedem = dialog_followers.findViewById(R.id.btn_redem);
         final TextView txt_detail = dialog_followers.findViewById(R.id.txt_detail_voucher);
         final ImageView img_voucher = dialog_followers.findViewById(R.id.img_voucher);
+        final EditText voucher_qty = dialog_followers.findViewById(R.id.edt_quantitiy_voucher);
 
         Glide.with(getActivity()).load(image).into(img_voucher);
 
         txt_detail.setText(nama_reward + "\n" + point + "Point");
+
+
+
         btn_reedem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String qty = voucher_qty.getText().toString();
+//                Toast.makeText(getActivity(), qty, Toast.LENGTH_SHORT).show();
 
-                if (Integer.parseInt(point_user) < Integer.parseInt(point)) {
+                if (Integer.parseInt(point_user) < Integer.parseInt(qty)) {
                     getdialogerror("insufficient points to proceed");
                 } else {
-                    rewardReedemPresenter.doOrderReward(tokenz,id_master_reward,userid);
+                    rewardReedemPresenter.doOrderReward(tokenz, id_master_reward, userid,qty);
                 }
 
             }

@@ -13,7 +13,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Event {
 
-    @SerializedName("id")
+    @SerializedName("id_events")
     @Expose
     private String id;
     @SerializedName("name")

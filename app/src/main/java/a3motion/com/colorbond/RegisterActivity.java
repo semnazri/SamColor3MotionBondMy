@@ -45,14 +45,14 @@ import a3motion.com.colorbond.View.RegisterView;
 
 public class RegisterActivity extends AppCompatActivity implements RegisterView {
 
-    private Spinner spinner_profesi, spinner_title,spinner_gender;
+    private Spinner spinner_profesi, spinner_gender;
     private List<Profesi> profsi;
     private List<Gender> genders;
     private SpinnerPorfesiAdapter adapter;
     private SpinnerGenderAdapter adaptergender;
     private TextView txt_title;
     private ImageView imageView;
-    private EditText edt_name, edt_firstname, edt_lastname, edt_company_register, edt_email, edt_password, edt_rePass, edt_dob, edt_phone;
+    private EditText edt_name, edt_firstname, edt_lastname, edt_company_register, edt_email, edt_password, edt_rePass, edt_dob, edt_phone, edt_title;
     private Button btn_signUp;
     private MaterialDialog mDialog, dialog_muter;
     private Boolean isInternetPresent = false;
@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     private RegisterPresenter registerPresenter;
     private String titles, gender;
     private Calendar myCalendar1 = Calendar.getInstance();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,13 +74,13 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         edt_firstname = findViewById(R.id.edt_firstname_register);
         edt_lastname = findViewById(R.id.edt_lastname_register);
         edt_company_register = findViewById(R.id.edt_company_register);
-        spinner_title = findViewById(R.id.spinner_title);
+        edt_title = findViewById(R.id.edt_job_title_register);
         spinner_gender = findViewById(R.id.spinner_gender);
         edt_email = findViewById(R.id.edt_email_register);
-        edt_password = findViewById(R.id.edt_phone_register);
+        edt_password = findViewById(R.id.edt_pass_register);
         edt_rePass = findViewById(R.id.edt_retype_register);
         edt_dob = findViewById(R.id.edt_dob);
-        edt_phone = findViewById(R.id.edt_phone_register);
+        edt_phone = findViewById(R.id.edt_phone);
         btn_signUp = findViewById(R.id.btn_signup);
         cd = new ConnectionDetector(this);
         registerPresenter = new RegisterPresenterImp(this);
@@ -93,36 +94,27 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         }
 
 
-        btn_signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkConnections(edt_name.getText().toString(), edt_company_register.getText().toString(), edt_firstname.getText().toString(),
-                        edt_lastname.getText().toString(), edt_dob.getText().toString(), edt_phone.getText().toString(),
-                        titles, edt_email.getText().toString(), edt_password.getText().toString(), edt_rePass.getText().toString(), img);
-            }
-        });
-
         profsi = getTipe();
         genders = getGender();
-        adapter = new SpinnerPorfesiAdapter(this, profsi);
-        spinner_title.setAdapter(adapter);
+//        adapter = new SpinnerPorfesiAdapter(this, profsi);
+//        spinner_title.setAdapter(adapter);
         adaptergender = new SpinnerGenderAdapter(this, genders);
         spinner_gender.setAdapter(adaptergender);
 
-        spinner_title.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String item_id = String.valueOf(((TextView) view.findViewById(R.id.province_id__)).getText().toString());
-                String item_name = ((TextView) view.findViewById(R.id.province_name__)).getText().toString();
-//                size_cat_txt = item_id;
-                titles = item_name;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+//        spinner_title.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                String item_id = String.valueOf(((TextView) view.findViewById(R.id.province_id__)).getText().toString());
+//                String item_name = ((TextView) view.findViewById(R.id.province_name__)).getText().toString();
+////                size_cat_txt = item_id;
+//                titles = item_name;
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
 
         spinner_gender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -161,6 +153,28 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
                         myCalendar1.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+
+        btn_signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkConnections(edt_company_register.getText().toString(),
+                        edt_firstname.getText().toString(), edt_lastname.getText().toString(),
+                        edt_dob.getText().toString(), edt_phone.getText().toString(),
+                        titles, edt_email.getText().toString(), edt_password.getText().toString(),
+                        edt_rePass.getText().toString(), img,edt_title.getText().toString());
+            }
+        });
+    }
+
+    private void checkConnections(String company, String firstname, String lastname, String dob, String phone, String titless, String emails, String password, String repass, String img, String Jobtitle) {
+
+        isInternetPresent = cd.isConnectingToInternet();
+        if (isInternetPresent) {
+//            registerPresenter.validateCredentials(firstname,lastname,company,titles,dob,gender,email,phone,"",password,repassword,img,"0");
+            registerPresenter.validateCredentials(firstname, lastname, company, Jobtitle, dob, gender, emails, phone, "", password, repass, img, "0");
+        } else if (isInternetPresent.equals(false)) {
+            getdialogerror("Tidak ada koneksi Internet");
+        }
     }
 
     private void updateLabel() {
@@ -184,16 +198,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     public void onDestroy() {
         registerPresenter.onDestroy();
         super.onDestroy();
-    }
-
-    private void checkConnections(String name, String company, String firstname, String lastname,String titles , String phone, String dob, String email, String password, String repassword, String img) {
-        isInternetPresent = cd.isConnectingToInternet();
-        if (isInternetPresent) {
-            registerPresenter.validateCredentials(firstname,lastname,company,titles,dob,gender,email,phone,"",password,repassword,img,"0");
-
-        } else if (isInternetPresent.equals(false)) {
-            getdialogerror("Tidak ada koneksi Internet");
-        }
     }
 
     public void getDialog_progress() {

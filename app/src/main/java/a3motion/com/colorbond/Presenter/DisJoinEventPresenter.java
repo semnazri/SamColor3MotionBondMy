@@ -8,8 +8,8 @@ package a3motion.com.colorbond.Presenter;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public interface RewardReedemPresenter {
-    void doOrderReward(String token,String id_master_reward,String status,String poin_redeem);
+public interface DisJoinEventPresenter {
+    void doDisJoinEvent(String token, String id_event);
     void onDestroy();
 
 }

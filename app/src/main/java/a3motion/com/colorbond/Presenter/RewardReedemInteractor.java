@@ -12,7 +12,7 @@ import a3motion.com.colorbond.POJO.SubmitResponse;
 
 public interface RewardReedemInteractor {
 
-    void doRequest(String token, String id_master_reward, String status, OnSuccessOrderRewardListener listener);
+    void doRequest(String token, String id_master_reward, String status,String point_redeem, OnSuccessOrderRewardListener listener);
 
     interface OnSuccessOrderRewardListener {
 

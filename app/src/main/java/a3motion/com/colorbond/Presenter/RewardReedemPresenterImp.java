@@ -20,9 +20,11 @@ public class RewardReedemPresenterImp implements RewardReedemPresenter, RewardRe
         this.rewardReedemInteractor = new RewardReedemInteractorImp();
     }
 
+
+
     @Override
-    public void doOrderReward(String token, String id_master_reward, String status) {
-        rewardReedemInteractor.doRequest(token, id_master_reward, status, this);
+    public void doOrderReward(String token, String id_master_reward, String status, String poin_redeem) {
+        rewardReedemInteractor.doRequest(token, id_master_reward, status,poin_redeem, this);
     }
 
     @Override

@@ -38,10 +38,17 @@ import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Followers;
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.POJO.HomeResponse;
+import a3motion.com.colorbond.POJO.RegisterResponse;
+import a3motion.com.colorbond.Presenter.DisJoinEventPresenter;
+import a3motion.com.colorbond.Presenter.DisJoinEventPresenterImp;
 import a3motion.com.colorbond.Presenter.HomePresejter;
 import a3motion.com.colorbond.Presenter.HomePresemterImp;
+import a3motion.com.colorbond.Presenter.JoinEventPresenter;
+import a3motion.com.colorbond.Presenter.JoinEventPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.EventDisjoin;
+import a3motion.com.colorbond.View.EventJoin;
 import a3motion.com.colorbond.View.HomeView;
 
 /**
@@ -52,15 +59,15 @@ import a3motion.com.colorbond.View.HomeView;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class FragmentHome extends Fragment implements HomeView {
+public class FragmentHome extends Fragment implements HomeView, EventJoin, EventDisjoin {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid, nama, points, tokenz;
+    String userid, nama, points, tokenz, merchant_type;
     private View view;
     //    private List<LatestProjectfront> latestProjects;
     private List<Followers> followers;
     private RecyclerView rv;
-    private TextView txt_name, txt_point, txt_title_event1, txt_date_event1;
+    private TextView txt_name, txt_point, txt_title_event1, txt_date_event1, txt_no_project;
     private LinearLayoutManager lm, lm_followers;
     private LatestProjectAdapter adapter;
     private FollowersAdapter followersAdapter;
@@ -70,6 +77,8 @@ public class FragmentHome extends Fragment implements HomeView {
     private MaterialDialog mDialog, dialog_muter;
     private SharedPreferences prefsprivate;
     private HomePresejter homePresejter;
+    private JoinEventPresenter joinEventPresenter;
+    private DisJoinEventPresenter disJoinEventPresenter;
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
 
@@ -101,11 +110,16 @@ public class FragmentHome extends Fragment implements HomeView {
         txt_point = view.findViewById(R.id.txt_point);
         txt_title_event1 = view.findViewById(R.id.title_event1);
         txt_date_event1 = view.findViewById(R.id.date_event1);
+        txt_no_project = view.findViewById(R.id.txt_no_project);
+
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
+        merchant_type = prefsprivate.getString(BlueScoopPreferences.merchant_type, "1");
         nama = prefsprivate.getString(BlueScoopPreferences.nama, "username");
         points = prefsprivate.getString(BlueScoopPreferences.poin, "10000");
         homePresejter = new HomePresemterImp(this);
+        joinEventPresenter = new JoinEventPresenterImp(this);
+        disJoinEventPresenter = new DisJoinEventPresenterImp(this);
         checkConnections();
 
         if (userid.equals("1")) {
@@ -134,7 +148,15 @@ public class FragmentHome extends Fragment implements HomeView {
         img_3rd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startNewActivity(getActivity(), "com.waw.wawcard");
+                if (merchant_type.equals("0")) {
+                    startNewActivity(getActivity(), "com.waw.wawcard");
+                } else {
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.add(R.id.container_body, new Point_Parent(), "home").addToBackStack("pembayaran");
+                    fragmentTransaction.commit();
+
+                }
             }
         });
         ll_project_history.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +247,7 @@ public class FragmentHome extends Fragment implements HomeView {
         dialog.show();
     }
 
-    private void showDialogjoin(String fileimg, String name, String tema, String address, String cp, String cp_name, String date) {
+    private void showDialogjoin(String fileimg, String name, String tema, String address, String cp, String cp_name, String date, final String id) {
 
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_join);
@@ -253,13 +275,13 @@ public class FragmentHome extends Fragment implements HomeView {
         cp_event.setText(cp_name + " " + cp);
 
 
-
         tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                dialog.dismiss();
+//                dialog.dismiss();=
                 tv_join_disjoin.setVisibility(View.GONE);
                 tv_join_join.setVisibility(View.VISIBLE);
+//                disJoinEventPresenter.doDisJoinEvent(tokenz,id);
             }
         });
 
@@ -268,6 +290,8 @@ public class FragmentHome extends Fragment implements HomeView {
             public void onClick(View v) {
                 tv_join_join.setVisibility(View.GONE);
                 tv_join_disjoin.setVisibility(View.VISIBLE);
+//                Toast.makeText(getActivity(), id, Toast.LENGTH_SHORT).show();
+//                joinEventPresenter.doJoinEvent(tokenz, id, "1");
 //                dialog.dismiss();
             }
         });
@@ -347,23 +371,35 @@ public class FragmentHome extends Fragment implements HomeView {
                         homeResponse.getEvent().get(0).getAddress(),
                         homeResponse.getEvent().get(0).getCp(),
                         homeResponse.getEvent().get(0).getCP_Name(),
-                        homeResponse.getEvent().get(0).getDate());
+                        homeResponse.getEvent().get(0).getDate(),
+                        homeResponse.getEvent().get(0).getId());
             }
         });
 
         if (homeResponse.getLatestProject() != null) {
-
+            rv.setVisibility(View.VISIBLE);
+            txt_no_project.setVisibility(View.GONE);
             rv.setHasFixedSize(true);
             lm = new LinearLayoutManager(getActivity());
             rv.setLayoutManager(lm);
             adapter = new LatestProjectAdapter(getActivity(), homeResponse.getLatestProject());
             rv.setAdapter(adapter);
         } else {
-
-            ll_latestproject.setVisibility(View.GONE);
+            rv.setVisibility(View.GONE);
+            txt_no_project.setVisibility(View.VISIBLE);
 
         }
 
+    }
+
+    @Override
+    public void ResulDIsJoinEvent(String response_message, RegisterResponse registerResponse) {
+        getdialogerror(registerResponse.getMessage());
+    }
+
+    @Override
+    public void ResulJoinEvent(String response_message, RegisterResponse registerResponse) {
+        getdialogerror(registerResponse.getMessage());
     }
 
     @Override

@@ -133,15 +133,25 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="2"
-                    android:text="Title "
+                    android:text="Job title "
                     android:textColor="@color/white" />
 
-                <Spinner
-                    android:id="@+id/spinner_title"
-                    style="@style/spinner_style"
+                <EditText
+                    android:id="@+id/edt_job_title_register"
                     android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_weight="1" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Job title"
+                    android:textSize="14sp"
+                    android:background="@drawable/bg_white_edtext"
+                    android:paddingLeft="10dp" />
+
+                <!--<Spinner-->
+                    <!--android:id="@+id/spinner_title"-->
+                    <!--style="@style/spinner_style"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="30dp"-->
+                    <!--android:layout_weight="1" />-->
             </LinearLayout>
 
             <LinearLayout

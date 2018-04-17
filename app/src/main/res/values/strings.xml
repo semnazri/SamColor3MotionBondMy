@@ -23,7 +23,7 @@
     <string name="sup"><![CDATA[/m<sup>2</sup>]]></string>
     <string name="project_detail">Project Details</string>
     <string name="project_name">Project Name</string>
-    <string name="your_project_name">your project name</string>
+    <string name="your_project_name">Your project name</string>
     <string name="date">Date</string>
     <string name="location">Location</string>
     <string name="building_cat">Building Category</string>
@@ -65,7 +65,7 @@
     <string name="project_owner">Project Owner</string>
     <string name="your_project_owner">Building / Project owner\'s name / developer name</string>
     <string name="project_contractor">Contractor</string>
-    <string name="your_project_contractor">Company Name</string>
+    <string name="your_project_contractor">Company name</string>
     <string name="project_color">Color</string>
     <string name="your_project_color">Product\'s color in your project</string>
     <string name="JOIN">JOIN</string>

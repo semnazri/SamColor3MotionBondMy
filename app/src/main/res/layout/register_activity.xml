@@ -80,7 +80,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="FirstName "
+                        android:text="First Name "
                         android:textColor="@color/white" />
 
                     <EditText
@@ -105,7 +105,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="LastName "
+                        android:text="Last name "
                         android:textColor="@color/white" />
 
                     <EditText
@@ -138,7 +138,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Companny"
+                        android:hint="Company"
                         android:textSize="14sp"
                         android:background="@drawable/bg_white_edtext"
                         android:paddingLeft="10dp" />
@@ -156,15 +156,25 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="Title "
+                        android:text="Job title "
                         android:textColor="@color/white" />
 
-                    <Spinner
-                        android:id="@+id/spinner_title"
-                        style="@style/spinner_style"
+                    <EditText
+                        android:id="@+id/edt_job_title_register"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_weight="1" />
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Job title"
+                        android:textSize="14sp"
+                        android:background="@drawable/bg_white_edtext"
+                        android:paddingLeft="10dp" />
+
+                    <!--<Spinner-->
+                        <!--android:id="@+id/spinner_title"-->
+                        <!--style="@style/spinner_style"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="30dp"-->
+                        <!--android:layout_weight="1" />-->
                 </LinearLayout>
 
                 <LinearLayout
@@ -178,7 +188,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="Date Of Birth"
+                        android:text="Date of birth"
                         android:textColor="@color/white" />
 
                     <EditText
@@ -191,7 +201,7 @@
                         android:paddingLeft="10dp"
                         android:editable="false"
                         android:paddingTop="5dp"
-                        android:hint="yyyy-MM-dd"
+                        android:hint="yyyy-mm-dd"
                         android:singleLine="true"
                         android:textColor="@color/txt_color"
                         android:textSize="14sp" />
@@ -291,7 +301,7 @@
                         android:textColor="@color/white" />
 
                     <EditText
-                        android:id="@+id/edt_phone_register"
+                        android:id="@+id/edt_pass_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -313,7 +323,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="Re-Type Pass"
+                        android:text="Re-type pass"
                         android:textColor="@color/white" />
 
                     <EditText

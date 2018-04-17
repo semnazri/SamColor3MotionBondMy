@@ -26,6 +26,6 @@ public interface EventInterface {
     Call<ResponseBody> joinEvent(@Header("Authorization") String Authorization, @Field("id_event") String id_event,@Field("status") String status);
 
     @FormUrlEncoded
-    @POST("event/join_event")
+    @POST("event/disjoin")
     Call<ResponseBody> disjoin(@Header("Authorization") String Authorization,@Field("id_event") String id_event);
 }

@@ -149,36 +149,6 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
         eventPresenter.onDestroy();
         super.onDestroy();
     }
-
-    @Override
-    public void show_event(String date, String hour, String nama_event, String tema_event, String pic, String location, String image) {
-
-        final Dialog dialog = new Dialog(getActivity());
-        dialog.setContentView(R.layout.layout_join);
-
-        TextView tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
-        LinearLayout ll_folowers = dialog.findViewById(R.id.ll_folowers);
-        ImageView img_event = dialog.findViewById(R.id.event_img);
-
-        Glide.with(getActivity()).load(image).into(img_event);
-        tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-        ll_folowers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showDialog_listFolowers();
-            }
-        });
-
-        dialog.show();
-
-
-    }
-
     private void showDialog_listFolowers() {
 
 
@@ -260,4 +230,56 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
                 .show();
     }
 
+    @Override
+    public void show_event(String name_event, String tema_event, String date_event, String addres_event, String cp_name, String cp, String file_img) {
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.layout_join);
+
+        final Button tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
+        final Button tv_join_join = dialog.findViewById(R.id.txt_join_join);
+
+        LinearLayout ll_folowers = dialog.findViewById(R.id.ll_folowers);
+        ImageView event_img = dialog.findViewById(R.id.event_img);
+        TextView title = dialog.findViewById(R.id.title);
+        TextView date_top = dialog.findViewById(R.id.date);
+        TextView event_name = dialog.findViewById(R.id.event_name_desc);
+        TextView address_event = dialog.findViewById(R.id.event_address_desc);
+        TextView cp_event = dialog.findViewById(R.id.event_contact_person_desc);
+
+        title.setText(name_event);
+        date_top.setText(date_event);
+        event_name.setText(tema_event);
+        address_event.setText(addres_event);
+        cp_event.setText(cp + " " + cp_name);
+
+
+        tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                dialog.dismiss();
+                tv_join_disjoin.setVisibility(View.GONE);
+                tv_join_join.setVisibility(View.VISIBLE);
+            }
+        });
+
+        tv_join_join.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_join_join.setVisibility(View.GONE);
+                tv_join_disjoin.setVisibility(View.VISIBLE);
+//                dialog.dismiss();
+            }
+        });
+
+//        ll_folowers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showDialog_listFolowers();
+//            }
+//        });
+
+        Glide.with(getActivity()).load(file_img).into(event_img);
+
+        dialog.show();
+    }
 }
