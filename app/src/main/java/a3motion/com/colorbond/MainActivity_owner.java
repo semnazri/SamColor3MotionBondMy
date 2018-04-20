@@ -35,6 +35,7 @@ import com.bumptech.glide.request.RequestOptions;
 import a3motion.com.colorbond.Fragment.FragmentEvent;
 import a3motion.com.colorbond.Fragment.FragmentHelp;
 import a3motion.com.colorbond.Fragment.FragmentHome;
+import a3motion.com.colorbond.Fragment.FragmentMerchantPromo;
 import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
 import a3motion.com.colorbond.Fragment.Fragment_PT_NS;
@@ -70,7 +71,7 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
     private CircleImageView imageview;
     private SharedPreferences prefsprivate;
     private String nama, image, merchant_type;
-    private ImageView img_ig, img_youtube;
+    private ImageView img_ig, img_youtube,img_web;
     private MaterialDialog mDialog;
 
     @Override
@@ -121,7 +122,7 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
         Menu navmenu = navigationView.getMenu();
 
 
-        if (merchant_type.equals("1") || merchant_type.equals("2")){
+        if (merchant_type.equals("1") || merchant_type.equals("2")) {
             navmenu.findItem(R.id.benefit).setVisible(false);
 
         }
@@ -134,6 +135,7 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
         View img = navigationView.getRootView();
         img_ig = img.findViewById(R.id.ig);
         img_youtube = img.findViewById(R.id.yt);
+        img_web = img.findViewById(R.id.web);
 
 
         RequestOptions myoptions = new RequestOptions()
@@ -174,6 +176,15 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
                     startActivity(new Intent(Intent.ACTION_VIEW,
                             Uri.parse("https://www.youtube.com/channel/UC6ob6B0lXVeKQd1ZOYRVIaA/")));
                 }
+            }
+        });
+
+        img_web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("https://www.colorbond.id");
+                Intent web = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(web);
             }
         });
 
@@ -239,12 +250,12 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
             fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {
 
-            if (merchant_type.equals("0")) {
-                startNewActivity(this, "com.waw.wawcard");
-            } else {
-                getdialogerror("This menu only for Bond Club Program");
-            }
-//            fragment = new Fragment_bondPartMerchant_benefit();
+//            if (merchant_type.equals("0")) {
+//                startNewActivity(this, "com.waw.wawcard");
+//            } else {
+//                getdialogerror("This menu only for Bond Club Program");
+//            }
+            fragment = new FragmentMerchantPromo();
         } else if (id == R.id.variant) {
             fragment = new Fragment_VariantColor();
         } else if (id == R.id.bluescoop) {

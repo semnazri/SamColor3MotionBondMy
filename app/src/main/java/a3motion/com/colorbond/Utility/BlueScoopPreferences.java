@@ -24,4 +24,5 @@ public class BlueScoopPreferences {
     public static final String poin = "poin";
     public static final String DOB = "dob";
     public static final String company = "company";
+    public static final String genders = "genders";
 }

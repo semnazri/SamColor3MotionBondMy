@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import a3motion.com.colorbond.Model.Sliderpoto;
+import a3motion.com.colorbond.POJO.DatumInspirasi;
 import a3motion.com.colorbond.R;
 
 /**
@@ -32,9 +33,9 @@ public class InspirasiPagerAdapter extends PagerAdapter {
     String[] subtitle;
 
     private Context mContext;
-    private List<Sliderpoto> mValues;
+    private List<DatumInspirasi> mValues;
 
-    public InspirasiPagerAdapter(Context mContext, List<Sliderpoto> items) {
+    public InspirasiPagerAdapter(Context mContext, List<DatumInspirasi> items) {
         this.mContext = mContext;
         mValues = items;
         this.image = image;
@@ -66,21 +67,21 @@ public class InspirasiPagerAdapter extends PagerAdapter {
         txtitle = (TextView) view.findViewById(R.id.img_title);
         txt_subtitle = (TextView) view.findViewById(R.id.img_subtitle);
 
-        if (mValues.get(position).getCount() == 0){
-            txt_count.setVisibility(View.GONE);
-        }else{
-            txt_count.setVisibility(View.VISIBLE);
-            txt_count.setText(String.valueOf(mValues.get(position).getCount()));
-        }
+//        if (mValues.get(position).getCount() == 0){
+//            txt_count.setVisibility(View.GONE);
+//        }else{
+//            txt_count.setVisibility(View.VISIBLE);
+//            txt_count.setText(String.valueOf(mValues.get(position).getCount()));
+//        }
 
 //        String id = mValues.get(position).getSlideId();
 //        String image = mValues.get(position).getSlideImage();
 //
         txtitle.setText(mValues.get(position).getTitle());
-        Glide.with(mContext).load(mValues.get(position).getImg()).into(tximage);
+        Glide.with(mContext).load(mValues.get(position).getImageSlider()).into(tximage);
 //        tximage.setImageResource(image[position]);
 //        txtitle.setText(title[position]);
-        txt_subtitle.setText(mValues.get(position).getSubtitle());
+//        txt_subtitle.setText(mValues.get(position).getSubtitle());
 
         ((ViewPager) container).addView(view);
 

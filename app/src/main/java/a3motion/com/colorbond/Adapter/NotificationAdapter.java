@@ -48,6 +48,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         String title = mValuses.get(position).getTitleNotification();
         String headline = mValuses.get(position).getNotification();
         String desc = mValuses.get(position).getProjectLocation();
+
         holder.des_notif.setVisibility(View.GONE);
         holder.title_notif.setText(title);
         holder.hedline_notif.setText(headline);
@@ -55,7 +56,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.typeDialog(mValuses.get(position).getTypeNotification());
+                listener.typeDialog(mValuses.get(position).getTypeNotification(),mValuses.get(position).getIdNotification());
             }
         });
     }

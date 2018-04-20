@@ -14,9 +14,15 @@ public class DatumInspirasi {
     @SerializedName("content")
     @Expose
     private String content;
-    @SerializedName("image")
+    @SerializedName("image_top")
     @Expose
-    private String image;
+    private String imageTop;
+    @SerializedName("image_slider")
+    @Expose
+    private String imageSlider;
+    @SerializedName("image_bottom")
+    @Expose
+    private String imageBottom;
     @SerializedName("type")
     @Expose
     private String type;
@@ -54,12 +60,28 @@ public class DatumInspirasi {
         this.content = content;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageTop() {
+        return imageTop;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageTop(String imageTop) {
+        this.imageTop = imageTop;
+    }
+
+    public String getImageSlider() {
+        return imageSlider;
+    }
+
+    public void setImageSlider(String imageSlider) {
+        this.imageSlider = imageSlider;
+    }
+
+    public String getImageBottom() {
+        return imageBottom;
+    }
+
+    public void setImageBottom(String imageBottom) {
+        this.imageBottom = imageBottom;
     }
 
     public String getType() {
@@ -93,6 +115,5 @@ public class DatumInspirasi {
     public void setStatus(String status) {
         this.status = status;
     }
-
 
 }

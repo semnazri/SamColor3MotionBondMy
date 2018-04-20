@@ -19,7 +19,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +35,7 @@ import com.bumptech.glide.request.RequestOptions;
 import a3motion.com.colorbond.Fragment.FragmentEvent;
 import a3motion.com.colorbond.Fragment.FragmentHelp;
 import a3motion.com.colorbond.Fragment.FragmentHome;
+import a3motion.com.colorbond.Fragment.FragmentMerchantPromo;
 import a3motion.com.colorbond.Fragment.FragmentNotif;
 import a3motion.com.colorbond.Fragment.Fragment_Inspirasi;
 import a3motion.com.colorbond.Fragment.Fragment_PT_NS;
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView username;
     private CircleImageView imageview;
     private SharedPreferences prefsprivate;
-    private String nama, image,merchant_type;
-    private ImageView img_ig,img_youtube;
+    private String nama, image, merchant_type;
+    private ImageView img_ig, img_youtube,img_web;
     private MaterialDialog mDialog;
 
 
@@ -109,8 +109,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Menu navmenu = navigationView.getMenu();
 
 
-
-
         onNavigationItemSelected(navigationView.getMenu().getItem(0));
         View header = navigationView.getHeaderView(0);
         username = header.findViewById(R.id.name);
@@ -119,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View img = navigationView.getRootView();
         img_ig = img.findViewById(R.id.ig);
         img_youtube = img.findViewById(R.id.yt);
+        img_web = img.findViewById(R.id.web);
 
 
         prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
@@ -127,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         merchant_type = prefsprivate.getString(BlueScoopPreferences.merchant_type, "Username");
 
 
-        if (merchant_type.equals("1") || merchant_type.equals("2")){
+        if (merchant_type.equals("1") || merchant_type.equals("2")) {
             navmenu.findItem(R.id.benefit).setVisible(false);
 
         }
@@ -171,6 +170,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     startActivity(new Intent(Intent.ACTION_VIEW,
                             Uri.parse("https://www.youtube.com/channel/UC6ob6B0lXVeKQd1ZOYRVIaA/")));
                 }
+            }
+        });
+
+        img_web.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri uri = Uri.parse("https://www.colorbond.id");
+                Intent web = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(web);
+
             }
         });
         btmView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -234,12 +243,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.event) {
             fragment = new FragmentEvent();
         } else if (id == R.id.benefit) {
-            if (merchant_type.equals("0")){
-                startNewActivity(this, "com.waw.wawcard");
-            }else{
-                getdialogerror("This menu only for Bond Club Program");
-            }
-//            fragment = new Fragment_bondPartMerchant_benefit();
+//            if (merchant_type.equals("0")) {
+//                startNewActivity(this, "com.waw.wawcard");
+//            }else{
+//                getdialogerror("This menu only for Bond Club Program");
+//            }
+            fragment = new FragmentMerchantPromo();
         } else if (id == R.id.variant) {
             fragment = new Fragment_VariantColor();
         } else if (id == R.id.bluescoop) {
@@ -281,7 +290,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-
     @Override
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
@@ -292,7 +300,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        }else if (backStackCount >= 2) {
+        } else if (backStackCount >= 2) {
             fragmentManager.popBackStack();
             FragmentManager.BackStackEntry entry = getSupportFragmentManager().getBackStackEntryAt(
                     1);
@@ -305,9 +313,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MainActivity.title_page.setVisibility(View.GONE);
             MainActivity.mToolbar.setVisibility(View.VISIBLE);
 
-        } else if (tag.equals("home")||(tag.equals("inspirasi"))){
+        } else if (tag.equals("home") || (tag.equals("inspirasi"))) {
             getFragmentManager().popBackStack();
-        }else {
+        } else {
             new AlertDialog.Builder(this)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setMessage("Do you want to close this application?")

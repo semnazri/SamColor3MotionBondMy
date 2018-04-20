@@ -1,6 +1,5 @@
 package a3motion.com.colorbond.Interface;
 
-import a3motion.com.colorbond.POJO.SubmitResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -36,6 +35,7 @@ public interface SubmitInterface {
                                        @Field("building_category") String building_category, @Field("quantity") String quantity,
                                        @Field("size_category") String size_category, @Field("material_1") String material_1,
                                        @Field("material_2") String material_2, @Field("delivery_img") String delivery_img,
-                                       @Field("suport_img") String suport_img);
+                                       @Field("suport_img") String suport_img, @Field("project_owner") String project_owner,
+                                       @Field("contractor") String contractor, @Field("color")String color);
 
 }

@@ -78,7 +78,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
     String userid, point, user_from;
     private View view;
     private SharedPreferences prefsprivate;
-    private TextView txt_title, txt_m2_sup, txt_point, txt_delive_note, txt_suporting_note, text_upload,txt_size,txt_supporting,txt_contractor;
+    private TextView txt_title, txt_m2_sup, txt_point, txt_delive_note, txt_suporting_note, text_upload, txt_size, txt_supporting, txt_contractor;
     private ImageView img_tolbar;
     private List<Building_cats> building_cats;
     private List<Material> materials;
@@ -89,7 +89,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
     private MaterialAdapter adapterM;
     private SizeMaterialAdapter adapterS;
     private SizeCategotyAdapter adapterSCat;
-    private EditText submit_project_name, submit_date, submit_location, submit_size,submit_project_owner,submit_project_contractor,submit_project_color;
+    private EditText submit_project_name, submit_date, submit_location, submit_size, submit_project_owner, submit_project_contractor, submit_project_color;
     private Button btn_submit;
     private Uri file;
     private Calendar myCalendar = Calendar.getInstance();
@@ -101,10 +101,11 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
     private MaterialDialog mDialog, dialog_muter;
+    private LinearLayout llkorban;
+    private String building_cat_txt, size_cat_txt, deliv_img_txt, material_1_txt, material_2_txt;
+    private String sup_img_txt = "0";
 
-    private String building_cat_txt, size_cat_txt, deliv_img_txt, sup_img_txt, material_1_txt, material_2_txt;
-
-    private LinearLayout ll_build_cat, ll_size_cat,ll_project_owner,ll_project_contractor;
+    private LinearLayout ll_build_cat, ll_size_cat, ll_project_owner, ll_project_contractor;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -150,6 +151,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         ll_size_cat = view.findViewById(R.id.ll_size_cat);
         ll_project_owner = view.findViewById(R.id.ll_project_owner);
         ll_project_contractor = view.findViewById(R.id.ll_project_contractor);
+        llkorban = view.findViewById(R.id.ll_korban);
 
         submitPresenter = new SubmitPresenterImp(this);
         txt_title.setText("SUBMIT PROJECT");
@@ -158,15 +160,16 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
         Size_material = getSize();
         Size_category = getSizeCat();
 
-        Log.d("asuk",user_from);
+        Log.d("asuk", user_from);
 
 
         if (user_from.equals("0")) {
             ll_build_cat.setVisibility(View.GONE);
             ll_size_cat.setVisibility(View.VISIBLE);
-            txt_supporting.setText("Upload Specification & Additional document");
+            txt_delive_note.setText("File picker");
             txt_m2_sup.setText(Html.fromHtml(getResources().getString(R.string.sup)));
-            text_upload.setText(getResources().getString(R.string.cpy_deliv_note));
+            text_upload.setText("Upload Specification & Additional document");
+            llkorban.setVisibility(View.GONE);
 
         } else if (user_from.equals("1")) {
             ll_build_cat.setVisibility(View.GONE);
@@ -352,7 +355,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
                 String tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
                 String mem_type = prefsprivate.getString(BlueScoopPreferences.merchant_type, "null");
 
-                sup_img_txt = txt_suporting_note.getText().toString();
+//                sup_img_txt = txt_suporting_note.getText().toString();
 
                 if (sup_img_txt.equals("")) {
                     sup_img_txt = "0";
@@ -371,7 +374,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
 
                 checkconenctions(tokenz, submit_project_name.getText().toString(), mem_type, submit_date.getText().toString(),
                         submit_location.getText().toString(), building_cat_txt, submit_size.getText().toString(),
-                        size_cat_txt, material_1_txt, material_2_txt, deliv_img_txt, sup_img_txt);
+                        size_cat_txt, material_1_txt, material_2_txt, deliv_img_txt, sup_img_txt, submit_project_owner.getText().toString(), submit_project_contractor.getText().toString(), submit_project_color.getText().toString());
             }
         });
 
@@ -388,11 +391,11 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
 
     }
 
-    private void checkconenctions(String tokenz, String submit_project_name, String mem_type, String submit_date, String submit_location, String building_cat_txt, String submit_size, String size_cat_txt, String material_1_txt, String material_2_txt, String deliv_img_txt, String sup_img_txt) {
+    private void checkconenctions(String tokenz, String submit_project_name, String mem_type, String submit_date, String submit_location, String building_cat_txt, String submit_size, String size_cat_txt, String material_1_txt, String material_2_txt, String deliv_img_txt, String sup_img_txt, String project_owner, String contractor, String color) {
 
         isInternetPresent = cd.isConnectingToInternet();
         if (isInternetPresent) {
-            submitPresenter.validateCredentials(tokenz, submit_project_name, mem_type, submit_date, submit_location, building_cat_txt, submit_size, size_cat_txt, material_1_txt, material_2_txt, deliv_img_txt, sup_img_txt);
+            submitPresenter.validateCredentials(tokenz, submit_project_name, mem_type, submit_date, submit_location, building_cat_txt, submit_size, size_cat_txt, material_1_txt, material_2_txt, deliv_img_txt, sup_img_txt, project_owner, contractor, color);
 
         } else if (isInternetPresent.equals(false)) {
             getdialogerror("Tidak ada koneksi Internet");
@@ -417,6 +420,23 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+
+                    }
+                })
+                .show();
+    }
+
+    private void getdialo(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        getFragmentManager().popBackStack();
                         mDialog.dismiss();
 
                     }
@@ -452,22 +472,42 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
 
                     break;
                 case 1:
-                    Bitmap suporting = (Bitmap) data.getExtras().get("data");
+
+                    Bitmap suport = (Bitmap) data.getExtras().get("data");
+                    deliv_img.setImageBitmap(suport);
                     file = Uri.fromFile(getFilesuport());
-                    sup_img.setImageBitmap(suporting);
 
-                    txt_suporting_note.setText(getFilesuport().getName());
+                    txt_suporting_note.setText(getFiledeliv().getName());
 
-                    ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
 
-                    suporting.compress(Bitmap.CompressFormat.JPEG, 100, baos1);
+                    ByteArrayOutputStream baossuport = new ByteArrayOutputStream();
 
-                    byte[] byteArraySupImage = baos1.toByteArray();
+                    suport.compress(Bitmap.CompressFormat.JPEG, 100, baossuport);
 
-                    String encodedImageSup = Base64.encodeToString(byteArraySupImage, Base64.DEFAULT);
-                    Log.d("encoded", String.valueOf(encodedImageSup));
+                    byte[] byteArrayImagesuport = baossuport.toByteArray();
 
-                    sup_img_txt = encodedImageSup;
+                    String encodedImagesuport = Base64.encodeToString(byteArrayImagesuport, Base64.DEFAULT);
+                    Log.d("encoded", String.valueOf(encodedImagesuport));
+
+                    sup_img_txt = encodedImagesuport;
+
+
+//                    Bitmap suporting = (Bitmap) data.getExtras().get("data");
+//                    file = Uri.fromFile(getFilesuport());
+//                    sup_img.setImageBitmap(suporting);
+//
+//                    txt_suporting_note.setText(getFilesuport().getName());
+//
+//                    ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+//
+//                    suporting.compress(Bitmap.CompressFormat.JPEG, 100, baos1);
+//
+//                    byte[] byteArraySupImage = baos1.toByteArray();
+//
+//                    String encodedImageSup = Base64.encodeToString(byteArraySupImage, Base64.DEFAULT);
+//                    Log.d("encoded_", String.valueOf(encodedImageSup));
+//
+//                    sup_img_txt = encodedImageSup;
                     break;
             }
         }
@@ -556,7 +596,7 @@ public class Fragment_Submit extends Fragment implements SubmitProjectView {
     @Override
     public void ResultSubmit(String response_message, SubmitResponse submitResponse) {
         dialog_muter.dismiss();
-        getdialogerror(submitResponse.getMessage());
+        getdialo(submitResponse.getMessage());
     }
 
     @Override

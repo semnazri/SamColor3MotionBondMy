@@ -45,7 +45,7 @@ public class Fragment_detail_Inspirasi extends Fragment {
     private SharedPreferences prefsprivate;
     private TextView txt_title, txt_inspirasi, txt_titleInspirasi, txt_author, txt_date, txt_content;
     private ImageView img_nav, img_thumbnail, img_content;
-    private String image, title, author, datez, detailcontent;
+    private String image, title, author, datez, detailcontent,imagebot;
 
     @Nullable
     @Override
@@ -87,6 +87,7 @@ public class Fragment_detail_Inspirasi extends Fragment {
         });
 
         image = getArguments().getString("image");
+        imagebot = getArguments().getString("imagebot");
         title = getArguments().getString("title");
         author = getArguments().getString("author");
         datez = getArguments().getString("date");
@@ -125,7 +126,7 @@ public class Fragment_detail_Inspirasi extends Fragment {
         }).apply(requestOptions).into(img_thumbnail);
 
 
-        Glide.with(getActivity()).load(image).listener(new RequestListener<Drawable>() {
+        Glide.with(getActivity()).load(imagebot).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                 return false;

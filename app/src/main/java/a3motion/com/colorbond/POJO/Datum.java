@@ -19,6 +19,12 @@ public class Datum {
     @SerializedName("id_users")
     @Expose
     private String idUsers;
+    @SerializedName("id_owner")
+    @Expose
+    private String idOwner;
+    @SerializedName("id_project")
+    @Expose
+    private String idProject;
     @SerializedName("title_notification")
     @Expose
     private String titleNotification;
@@ -55,6 +61,22 @@ public class Datum {
 
     public void setIdUsers(String idUsers) {
         this.idUsers = idUsers;
+    }
+
+    public String getIdOwner() {
+        return idOwner;
+    }
+
+    public void setIdOwner(String idOwner) {
+        this.idOwner = idOwner;
+    }
+
+    public String getIdProject() {
+        return idProject;
+    }
+
+    public void setIdProject(String idProject) {
+        this.idProject = idProject;
     }
 
     public String getTitleNotification() {
@@ -112,5 +134,4 @@ public class Datum {
     public void setSalesIncharge(String salesIncharge) {
         this.salesIncharge = salesIncharge;
     }
-
 }

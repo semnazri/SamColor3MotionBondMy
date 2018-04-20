@@ -23,8 +23,9 @@ public class SubmitPresenterImp implements SubmitPresenter, SubmitInteractor.OnS
 
 
     @Override
-    public void validateCredentials(String token, String project_name, String project_type, String date_project, String location, String building_category, String quantity, String size_category, String material_1, String material_2, String delivery_img, String suport_img) {
-        submitInteractor.doSubmit(token, project_name, project_type, date_project, location, building_category, quantity, size_category, material_1, material_2, delivery_img, suport_img, this);
+    public void validateCredentials(String token, String project_name, String project_type, String date_project, String location, String building_category, String quantity, String size_category, String material_1, String material_2, String delivery_img, String suport_img, String project_owner, String contractor, String color) {
+        submitInteractor.doSubmit(token, project_name, project_type, date_project, location, building_category, quantity, size_category, material_1, material_2, delivery_img, suport_img,project_owner,contractor,color, this);
+
     }
 
     @Override

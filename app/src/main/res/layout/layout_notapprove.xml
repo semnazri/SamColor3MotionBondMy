@@ -15,22 +15,23 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="180dp"
             android:background="@color/red"
             android:orientation="vertical"
             android:paddingTop="20dp">
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="80dp"
+                android:layout_gravity="center"
                 android:layout_height="80dp"
-                android:src="@drawable/notif03" />
+                android:src="@drawable/ic_highlight_off_black_24dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_horizontal"
-                android:text="Your Project
-is not  approved"
+                android:text="Project
+Has Been Disapproved"
                 android:layout_gravity="center"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
@@ -51,76 +52,13 @@ is not  approved"
             android:layout_marginRight="20dp"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="project name"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="perumahan suka maju"
-                    android:textAllCaps="true"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="oreder intact"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="100 ton"
-                    android:textAllCaps="true"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="salens incharge"
-                    android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="john smith"
-                    android:textAllCaps="true"
-                    android:textSize="12sp" />
-            </LinearLayout>
+          <TextView
+              android:layout_gravity="center"
+              android:textColor="@color/black"
+              android:textSize="16sp"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Contact Admin for more info"/>
 
             <LinearLayout
                 android:layout_gravity="center"

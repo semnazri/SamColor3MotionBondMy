@@ -36,10 +36,17 @@ import a3motion.com.colorbond.Model.Event;
 import a3motion.com.colorbond.Model.Followers;
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.POJO.EventResponse;
+import a3motion.com.colorbond.POJO.RegisterResponse;
+import a3motion.com.colorbond.Presenter.DisJoinEventPresenter;
+import a3motion.com.colorbond.Presenter.DisJoinEventPresenterImp;
 import a3motion.com.colorbond.Presenter.EventPresenter;
 import a3motion.com.colorbond.Presenter.EventPresenterImp;
+import a3motion.com.colorbond.Presenter.JoinEventPresenter;
+import a3motion.com.colorbond.Presenter.JoinEventPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.EventDisjoin;
+import a3motion.com.colorbond.View.EventJoin;
 import a3motion.com.colorbond.View.EventView;
 
 /**
@@ -50,7 +57,7 @@ import a3motion.com.colorbond.View.EventView;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class FragmentEvent extends Fragment implements Event_listener, EventView {
+public class FragmentEvent extends Fragment implements Event_listener, EventView,EventJoin, EventDisjoin {
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     String userid, tokenz;
     private RecyclerView rv;
@@ -67,6 +74,9 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
     private Boolean isInternetPresent = false;
     private MaterialDialog mDialog, dialog_muter;
     private EventPresenter eventPresenter;
+    private JoinEventPresenter joinEventPresenter;
+    private DisJoinEventPresenter disJoinEventPresenter;
+    private Button tv_join_disjoin,tv_join_join;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,6 +133,8 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
 //        events = getAllEVent();
         rv = view.findViewById(R.id.rv_event);
         eventPresenter = new EventPresenterImp(this);
+        joinEventPresenter = new JoinEventPresenterImp(this);
+        disJoinEventPresenter = new DisJoinEventPresenterImp(this);
         checkConnections();
 
         return view;
@@ -201,6 +213,16 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
     }
 
     @Override
+    public void ResulDIsJoinEvent(String response_message, RegisterResponse registerResponse) {
+        getdialogerror(registerResponse.getMessage());
+    }
+
+    @Override
+    public void ResulJoinEvent(String response_message, RegisterResponse registerResponse) {
+        getdialogerror(registerResponse.getMessage());
+    }
+
+    @Override
     public void setelseEror(String response_message) {
         getdialogerror(response_message);
     }
@@ -224,19 +246,18 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         mDialog.dismiss();
-                        getFragmentManager().popBackStack();
                     }
                 })
                 .show();
     }
 
     @Override
-    public void show_event(String name_event, String tema_event, String date_event, String addres_event, String cp_name, String cp, String file_img) {
+    public void show_event(String name_event, String tema_event, String date_event, String addres_event, String cp_name, String cp, String file_img, final String id) {
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_join);
 
-        final Button tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
-        final Button tv_join_join = dialog.findViewById(R.id.txt_join_join);
+        tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
+        tv_join_join = dialog.findViewById(R.id.txt_join_join);
 
         LinearLayout ll_folowers = dialog.findViewById(R.id.ll_folowers);
         ImageView event_img = dialog.findViewById(R.id.event_img);
@@ -257,16 +278,14 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
             @Override
             public void onClick(View v) {
 //                dialog.dismiss();
-                tv_join_disjoin.setVisibility(View.GONE);
-                tv_join_join.setVisibility(View.VISIBLE);
+                getdialogDiskonfirmasi("Are you want to disjoin?", id);
             }
         });
 
         tv_join_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_join_join.setVisibility(View.GONE);
-                tv_join_disjoin.setVisibility(View.VISIBLE);
+                getdialogkonfirmasi("Are you sure want to join?", id);
 //                dialog.dismiss();
             }
         });
@@ -281,5 +300,58 @@ public class FragmentEvent extends Fragment implements Event_listener, EventView
         Glide.with(getActivity()).load(file_img).into(event_img);
 
         dialog.show();
+    }
+
+    private void getdialogkonfirmasi(String response_message, final String id) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Yes")
+                .negativeText("No")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        joinEventPresenter.doJoinEvent(tokenz, id, "1");
+                        tv_join_join.setVisibility(View.GONE);
+                        tv_join_disjoin.setVisibility(View.VISIBLE);
+                        mDialog.dismiss();
+
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private void getdialogDiskonfirmasi(String response_message, final String id) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Yes")
+                .negativeText("No")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                        disJoinEventPresenter.doDisJoinEvent(tokenz, id);
+                        tv_join_disjoin.setVisibility(View.GONE);
+                        tv_join_join.setVisibility(View.VISIBLE);
+                        mDialog.dismiss();
+
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                    }
+                })
+                .show();
     }
 }

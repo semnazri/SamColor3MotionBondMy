@@ -29,11 +29,18 @@ import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Notification;
 import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.POJO.RegisterResponse;
 import a3motion.com.colorbond.POJO.ResponseNotifications;
+import a3motion.com.colorbond.Presenter.ApprovePresenter;
+import a3motion.com.colorbond.Presenter.ApprovePresenterImp;
+import a3motion.com.colorbond.Presenter.DisApprovePresenter;
+import a3motion.com.colorbond.Presenter.DisApprovePresenterImp;
 import a3motion.com.colorbond.Presenter.NotificationsPresenter;
 import a3motion.com.colorbond.Presenter.NotificationsPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
+import a3motion.com.colorbond.View.ApproveView;
+import a3motion.com.colorbond.View.DisapproveView;
 import a3motion.com.colorbond.View.NotificationView;
 
 /**
@@ -44,7 +51,7 @@ import a3motion.com.colorbond.View.NotificationView;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class FragmentNotif extends Fragment implements NotificationListener, NotificationView {
+public class FragmentNotif extends Fragment implements NotificationListener, NotificationView, ApproveView, DisapproveView {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     String userid, tokenz;
@@ -60,6 +67,9 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     private Boolean isInternetPresent = false;
     private MaterialDialog mDialog, dialog_muter;
     private NotificationsPresenter notificationsPresenter;
+    private ApprovePresenter approvePresenter;
+    private DisApprovePresenter disApprovePresenter;
+    private Dialog dialog_followers;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,6 +84,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
         view = inflater.inflate(R.layout.layout_notifikasi, container, false);
         prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
         userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "1");
+        tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
         txt_title = view.findViewById(R.id.txt_title_page);
         txt_title.setText("NOTIFICATION");
         img_nav = view.findViewById(R.id.img_tolbar);
@@ -112,6 +123,8 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
 
         rv = view.findViewById(R.id.rv_notif);
         notificationsPresenter = new NotificationsPresenterImp(this);
+        approvePresenter = new ApprovePresenterImp(this);
+        disApprovePresenter = new DisApprovePresenterImp(this);
 
         checkConnections();
 //        notif = getAllNotif();
@@ -129,7 +142,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     private void checkConnections() {
         isInternetPresent = cd.isConnectingToInternet();
         if (isInternetPresent) {
-            tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
+
             getDialog_progress();
             notificationsPresenter.getListNotifications(tokenz);
 
@@ -140,7 +153,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     }
 
     @Override
-    public void typeDialog(String typeDialog) {
+    public void typeDialog(String typeDialog, String idNotification) {
 
         if (typeDialog.equals("0")) {
 
@@ -156,7 +169,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
 
         } else if (typeDialog.equals("3")) {
 
-            getDialogApproveDisaprove();
+            getDialogApproveDisaprove(idNotification);
 
         }
     }
@@ -179,18 +192,29 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
         dialog_followers.show();
     }
 
-    private void getDialogApproveDisaprove() {
+    private void getDialogApproveDisaprove(final String idNotification) {
 
-        final Dialog dialog_followers = new Dialog(getActivity());
+        dialog_followers = new Dialog(getActivity());
         dialog_followers.setContentView(R.layout.layout_approve);
         dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-        final Button btn_back = dialog_followers.findViewById(R.id.btn_approve);
+        final Button btn_approve = dialog_followers.findViewById(R.id.btn_approve);
+        final Button btn_notapprove = dialog_followers.findViewById(R.id.btn_dissapprove);
 
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        btn_approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog_followers.dismiss();
+                approvePresenter.doApprove(tokenz,idNotification);
+
+//                dialog_followers.dismiss();
+            }
+        });
+
+        btn_notapprove.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                disApprovePresenter.doDisApprove(tokenz,idNotification);
+//                dialog_followers.dismiss();
             }
         });
 
@@ -248,6 +272,11 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     }
 
     @Override
+    public void ResulEvent(String response_message, RegisterResponse registerResponse) {
+
+    }
+
+    @Override
     public void setelseEror(String response_message) {
         getdialogerror(response_message);
     }
@@ -262,6 +291,22 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     }
 
     private void getdialogerror(String response_message) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Close")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                        getFragmentManager().popBackStack();
+                    }
+                })
+                .show();
+    }
+
+    private void getdialogok(String response_message) {
         dialog_muter.dismiss();
         mDialog = new MaterialDialog.Builder(getActivity())
                 .title(R.string.app_name)

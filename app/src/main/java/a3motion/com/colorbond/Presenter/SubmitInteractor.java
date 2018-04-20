@@ -12,7 +12,7 @@ import a3motion.com.colorbond.POJO.SubmitResponse;
 
 public interface SubmitInteractor {
 
-    void doSubmit(String token, String project_name, String project_type, String date_project, String location, String building_category, String quantity, String size_category, String material_1, String material_2, String delivery_img, String suport_img, SubmitInteractor.OnSuccessSubmitListener listener);
+    void doSubmit(String token, String project_name, String project_type, String date_project, String location, String building_category, String quantity, String size_category, String material_1, String material_2, String delivery_img, String suport_img,String project_owner,String contractor,String color, SubmitInteractor.OnSuccessSubmitListener listener);
 
     interface OnSuccessSubmitListener {
         void onSuccess(String response_message, SubmitResponse submitResponse);

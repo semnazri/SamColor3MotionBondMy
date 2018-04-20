@@ -21,9 +21,11 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import a3motion.com.colorbond.Adapter.SpinnerGenderAdapter;
 import a3motion.com.colorbond.Adapter.SpinnerPorfesiAdapter;
@@ -91,6 +93,8 @@ public class Fragment_Edit_profile extends Fragment implements EditProfileView {
         DOB = prefsprivate.getString(BlueScoopPreferences.DOB, "");
         Phone = prefsprivate.getString(BlueScoopPreferences.Phone, "");
         title = prefsprivate.getString(BlueScoopPreferences.job_title, "");
+        GEnder = prefsprivate.getString(BlueScoopPreferences.genders, "");
+
 
         txt_title = view.findViewById(R.id.txt_title_page);
         edt_job_title = view.findViewById(R.id.edt_job_title_register);
@@ -106,13 +110,13 @@ public class Fragment_Edit_profile extends Fragment implements EditProfileView {
         btn_save = view.findViewById(R.id.btn_do_edit);
         editProfilePresenter = new EditProfilePresenterImp(this);
 
-        if (gender.equals("Male")){
-            spinner_gender.setSelection(0);
-        }else if (gender.equals("Female")){
-            spinner_gender.setSelection(1);
-        }else{
-            spinner_gender.setSelection(0);
-        }
+//        if (gender.equals("Male")){
+//            spinner_gender.setSelection(0);
+//        }else if (gender.equals("Female")){
+//            spinner_gender.setSelection(1);
+//        }else{
+//            spinner_gender.setSelection(0);
+//        }
 
 //        edt_usr_name.setText(username);
         edt_email.setText(email);
@@ -234,6 +238,9 @@ public class Fragment_Edit_profile extends Fragment implements EditProfileView {
     }
 
     private void updateLabel() {
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        edt_dob.setText(sdf.format(myCalendar1.getTime()));
 
     }
 

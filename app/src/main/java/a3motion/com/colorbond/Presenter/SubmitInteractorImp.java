@@ -32,8 +32,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SubmitInteractorImp implements SubmitInteractor {
     String response_message;
 
+
     @Override
-    public void doSubmit(String token, String project_name, String project_type, String date_project, String location, String building_category, String quantity, String size_category, String material_1, String material_2, String delivery_img, String suport_img, final OnSuccessSubmitListener listener) {
+    public void doSubmit(String token, String project_name, String project_type, String date_project, String location, String building_category, String quantity, String size_category, String material_1, String material_2, String delivery_img, String suport_img, String project_owner, String contractor, String color, final OnSuccessSubmitListener listener) {
         boolean error = false;
 
         if (TextUtils.isEmpty(project_name)) {
@@ -81,7 +82,7 @@ public class SubmitInteractorImp implements SubmitInteractor {
 
             SubmitInterface service = retrofit.create(SubmitInterface.class);
 
-            final Call<ResponseBody> call = service.doSubmitProject(token, project_name, project_type, date_project, location, building_category, quantity, size_category, material_1, material_2, delivery_img, suport_img);
+            final Call<ResponseBody> call = service.doSubmitProject(token, project_name, project_type, date_project, location, building_category, quantity, size_category, material_1, material_2, delivery_img, suport_img,project_owner,contractor,color);
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

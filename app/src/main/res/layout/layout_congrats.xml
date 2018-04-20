@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Data kamu telah tervalidasi. Kumpulkan terus point sebanyak-banyaknya dan tukarkan rewardnya"
+            android:text="Your data has been validated. Get more points and exchange it with more rewards."
             android:textAlignment="center"
             android:textColor="@color/black" />
 

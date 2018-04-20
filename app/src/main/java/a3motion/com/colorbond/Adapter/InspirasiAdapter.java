@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,33 +57,37 @@ public class InspirasiAdapter extends RecyclerView.Adapter<InspirasiViewHolder> 
     @Override
     public void onBindViewHolder(InspirasiViewHolder holder, int position) {
         final String title = mValues.get(position).getTitle();
-        final String image = mValues.get(position).getImage();
+        final String image = mValues.get(position).getImageSlider();
+        final String imagebot = mValues.get(position).getImageBottom();
         final String author = mValues.get(position).getAuthor();
         final String date = mValues.get(position).getDateSubmit();
         final String content = mValues.get(position).getContent();
 
+        Log.d("image", image);
+
         RequestOptions requestOptions = new RequestOptions()
                 .placeholder(R.color.abu3)
                 .error(R.color.abu3);
-
+        Glide.with(mContext).load(image).into(holder.image_inspiarsi);
 
         holder.txt_inspirasi_title.setText(title);
-        Glide.with(mContext).load(image).listener(new RequestListener<Drawable>() {
-            @Override
-            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-                return false;
-            }
 
-            @Override
-            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                return false;
-            }
-        }).apply(requestOptions).into(holder.image_inspiarsi);
+//        Glide.with(mContext).load(image).listener(new RequestListener<Drawable>() {
+//            @Override
+//            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+//                return false;
+//            }
+//        }).apply(requestOptions).into(holder.image_inspiarsi);
 
         holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.getDetail(image,title,author,date,content);
+                listener.getDetail(image,title,author,date,content,imagebot);
             }
         });
     }

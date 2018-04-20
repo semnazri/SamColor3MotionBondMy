@@ -81,6 +81,7 @@ public class FragmentHome extends Fragment implements HomeView, EventJoin, Event
     private DisJoinEventPresenter disJoinEventPresenter;
     private ConnectionDetector cd;
     private Boolean isInternetPresent = false;
+    private Button tv_join_disjoin,tv_join_join;
 
 
     @Override
@@ -237,6 +238,59 @@ public class FragmentHome extends Fragment implements HomeView, EventJoin, Event
                 .show();
     }
 
+    private void getdialogkonfirmasi(String response_message, final String id) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Yes")
+                .negativeText("No")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        joinEventPresenter.doJoinEvent(tokenz, id, "1");
+                        tv_join_join.setVisibility(View.GONE);
+                        tv_join_disjoin.setVisibility(View.VISIBLE);
+                        mDialog.dismiss();
+
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private void getdialogDiskonfirmasi(String response_message, final String id) {
+        dialog_muter.dismiss();
+        mDialog = new MaterialDialog.Builder(getActivity())
+                .title(R.string.app_name)
+                .content(response_message)
+                .positiveText("Yes")
+                .negativeText("No")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                        disJoinEventPresenter.doDisJoinEvent(tokenz, id);
+                        tv_join_disjoin.setVisibility(View.GONE);
+                        tv_join_join.setVisibility(View.VISIBLE);
+                        mDialog.dismiss();
+
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        mDialog.dismiss();
+                    }
+                })
+                .show();
+    }
+
     private void showDialogProgram() {
         final Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.layout_bondpart_program);
@@ -257,8 +311,8 @@ public class FragmentHome extends Fragment implements HomeView, EventJoin, Event
 //        dialog.getWindow().setLayout((8 * width) / 9, (5 * height) / 5);
 
 
-        final Button tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
-        final Button tv_join_join = dialog.findViewById(R.id.txt_join_join);
+        tv_join_disjoin = dialog.findViewById(R.id.txt_join_disjoin);
+        tv_join_join = dialog.findViewById(R.id.txt_join_join);
 
         LinearLayout ll_folowers = dialog.findViewById(R.id.ll_folowers);
         ImageView event_img = dialog.findViewById(R.id.event_img);
@@ -278,20 +332,19 @@ public class FragmentHome extends Fragment implements HomeView, EventJoin, Event
         tv_join_disjoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                dialog.dismiss();=
-                tv_join_disjoin.setVisibility(View.GONE);
-                tv_join_join.setVisibility(View.VISIBLE);
-//                disJoinEventPresenter.doDisJoinEvent(tokenz,id);
+//                dialog.dismiss();
+
+                getdialogDiskonfirmasi("Are you want to disjoin?", id);
             }
         });
 
         tv_join_join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tv_join_join.setVisibility(View.GONE);
-                tv_join_disjoin.setVisibility(View.VISIBLE);
+
+                getdialogkonfirmasi("Are you sure want to join?", id);
 //                Toast.makeText(getActivity(), id, Toast.LENGTH_SHORT).show();
-//                joinEventPresenter.doJoinEvent(tokenz, id, "1");
+
 //                dialog.dismiss();
             }
         });
@@ -361,7 +414,7 @@ public class FragmentHome extends Fragment implements HomeView, EventJoin, Event
         Glide.with(getActivity()).load(homeResponse.getEvent().get(0).getFileimg()).into(img_top);
         Glide.with(getActivity()).load(homeResponse.getImage().getImage2()).into(img_2nd);
         Glide.with(getActivity()).load(homeResponse.getImage().getImage3()).into(img_3rd);
-        img_top.setOnClickListener(new View.OnClickListener() {
+        btn_join_eveng_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialogjoin(

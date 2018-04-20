@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:text="Saat ini data yang anda kirimkan sedang menunggu approval dari pihak owner, setelah owner menyetujui maka data Anda tinggal menunggu validasi dari pihak Colorbond"
+            android:text="The data has been sent and is currently waiting for approval from the owner. Upon approval, Colorbond will validate your data."
             android:textAlignment="center"
             android:textColor="@color/black" />
 
@@ -58,7 +58,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:text="Semoga Beruntung :)"
+            android:text="Good Luck."
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textStyle="bold" />

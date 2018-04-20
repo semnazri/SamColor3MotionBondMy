@@ -128,9 +128,7 @@ public class Fragment_Inspirasi extends Fragment implements InspirasiListener,In
                 }
             }
         });
-        slide = getSlide();
-        adapter = new InspirasiPagerAdapter(getActivity(), slide);
-        pager.setAdapter(adapter);
+//        slide = getSlide();
 
         checkconnections();
 
@@ -190,12 +188,13 @@ public class Fragment_Inspirasi extends Fragment implements InspirasiListener,In
 
 
     @Override
-    public void getDetail(String image, String title, String author, String date, String detail_inspirasi) {
+    public void getDetail(String image, String title, String author, String date, String detail_inspirasi,String imagebot) {
 
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         Fragment_detail_Inspirasi fragment_detail_inspirasi = new Fragment_detail_Inspirasi();
         Bundle bundle = new Bundle() ;
         bundle.putString("image", image);
+        bundle.putString("imagebot", imagebot);
         bundle.putString("title", title);
         bundle.putString("author", author);
         bundle.putString("date", date);
@@ -215,6 +214,10 @@ public class Fragment_Inspirasi extends Fragment implements InspirasiListener,In
         recyclerView.setLayoutManager(lm);
         inspirasiAdapter = new InspirasiAdapter(inspirasiResponse.getData(),getActivity(), Fragment_Inspirasi.this);
         recyclerView.setAdapter(inspirasiAdapter);
+
+
+        adapter = new InspirasiPagerAdapter(getActivity(), inspirasiResponse.getData());
+        pager.setAdapter(adapter);
     }
 
     @Override
