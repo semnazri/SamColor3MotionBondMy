@@ -10,9 +10,15 @@ package a3motion.com.colorbond.Network;
 
 public class APICONSTANT {
 
-    public static final String API_Auth = "http://188.166.227.147/bluescope/api/auth/";
-    public static final String API_Parent = "http://188.166.227.147/bluescope/api/";
-    public static final String API_Parent_forgot = "http://188.166.227.147/bluescope/access/";
+//    public static final String API_Auth = "http://188.166.227.147/bluescope/api/auth/";
+//    public static final String API_Parent = "http://188.166.227.147/bluescope/api/";
+//    public static final String API_Parent_forgot = "http://188.166.227.147/bluescope/access/";
+
+    public static final String API_Auth = "http://www.apps.colorbond.id/api/auth/";
+    public static final String API_Parent = "http://www.apps.colorbond.id/api/";
+    public static final String API_Parent_forgot = "http://www.apps.colorbond.id/access/";
+
+
 
 
 }

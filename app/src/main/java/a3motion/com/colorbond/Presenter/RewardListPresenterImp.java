@@ -24,8 +24,8 @@ public class RewardListPresenterImp implements RewardListPresenter, RewardListIn
 
 
     @Override
-    public void getListRewards(String token, String type_user, String type_reward) {
-        rewardListInteractor.getSlider(token, type_user ,type_reward, this);
+    public void getListRewards(String token,String type, String type_user, String type_reward) {
+        rewardListInteractor.getSlider(token,type, type_user ,type_reward, this);
     }
 
     @Override

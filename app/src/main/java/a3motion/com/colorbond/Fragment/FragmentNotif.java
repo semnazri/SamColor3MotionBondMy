@@ -153,7 +153,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     }
 
     @Override
-    public void typeDialog(String typeDialog, String idNotification) {
+    public void typeDialog(String typeDialog, String idNotification, String sales, String qty, String prjt_name) {
 
         if (typeDialog.equals("0")) {
 
@@ -169,7 +169,14 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
 
         } else if (typeDialog.equals("3")) {
 
-            getDialogApproveDisaprove(idNotification);
+            getDialogApproveDisaprove(idNotification, sales, qty, prjt_name);
+
+        } else if (typeDialog.equals("4")) {
+
+            getDialogAfterApprove(idNotification, sales, qty, prjt_name);
+
+        } else if (typeDialog.equals("5")) {
+            getDialogAfterDisaprove(idNotification, sales, qty, prjt_name);
 
         }
     }
@@ -192,7 +199,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
         dialog_followers.show();
     }
 
-    private void getDialogApproveDisaprove(final String idNotification) {
+    private void getDialogApproveDisaprove(final String idNotification, String sales, String qty, String prjt_name) {
 
         dialog_followers = new Dialog(getActivity());
         dialog_followers.setContentView(R.layout.layout_approve);
@@ -200,11 +207,19 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
 
         final Button btn_approve = dialog_followers.findViewById(R.id.btn_approve);
         final Button btn_notapprove = dialog_followers.findViewById(R.id.btn_dissapprove);
+        final TextView txt_pname = dialog_followers.findViewById(R.id.projct_name);
+        final TextView txt_qty = dialog_followers.findViewById(R.id.qty);
+        final TextView sales_name = dialog_followers.findViewById(R.id.sales);
+
+        txt_pname.setText(prjt_name);
+        txt_qty.setText(qty);
+        sales_name.setText(sales);
 
         btn_approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                approvePresenter.doApprove(tokenz,idNotification);
+                getDialog_progress();
+                approvePresenter.doApprove(tokenz, idNotification);
 
 //                dialog_followers.dismiss();
             }
@@ -213,10 +228,81 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
         btn_notapprove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                disApprovePresenter.doDisApprove(tokenz,idNotification);
+                getDialog_progress();
+                disApprovePresenter.doDisApprove(tokenz, idNotification);
 //                dialog_followers.dismiss();
             }
         });
+
+        dialog_followers.show();
+    }
+
+    private void getDialogAfterDisaprove(final String idNotification, String sales, String qty, String prjt_name) {
+
+        dialog_followers = new Dialog(getActivity());
+        dialog_followers.setContentView(R.layout.layout_after_disapprove);
+        dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        final Button btn_approve = dialog_followers.findViewById(R.id.btn_approve);
+        final Button btn_notapprove = dialog_followers.findViewById(R.id.btn_dissapprove);
+        final TextView txt_pname = dialog_followers.findViewById(R.id.projct_name);
+        final TextView txt_qty = dialog_followers.findViewById(R.id.qty);
+        final TextView sales_name = dialog_followers.findViewById(R.id.sales);
+
+        txt_pname.setText(prjt_name);
+        txt_qty.setText(qty);
+        sales_name.setText(sales);
+
+        btn_approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_followers.dismiss();
+//                approvePresenter.doApprove(tokenz, idNotification);
+
+            }
+        });
+
+//        btn_notapprove.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                disApprovePresenter.doDisApprove(tokenz, idNotification);
+//            }
+//        });
+
+        dialog_followers.show();
+    }
+
+    private void getDialogAfterApprove(final String idNotification, String sales, String qty, String prjt_name) {
+
+        dialog_followers = new Dialog(getActivity());
+        dialog_followers.setContentView(R.layout.layout_after_approve);
+        dialog_followers.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        final Button btn_approve = dialog_followers.findViewById(R.id.btn_approve);
+        final Button btn_notapprove = dialog_followers.findViewById(R.id.btn_dissapprove);
+        final TextView txt_pname = dialog_followers.findViewById(R.id.projct_name);
+        final TextView txt_qty = dialog_followers.findViewById(R.id.qty);
+        final TextView sales_name = dialog_followers.findViewById(R.id.sales);
+
+        txt_pname.setText(prjt_name);
+        txt_qty.setText(qty);
+        sales_name.setText(sales);
+
+        btn_approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog_followers.dismiss();
+//                approvePresenter.doApprove(tokenz, idNotification);
+
+            }
+        });
+
+//        btn_notapprove.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                disApprovePresenter.doDisApprove(tokenz, idNotification);
+//            }
+//        });
 
         dialog_followers.show();
     }
@@ -273,6 +359,8 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
 
     @Override
     public void ResulEvent(String response_message, RegisterResponse registerResponse) {
+        dialog_muter.dismiss();
+        getdialogok(registerResponse.getMessage());
 
     }
 
@@ -307,7 +395,6 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     }
 
     private void getdialogok(String response_message) {
-        dialog_muter.dismiss();
         mDialog = new MaterialDialog.Builder(getActivity())
                 .title(R.string.app_name)
                 .content(response_message)
@@ -316,7 +403,9 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         mDialog.dismiss();
-                        getFragmentManager().popBackStack();
+                        notificationsPresenter.getListNotifications(tokenz);
+                        dialog_followers.dismiss();
+
                     }
                 })
                 .show();

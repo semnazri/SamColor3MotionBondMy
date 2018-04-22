@@ -9,7 +9,7 @@ package a3motion.com.colorbond.Presenter;
  */
 
 public interface RewardListPresenter {
-    void getListRewards(String token, String type_user,String type_reward);
+    void getListRewards(String token,String type, String type_user,String type_reward);
     void onDestroy();
 
 }

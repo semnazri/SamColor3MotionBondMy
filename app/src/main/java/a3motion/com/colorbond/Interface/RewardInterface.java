@@ -19,5 +19,5 @@ public interface RewardInterface {
 
     @FormUrlEncoded
     @POST("reward/get_reward")
-    Call<ResponseBody> getList(@Header("Authorization") String Authorization, @Field("type_user") String type_user, @Field("type_reward") String type_reward);
+    Call<ResponseBody> getList(@Header("Authorization") String Authorization, @Field("type") String type, @Field("type_user") String type_user, @Field("type_reward") String type_reward);
 }

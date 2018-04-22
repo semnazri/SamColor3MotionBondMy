@@ -22,17 +22,17 @@
     <string name="edt_profile">Edit Profile</string>
     <string name="sup"><![CDATA[/m<sup>2</sup>]]></string>
     <string name="project_detail">Project Details</string>
-    <string name="project_name">Project Name</string>
+    <string name="project_name">Project name</string>
     <string name="your_project_name">Your project name</string>
     <string name="date">Date</string>
     <string name="location">Location</string>
-    <string name="building_cat">Building Category</string>
+    <string name="building_cat">Building category</string>
     <string name="Size">Size</string>
-    <string name="size_cat">Size Category</string>
-    <string name="cpy_deliv_note">Upload Copy Delivery note</string>
-    <string name="upload_po">Upload Purchase Order</string>
-    <string name="suport_docs">Upload Supporting Project Details</string>
-    <string name="color_material_">Colorbond Material Used</string>
+    <string name="size_cat">Size category</string>
+    <string name="cpy_deliv_note">Upload copy delivery note</string>
+    <string name="upload_po">Upload purchase Oorder</string>
+    <string name="suport_docs">Upload supporting project details</string>
+    <string name="color_material_">Colorbond material used</string>
     <string name="CANCEL">CANCEL</string>
     <string name="canot_empty">This field can not be empty</string>
     <string name="password_miss_match">Password is not match!</string>
@@ -62,8 +62,8 @@
     <string name="cons_date">Construction
         start date</string>
     <string name="note_suplier">Upload delivery note from supplier</string>
-    <string name="project_owner">Project Owner</string>
-    <string name="your_project_owner">Building / Project owner\'s name / developer name</string>
+    <string name="project_owner">Project owner</string>
+    <string name="your_project_owner">Building / Project owner\'s name / Developer name</string>
     <string name="project_contractor">Contractor</string>
     <string name="your_project_contractor">Company name</string>
     <string name="project_color">Color</string>

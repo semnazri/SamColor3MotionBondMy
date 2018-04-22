@@ -80,7 +80,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="First Name "
+                        android:text="First name "
                         android:textColor="@color/white" />
 
                     <EditText
@@ -88,7 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="First Name"
+                        android:hint="First name"
                         android:textSize="14sp"
                         android:background="@drawable/bg_white_edtext"
                         android:paddingLeft="10dp" />
@@ -113,7 +113,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:hint="Last Name"
+                        android:hint="Last name"
                         android:textSize="14sp"
                         android:background="@drawable/bg_white_edtext"
                         android:paddingLeft="10dp" />

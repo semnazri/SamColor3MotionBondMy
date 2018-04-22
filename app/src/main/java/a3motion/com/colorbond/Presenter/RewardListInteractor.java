@@ -12,7 +12,7 @@ import a3motion.com.colorbond.POJO.RewardListResponse;
 
 public interface RewardListInteractor {
 
-    void getSlider(String token, String type_user, String type_reward, OnSuccessgetEventListener listener);
+    void getSlider(String token,String type, String type_user, String type_reward, OnSuccessgetEventListener listener);
 
     interface OnSuccessgetEventListener {
 

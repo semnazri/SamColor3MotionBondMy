@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 import a3motion.com.colorbond.Interface.RewardInterface;
 import a3motion.com.colorbond.Network.APICONSTANT;
 import a3motion.com.colorbond.POJO.RewardListResponse;
-import a3motion.com.colorbond.POJO.RewardSliderResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -31,7 +30,7 @@ public class RewardListInteractorImp implements RewardListInteractor {
     String response_message;
 
     @Override
-    public void getSlider(String token, String type_user, String type_reward, final OnSuccessgetEventListener listener) {
+    public void getSlider(String token, String type, String type_user, String type_reward, final OnSuccessgetEventListener listener) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
@@ -54,7 +53,7 @@ public class RewardListInteractorImp implements RewardListInteractor {
         RewardInterface service = retrofit.create(RewardInterface.class);
 
 
-        final Call<ResponseBody> call = service.getList(token,type_user,type_reward);
+        final Call<ResponseBody> call = service.getList(token, type, type_user, type_reward);
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

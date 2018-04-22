@@ -406,6 +406,13 @@ public class FragmentHome extends Fragment implements HomeView, EventJoin, Event
     @Override
     public void ResultHome(String response_message, final HomeResponse homeResponse) {
         dialog_muter.dismiss();
+
+        prefsprivate = getActivity().getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        SharedPreferences.Editor preEditor = prefsprivate.edit();
+        preEditor.putString(BlueScoopPreferences.poin, homeResponse.getProfile().getPoin());
+        preEditor.commit();
+
+
         txt_name.setText(getResources().getString(R.string.hi) + " " + homeResponse.getProfile().getFirstName() + "!");
         txt_point.setText(homeResponse.getProfile().getPoin());
         txt_title_event1.setText(homeResponse.getEvent().get(0).getName());

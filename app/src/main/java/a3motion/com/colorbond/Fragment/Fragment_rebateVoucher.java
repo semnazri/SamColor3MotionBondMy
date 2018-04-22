@@ -18,18 +18,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import a3motion.com.colorbond.Adapter.VoucherAdapter;
 import a3motion.com.colorbond.Listener.RewardListener;
-import a3motion.com.colorbond.Model.Voucher;
 import a3motion.com.colorbond.Network.ConnectionDetector;
 import a3motion.com.colorbond.POJO.RewardListResponse;
 import a3motion.com.colorbond.POJO.SubmitResponse;
@@ -53,7 +48,7 @@ import a3motion.com.colorbond.View.RewardReedemView;
 public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, RewardListener, RewardReedemView {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
-    String userid, merchant_type, tokenz, reward_id, point_user;
+    String userid, type, merchant_type, tokenz, reward_id, point_user;
     private View view;
     //    private List<Voucher> vouchers;
     private RecyclerView rv;
@@ -101,8 +96,9 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
             tokenz = prefsprivate.getString(BlueScoopPreferences.token, "null");
             merchant_type = prefsprivate.getString(BlueScoopPreferences.merchant_type, "null");
             userid = prefsprivate.getString(BlueScoopPreferences.mem_type, "null");
+
             getDialog_progress();
-            rewardListPresenter.getListRewards(tokenz, userid, reward_id);
+            rewardListPresenter.getListRewards(tokenz, merchant_type, userid, reward_id);
 
 
         } else if (isInternetPresent.equals(false)) {
@@ -110,16 +106,6 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
         }
     }
 
-    private List<Voucher> getVouchers() {
-
-        List<Voucher> vouchers = new ArrayList<>();
-        vouchers.add(new Voucher("100.000", "@IKEA ALAM SUTERA", R.drawable.ikea));
-        vouchers.add(new Voucher("200.000", "@PERBAKIN SHOOTING RANGE", R.drawable.indomerit));
-        vouchers.add(new Voucher("300.000", "@ACE HARDWARE", R.drawable.cgv));
-
-
-        return vouchers;
-    }
 
     @Override
     public void ResultList(String response_message, RewardListResponse rewardListResponse) {
@@ -202,7 +188,6 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
         txt_detail.setText(nama_reward + "\n" + point + "Point");
 
 
-
         btn_reedem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -212,7 +197,7 @@ public class Fragment_rebateVoucher extends Fragment implements RewardListVIew, 
                 if (Integer.parseInt(point_user) < Integer.parseInt(qty)) {
                     getdialogerror("insufficient points to proceed");
                 } else {
-                    rewardReedemPresenter.doOrderReward(tokenz, id_master_reward, userid,qty);
+                    rewardReedemPresenter.doOrderReward(tokenz, id_master_reward, userid, qty);
                 }
 
             }

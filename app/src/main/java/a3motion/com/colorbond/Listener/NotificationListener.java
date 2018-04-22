@@ -10,7 +10,7 @@ package a3motion.com.colorbond.Listener;
 
 public interface NotificationListener {
 
-    void typeDialog(String typeDialog, String idNotification);
+    void typeDialog(String typeDialog, String idNotification, String sales, String qty, String prjt_name);
 
 
 
