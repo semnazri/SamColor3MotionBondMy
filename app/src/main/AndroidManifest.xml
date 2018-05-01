@@ -23,6 +23,11 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".WelcomeActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" />

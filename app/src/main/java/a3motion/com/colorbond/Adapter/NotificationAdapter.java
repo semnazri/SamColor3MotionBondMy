@@ -5,14 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 import a3motion.com.colorbond.Listener.NotificationListener;
-import a3motion.com.colorbond.Model.Notification;
 import a3motion.com.colorbond.POJO.Datum;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.ViewHolder.NotificationViewHolder;
@@ -44,7 +40,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
     }
 
     @Override
-    public void onBindViewHolder(NotificationViewHolder holder, final int position) {
+    public void onBindViewHolder(final NotificationViewHolder holder, final int position) {
         String title = mValuses.get(position).getTitleNotification();
         String headline = mValuses.get(position).getNotification();
         String desc = mValuses.get(position).getProjectLocation();
@@ -52,6 +48,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         final String qty = mValuses.get(position).getQuantity();
         final String prjt_name = mValuses.get(position).getProjectName();
 
+        if (mValuses.get(position).getStatus().equals("0")) {
+            holder.is_read.setVisibility(View.GONE);
+        }
 
         holder.des_notif.setVisibility(View.GONE);
         holder.title_notif.setText(title);
@@ -60,13 +59,19 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHo
         holder.ll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.typeDialog(mValuses.get(position).getTypeNotification(),mValuses.get(position).getIdNotification(),sales,qty,prjt_name);
+
+                listener.typeDialog(mValuses.get(position).getTypeNotification(), mValuses.get(position).getIdNotification(), sales, qty, prjt_name);
             }
         });
+
     }
 
     @Override
     public int getItemCount() {
         return mValuses.size();
+    }
+
+    public int updatelist(List<Datum> list) {
+        return list.size();
     }
 }

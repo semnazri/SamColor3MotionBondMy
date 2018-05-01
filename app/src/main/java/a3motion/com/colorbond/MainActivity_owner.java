@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -46,6 +47,7 @@ import a3motion.com.colorbond.Fragment.Point_Parent;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.Utility.BottomNavigationViewHelper;
 import de.hdodenhof.circleimageview.CircleImageView;
+import q.rorbin.badgeview.QBadgeView;
 
 /**
  * Created by Semmy
@@ -63,6 +65,8 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
     public static TextView title_page;
     public static ImageView img_title;
     public static Toolbar mToolbar;
+    public static int counterhere = 0;
+    private static View v;
     NavigationView navigationView;
     FragmentManager fragmentManager;
     private BottomNavigationView btmView;
@@ -71,8 +75,14 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
     private CircleImageView imageview;
     private SharedPreferences prefsprivate;
     private String nama, image, merchant_type;
-    private ImageView img_ig, img_youtube,img_web;
+    private ImageView img_ig, img_youtube, img_web;
     private MaterialDialog mDialog;
+
+    public static void counter(Context context, int counters) {
+        counterhere = counters;
+
+        new QBadgeView(context).bindTarget(v).setBadgeNumber(counters);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -187,6 +197,14 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
                 startActivity(web);
             }
         });
+
+
+        BottomNavigationMenuView bottomNavigationMenuView = (BottomNavigationMenuView) btmView.getChildAt(0);
+
+        v = bottomNavigationMenuView.getChildAt(2); // number of menu from left
+//        new QBadgeView(this).bindTarget(v).setBadgeNumber(counter);
+        counter(this, counterhere);
+
 
         btmView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -351,4 +369,5 @@ public class MainActivity_owner extends AppCompatActivity implements NavigationV
                 })
                 .show();
     }
+
 }

@@ -16,4 +16,8 @@ public interface NotificationInterface {
     @FormUrlEncoded
     @POST("notif/disapproved")
     Call<ResponseBody> Dissapproce(@Header("Authorization") String Authorization, @Field("id_notif") String id_notif);
+
+    @FormUrlEncoded
+    @POST("notif/read")
+    Call<ResponseBody> doRead(@Header("Authorization") String Authorization, @Field("id_notif") String id_notif);
 }

@@ -123,6 +123,10 @@ public class Fragment_account extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), MenuActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                SharedPreferences.Editor editor = prefsprivate.edit();
+                editor.remove("mem_type");
+                editor.commit();
                 startActivity(i);
             }
         });

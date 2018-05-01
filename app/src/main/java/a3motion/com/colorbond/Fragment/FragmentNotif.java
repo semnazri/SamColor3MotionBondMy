@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import a3motion.com.colorbond.Adapter.NotificationAdapter;
@@ -29,6 +31,7 @@ import a3motion.com.colorbond.MainActivity;
 import a3motion.com.colorbond.MainActivity_owner;
 import a3motion.com.colorbond.Model.Notification;
 import a3motion.com.colorbond.Network.ConnectionDetector;
+import a3motion.com.colorbond.POJO.Datum;
 import a3motion.com.colorbond.POJO.RegisterResponse;
 import a3motion.com.colorbond.POJO.ResponseNotifications;
 import a3motion.com.colorbond.Presenter.ApprovePresenter;
@@ -37,11 +40,14 @@ import a3motion.com.colorbond.Presenter.DisApprovePresenter;
 import a3motion.com.colorbond.Presenter.DisApprovePresenterImp;
 import a3motion.com.colorbond.Presenter.NotificationsPresenter;
 import a3motion.com.colorbond.Presenter.NotificationsPresenterImp;
+import a3motion.com.colorbond.Presenter.ReadNotifPresenter;
+import a3motion.com.colorbond.Presenter.ReadNotifPresenterImp;
 import a3motion.com.colorbond.R;
 import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 import a3motion.com.colorbond.View.ApproveView;
 import a3motion.com.colorbond.View.DisapproveView;
 import a3motion.com.colorbond.View.NotificationView;
+import a3motion.com.colorbond.View.ReadNotifView;
 
 /**
  * Created by Semmy
@@ -51,7 +57,7 @@ import a3motion.com.colorbond.View.NotificationView;
  * PT.Bisnis Indonesia Sibertama
  */
 
-public class FragmentNotif extends Fragment implements NotificationListener, NotificationView, ApproveView, DisapproveView {
+public class FragmentNotif extends Fragment implements NotificationListener, NotificationView, ApproveView, DisapproveView, ReadNotifView {
 
     public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     String userid, tokenz;
@@ -69,6 +75,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     private NotificationsPresenter notificationsPresenter;
     private ApprovePresenter approvePresenter;
     private DisApprovePresenter disApprovePresenter;
+    private ReadNotifPresenter readNotifPresenter;
     private Dialog dialog_followers;
 
     @Override
@@ -125,6 +132,7 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
         notificationsPresenter = new NotificationsPresenterImp(this);
         approvePresenter = new ApprovePresenterImp(this);
         disApprovePresenter = new DisApprovePresenterImp(this);
+        readNotifPresenter = new ReadNotifPresenterImp(this);
 
         checkConnections();
 //        notif = getAllNotif();
@@ -154,6 +162,10 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
 
     @Override
     public void typeDialog(String typeDialog, String idNotification, String sales, String qty, String prjt_name) {
+
+        //TODO : palnggil presenter read,
+
+        readNotifPresenter.doRead(tokenz,idNotification);
 
         if (typeDialog.equals("0")) {
 
@@ -354,6 +366,16 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
             rv.setLayoutManager(lm);
             adapter = new NotificationAdapter(getActivity(), responseNotifications.getData(), FragmentNotif.this);
             rv.setAdapter(adapter);
+
+            if (userid.equals("1")) {
+                MainActivity.counter(getActivity(), grandTotal(responseNotifications.getData()));
+            } else {
+                MainActivity_owner.counter(getActivity(), grandTotal(responseNotifications.getData()));
+            }
+
+            Log.d("kuntul", String.valueOf(grandTotal(responseNotifications.getData())) + "of" + String.valueOf(responseNotifications.getData().size()));
+
+
         }
     }
 
@@ -361,6 +383,13 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
     public void ResulEvent(String response_message, RegisterResponse registerResponse) {
         dialog_muter.dismiss();
         getdialogok(registerResponse.getMessage());
+
+    }
+
+    @Override
+    public void ResulRead(String response_message, RegisterResponse registerResponse) {
+        //TODO : panggil presenter notif
+        notificationsPresenter.getListNotifications(tokenz);
 
     }
 
@@ -409,5 +438,17 @@ public class FragmentNotif extends Fragment implements NotificationListener, Not
                     }
                 })
                 .show();
+    }
+
+    private int grandTotal(List<Datum> items) {
+
+        List<Datum> temp = new ArrayList<>();
+        for (Datum d : items) {
+            if (d.getStatus().contains("1")) {
+                temp.add(d);
+            }
+        }
+
+        return adapter.updatelist(temp);
     }
 }

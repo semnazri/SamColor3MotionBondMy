@@ -1,11 +1,16 @@
 package a3motion.com.colorbond;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import a3motion.com.colorbond.Utility.BlueScoopPreferences;
 
 /**
  * Created by Semmy
@@ -17,8 +22,11 @@ import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
 
+    public static final String PREFS_PRIVATE = "PREFS_PRIVATE";
     View btn_architect, btn_roll, btn_contractor;
     private TextView txt_forgot, txt_help;
+    private SharedPreferences prefsprivate;
+    private String userid;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,6 +38,22 @@ public class MenuActivity extends AppCompatActivity {
         btn_contractor = findViewById(R.id.boncontract);
         txt_help = findViewById(R.id.txt_help);
         txt_forgot = findViewById(R.id.txt_forgot);
+
+        prefsprivate = getSharedPreferences(PREFS_PRIVATE, Context.MODE_PRIVATE);
+        userid = prefsprivate.getString(BlueScoopPreferences.mem_type, null);
+
+//        Toast.makeText(this, userid, Toast.LENGTH_SHORT).show();
+
+        if (userid != null){
+            if (userid.equals("1")) {
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(i);
+            } else {
+                Intent i = new Intent(getApplicationContext(), MainActivity_owner.class);
+                startActivity(i);
+
+            }
+        }
 
         txt_help.setOnClickListener(new View.OnClickListener() {
             @Override

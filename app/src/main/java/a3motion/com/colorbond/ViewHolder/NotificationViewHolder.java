@@ -2,6 +2,7 @@ package a3motion.com.colorbond.ViewHolder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,12 +19,14 @@ import a3motion.com.colorbond.R;
 public class NotificationViewHolder extends RecyclerView.ViewHolder{
     public TextView title_notif, hedline_notif, des_notif;
     public LinearLayout ll ;
+    public ImageView is_read;
     public NotificationViewHolder(View itemView) {
         super(itemView);
 
         title_notif = itemView.findViewById(R.id.notif_title);
         hedline_notif = itemView.findViewById(R.id.notif_headline);
         des_notif = itemView.findViewById(R.id.notif_desc);
+        is_read = itemView.findViewById(R.id.is_read);
         ll = itemView.findViewById(R.id.parent);
     }
 }
